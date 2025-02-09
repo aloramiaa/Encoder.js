@@ -117,8 +117,16 @@ const Home = (props) => {
               ></span>
             </span>
             <select id="mode" className="home-select __just_se1ect">
-              <option value="encode">Encode</option>
-              <option value="decode">Decode</option>
+              <option value="encode"
+                dangerouslySetInnerHTML={{
+                  __html: translate.raw('text-1'),
+                }}
+              ></option>
+              <option value="decode"
+                dangerouslySetInnerHTML={{
+                  __html: translate.raw('text-2'),
+                }}
+              ></option>
             </select>
           </div>
           <div className="home-buttons">
@@ -136,7 +144,11 @@ const Home = (props) => {
                 className="home-button button"
               >
                 <span className="home-text4">
-                  <span className="home-text5">Docs</span>
+                  <span className="home-text5"
+                    dangerouslySetInnerHTML={{
+                      __html: translate.raw('text-4'),
+                    }}
+                  ></span>
                   <span></span>
                   <span className="home-text7">↗</span>
                 </span>
