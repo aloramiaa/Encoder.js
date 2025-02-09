@@ -85,14 +85,15 @@ jobs:
       - name: Modify Deployment
         run: |
           mkdir -p deploy/_just/
-          FILE_ID=1
+          FILE_ID=0
+          echo "----------------"
           echo "_just Chunks:"
           for file in _just/js/*; do
             cp "$file" "deploy/_just/${FILE_ID}.js"
             FILE_ID=$((FILE_ID + 1))
             echo "_just/${FILE_ID}.js"
           done
-          FILE_ID=1
+          FILE_ID=0
           for file in _just/style/*; do
             cp "$file" "deploy/_just/${FILE_ID}.css"
             FILE_ID=$((FILE_ID + 1))
