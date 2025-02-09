@@ -94,23 +94,16 @@ const Home = (props) => {
               {locales.map((all_languages, index) => (
                 <Link href={`/${index}`}>
                   <Fragment key={index}>
-                    <div className="home-language-switcher-item">
-                      <span className="home-language-link">
-                        {all_languages?.name}
-                      </span>
-                    </div>
+                    <Link href={`/${index}`}>
+                      <div className="home-language-switcher-item">
+                        <span className="home-language-link">
+                          {all_languages?.name}
+                        </span>
+                      </div>
+                    </Link>
                   </Fragment>
                 </Link>
               ))}
-              <Link href="/ru">
-                <Fragment key={'ru'}>
-                    <div className="home-language-switcher-item">
-                      <span className="home-language-link">
-                        Russian
-                      </span>
-                    </div>
-                </Fragment>
-              </Link>
             </div>
           </ul>
         </div>
