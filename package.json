@@ -1,7 +1,7 @@
 {
-  "name": "juststudiowebsite",
+  "name": "encoderjs-website",
   "version": "1.0.0",
-  "description": "A next project generated based on a UIDL document",
+  "description": "Encode and decode strings",
   "main": "index.js",
   "scripts": {
     "dev": "next",
@@ -9,10 +9,10 @@
     "start": "next start",
     "export": "next export"
   },
-  "author": "TeleportHQ",
+  "author": "JustStudio.",
   "license": "MIT",
   "dependencies": {
-    "next": "^12.1.10",
+    "next": ">=14.2.15",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "next-intl": "2.10.0"
