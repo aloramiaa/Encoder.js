@@ -26,7 +26,10 @@ SOFTWARE.
 
 let Language;
 let upd = true;
-let prepathname = "/Encoder"
+let prepathname = "/Encoder";
+if (window.location.hostname != 'j.is-a.dev') {
+    prepathname = "";
+}
 
 if (!localStorage.getItem('Language') && window.location.search === '?en') {
     Language = 'en';
@@ -35,7 +38,7 @@ if (!localStorage.getItem('Language') && window.location.search === '?en') {
 } else if (!localStorage.getItem('Language') && window.location.search === '?ru') {
     Language = 'ru';
     localStorage.setItem('Language', Language);
-    upd = false
+    upd = false;
 }
 
 if (localStorage.getItem('Language')) {
