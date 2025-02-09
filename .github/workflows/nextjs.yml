@@ -81,7 +81,7 @@ jobs:
           cp .next/server/pages/en.html deploy/index.html
       - name: Override Deployment (1)
         run: |
-          mkdir -p deploy/_just
+          mkdir -p deploy/_just/
           i=0
           if [ -d "_just/js" ] && [ "$(ls -A _just/js)" ]; then
             for file in _just/js/*; do
@@ -104,7 +104,7 @@ jobs:
           fi
       - name: Override Deployment (3)
         run: |
-          mkdir -p deploy/api
+          mkdir -p deploy/api/
           BUILD_ID=$(cat .next/BUILD_ID)
           echo "$BUILD_ID" > deploy/api/build-id
           echo "$BUILD_ID" > deploy/api/build-id.txt
