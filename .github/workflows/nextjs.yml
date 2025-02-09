@@ -81,7 +81,9 @@ jobs:
       - name: Prepare Deployment
         run: |
           mkdir -p deploy
-          cp -r .next/static/* deploy/
+          cp -r .next/server/pages/* deploy/
+          mkdir -p deploy/_next/
+          cp -r .next/static/* deploy/_next/
           cp .next/server/pages/en.html deploy/index.html
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
