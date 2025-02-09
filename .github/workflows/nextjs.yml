@@ -59,19 +59,13 @@ jobs:
       - name: Setup Pages
         uses: actions/configure-pages@v5
         with:
-          # Automatically inject basePath in your Next.js configuration file and disable
-          # server side image optimization (https://nextjs.org/docs/api-reference/next/image#unoptimized).
-          #
-          # You may remove this line if you want to manage the configuration yourself.
           static_site_generator: next
       - name: Restore cache
         uses: actions/cache@v4
         with:
           path: |
             .next/cache
-          # Generate a new cache whenever packages or source files change.
           key: ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json', '**/yarn.lock') }}-${{ hashFiles('**.[jt]s', '**.[jt]sx') }}
-          # If source files changed but packages didn't, rebuild from a prior cache.
           restore-keys: |
             ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json', '**/yarn.lock') }}-
       - name: Install dependencies
@@ -89,31 +83,35 @@ jobs:
         run: |
           mkdir -p deploy/_just
           i=0
-          if [ -d "_just/js" ]; then
+          if [ -d "_just/js" ] && [ "$(ls -A _just/js)" ]; then
             for file in _just/js/*; do
               cp "$file" "deploy/_just/$i.js"
               ((i++))
             done
           else
-            echo "Warning: _just/js directory does not exist."
+            echo "Warning: _just/js directory does not exist or is empty."
           fi
+  
           i=0
-          if [ -d "_just/style" ]; then
+          if [ -d "_just/style" ] && [ "$(ls -A _just/style)" ]; then
             for file in _just/style/*; do
               cp "$file" "deploy/_just/$i.css"
               ((i++))
             done
           else
-            echo "Warning: _just/style directory does not exist."
+            echo "Warning: _just/style directory does not exist or is empty."
           fi
+  
           mkdir -p deploy/api
           BUILD_ID=$(cat .next/BUILD_ID)
           echo "$BUILD_ID" > deploy/api/build-id
           echo "$BUILD_ID" > deploy/api/build-id.txt
           echo "{\"BUILD_ID\": \"$BUILD_ID\"}" > deploy/api/build-id.json
+  
           cp .next/build-manifest.json deploy/api/build-manifest
           cp .next/build-manifest.json deploy/api/build-manifest.json
           cp .next/build-manifest.json deploy/api/build-manifest.txt
+  
           for html_file in deploy/*.html; do
             if grep -q "</head>" "$html_file"; then
               for js_file in deploy/_just/*.js; do
