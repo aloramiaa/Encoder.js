@@ -48,7 +48,7 @@ const Home = (props) => {
             data-thq="thq-dropdown-toggle"
             className="home-language-switcher-toggle"
           >
-            <span className="home-language-name">{locale?.['name']}</span>
+            <span className="home-language-name">{locale?.['name'] || 'Russian'}</span>
             <div data-thq="thq-dropdown-arrow" className="home-dropdown-arrow">
               <svg
                 fill="#6e3bf3"
@@ -73,6 +73,13 @@ const Home = (props) => {
                   </div>
                 </Fragment>
               ))}
+              <Fragment key={'ru'}>
+                  <div className="home-language-switcher-item">
+                    <span className="home-language-link">
+                      Russian
+                    </span>
+                  </div>
+              </Fragment>
             </div>
           </ul>
         </div>
