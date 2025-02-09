@@ -2,7 +2,7 @@
 #
 # To get started with Next.js see: https://nextjs.org/docs/getting-started
 #
-name: Deploy Next.js site to Pages
+name: Deploy
 
 on:
   push:
@@ -24,7 +24,7 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: NPM
+      - name: npm
         id: install-npm
         run: npm i
       - name: Detect package manager
@@ -86,8 +86,11 @@ jobs:
         run: |
           mkdir -p deploy/_just/
           FILE_ID=0
+          echo ""
           echo "----------------"
+          echo ""
           echo "_just Chunks:"
+          echo ""
           for file in _just/js/*; do
             cp "$file" "deploy/_just/${FILE_ID}.js"
             FILE_ID=$((FILE_ID + 1))
@@ -99,7 +102,9 @@ jobs:
             FILE_ID=$((FILE_ID + 1))
             echo "_just/${FILE_ID}.css"
           done
+          echo ""
           echo "End _just Chunks"
+          echo ""
           echo "----------------"
       - name: Override Deployment
         run: |
