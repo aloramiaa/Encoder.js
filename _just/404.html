@@ -86,7 +86,13 @@ SOFTWARE.
 	    }
     </script>
     <script>
-        window.location.href = "/"
+        if (window.location.pathname == "/1") {
+	    window.location.href = "/ru"
+	} else if (window.location.pathname == "/Encoder/1") {
+	    window.location.href = "/Encoder/ru"
+	} else {
+	    window.location.href = "/"
+	}
     </script>
 </head>
 <body>
