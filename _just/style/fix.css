@@ -1,3 +1,8 @@
 button *:last-child:not(.home-text7) {
     display: none;
 }
+
+option {
+    background-color: black;
+    color: white;
+}
