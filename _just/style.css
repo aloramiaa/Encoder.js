@@ -1,0 +1,3 @@
+button *:last-child:not(.home-text7) {
+    display: none;
+}
