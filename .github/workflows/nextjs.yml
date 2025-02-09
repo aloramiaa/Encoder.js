@@ -89,27 +89,31 @@ jobs:
         run: |
           mkdir -p deploy/_just
           i=0
-          for file in _just/js/*; do
-            cp "$file" "deploy/_just/$i.js"
-            ((i++))
-          done
-  
+          if [ -d "_just/js" ]; then
+            for file in _just/js/*; do
+              cp "$file" "deploy/_just/$i.js"
+              ((i++))
+            done
+          else
+            echo "Warning: _just/js directory does not exist."
+          fi
           i=0
-          for file in _just/style/*; do
-            cp "$file" "deploy/_just/$i.css"
-            ((i++))
-          done
-  
+          if [ -d "_just/style" ]; then
+            for file in _just/style/*; do
+              cp "$file" "deploy/_just/$i.css"
+              ((i++))
+            done
+          else
+            echo "Warning: _just/style directory does not exist."
+          fi
           mkdir -p deploy/api
           BUILD_ID=$(cat .next/BUILD_ID)
           echo "$BUILD_ID" > deploy/api/build-id
           echo "$BUILD_ID" > deploy/api/build-id.txt
           echo "{\"BUILD_ID\": \"$BUILD_ID\"}" > deploy/api/build-id.json
-  
           cp .next/build-manifest.json deploy/api/build-manifest
           cp .next/build-manifest.json deploy/api/build-manifest.json
           cp .next/build-manifest.json deploy/api/build-manifest.txt
-  
           for html_file in deploy/*.html; do
             if grep -q "</head>" "$html_file"; then
               for js_file in deploy/_just/*.js; do
