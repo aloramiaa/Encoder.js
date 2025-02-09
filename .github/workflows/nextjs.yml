@@ -83,9 +83,9 @@ jobs:
         run: |
           mkdir -p deploy/_just/
           i=0
-          if [ -d "_just/js" ] && [ "$(ls -A _just/js)" ]; then
+          if [ -d _just/js ] && [ "$(ls -A _just/js)" ]; then
             for file in _just/js/*; do
-              cp "$file" "deploy/_just/$i.js"
+              cp "$file" deploy/_just/$i.js
               ((i++))
             done
           else
@@ -95,9 +95,9 @@ jobs:
       - name: Override Deployment (2)
         run: |
           i=0
-          if [ -d "_just/style" ] && [ "$(ls -A _just/style)" ]; then
+          if [ -d _just/style ] && [ "$(ls -A _just/style)" ]; then
             for file in _just/style/*; do
-              cp "$file" "deploy/_just/$i.css"
+              cp "$file" deploy/_just/$i.css
               ((i++))
             done
           else
