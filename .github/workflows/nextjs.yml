@@ -95,6 +95,18 @@ jobs:
             cp "$file" "deploy/_just/${FILE_ID}.css"
             FILE_ID=$((FILE_ID + 1))
           done
+      - name: Override Deployment
+        run: |
+          find deploy -name '*.html' | while read -r html_file; do
+            for js_file in deploy/_just/*.js; do
+              js_filename=$(basename "$js_file")
+              sed -i "/<\/head>/i <script src=\"_just/${js_filename}\"></script>" "$html_file"
+            done
+            for css_file in deploy/_just/*.css; do
+              css_filename=$(basename "$css_file")
+              sed -i "/<\/head>/i <link href=\"_just/${css_filename}\" rel=\"stylesheet\">" "$html_file"
+            done
+          done
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
