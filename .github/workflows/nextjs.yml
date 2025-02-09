@@ -86,25 +86,30 @@ jobs:
         run: |
           mkdir -p deploy/_just/
           FILE_ID=1
+          echo "_just Chunks:"
           for file in _just/js/*; do
             cp "$file" "deploy/_just/${FILE_ID}.js"
             FILE_ID=$((FILE_ID + 1))
+            echo "_just/${FILE_ID}.js"
           done
           FILE_ID=1
           for file in _just/style/*; do
             cp "$file" "deploy/_just/${FILE_ID}.css"
             FILE_ID=$((FILE_ID + 1))
+            echo "_just/${FILE_ID}.css"
           done
+          echo "End _just Chunks"
+          echo "----------------"
       - name: Override Deployment
         run: |
           find deploy -name '*.html' | while read -r html_file; do
             for js_file in deploy/_just/*.js; do
               js_filename=$(basename "$js_file")
-              sed -i "/<\/head>/i <script src=\"_just/${js_filename}\"></script>" "$html_file"
+              sed -i "/<\/head>/i <script src=\"_just/${js_filename}\"></script>" "$html_file" || echo "Failed to modify $html_file"
             done
             for css_file in deploy/_just/*.css; do
               css_filename=$(basename "$css_file")
-              sed -i "/<\/head>/i <link href=\"_just/${css_filename}\" rel=\"stylesheet\">" "$html_file"
+              sed -i "/<\/head>/i <link href=\"_just/${css_filename}\" rel=\"stylesheet\">" "$html_file" || echo "Failed to modify $html_file"
             done
           done
       - name: Upload artifact
