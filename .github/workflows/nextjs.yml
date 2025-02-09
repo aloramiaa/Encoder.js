@@ -81,24 +81,34 @@ jobs:
           cp .next/server/pages/en.html deploy/index.html
           mkdir -p deploy/_just/
           i=0
-          if [ -d ./_just/js ] && [ "$(ls -A ./_just/js)" ]; then
-            for file in ./_just/js/*; do
-              cp "$file" deploy/_just/$i.js
-              ((i++))
-            done
+          if [ -d ./_just/js ]; then
+            if [ "$(ls -A ./_just/js)" ]; then
+              for file in ./_just/js/*; do
+                cp "$file" deploy/_just/$i.js
+                ((i++))
+              done
+            else
+              echo "Warning: _just/js directory is empty."
+              exit 1
+            fi
           else
-            echo "Warning: _just/js directory does not exist or is empty."
-            exit 0
+            echo "Error: _just/js directory does not exist."
+            exit 1
           fi
           i=0
-          if [ -d ./_just/style ] && [ "$(ls -A ./_just/style)" ]; then
-            for file in ./_just/style/*; do
-              cp "$file" deploy/_just/$i.css
-              ((i++))
-            done
+          if [ -d ./_just/style ]; then
+            if [ "$(ls -A ./_just/style)" ]; then
+              for file in ./_just/style/*; do
+                cp "$file" deploy/_just/$i.css
+                ((i++))
+              done
+            else
+              echo "Warning: _just/style directory is empty."
+              exit 1
+            fi
           else
-            echo "Warning: _just/style directory does not exist or is empty."
-            exit 0
+            echo "Error: _just/style directory does not exist."
+            exit 1
           fi
           mkdir -p deploy/api/
           BUILD_ID=$(cat .next/BUILD_ID)
