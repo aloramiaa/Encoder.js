@@ -25,25 +25,30 @@ SOFTWARE.
 */
 
 let Language;
+let upd = true;
+
+if (!localStorage.getItem('Language') && window.location.search === '?en') {
+    Language = 'en';
+    localStorage.setItem('Language', Language);
+    upd = false;
+} else if (!localStorage.getItem('Language') && window.location.search === '?ru') {
+    Language = 'ru';
+    localStorage.setItem('Language', Language);
+    upd = false
+}
 
 if (localStorage.getItem('Language')) {
     Language = localStorage.getItem('Language');
 } else {
     const userLang = navigator.language || navigator.userLanguage;
     Language = userLang.includes('ru') ? 'ru' : 'en';
-    localStorage.setItem('Language', Language);
+    if (upd) {
+        localStorage.setItem('Language', Language);
+    }
 }
 
-if (!localStorage.getItem('Language') && window.location.search === '?en') {
-    Language = 'en';
-    localStorage.setItem('Language', Language);
-} else if (!localStorage.getItem('Language') && window.location.search === '?ru') {
-    Language = 'ru';
-    localStorage.setItem('Language', Language);
-}
-
-if (window.location.pathname.endsWith('/en') && Language === 'en') {
-    window.location.pathname = window.location.pathname.replace(/\/en$/, '');
+if (!(window.location.pathname.endsWith('/')) && window.location.pathname.endsWith('/en') && Language === 'en') {
+    window.location.pathname = window.location.pathname.replace(/\/en$/, '/');
 } else if (Language === 'ru' && !window.location.pathname.endsWith('/ru')) {
     window.location.pathname = window.location.pathname.replace(/\/en$/, '/ru') || window.location.pathname + 'ru';
 }
