@@ -90,6 +90,7 @@ jobs:
             done
           else
             echo "Warning: _just/js directory does not exist or is empty."
+            exit 0
           fi
       - name: Override Deployment (2)
         run: |
@@ -101,6 +102,7 @@ jobs:
             done
           else
             echo "Warning: _just/style directory does not exist or is empty."
+            exit 0
           fi
       - name: Override Deployment (3)
         run: |
