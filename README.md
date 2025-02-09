@@ -1,4 +1,5 @@
 # Encoder
+[![Deploy](https://github.com/JustStudio7/Encoder/actions/workflows/nextjs.yml/badge.svg)](https://github.com/JustStudio7/Encoder/actions/workflows/nextjs.yml)<br/>
 w.i.p.
 
 
