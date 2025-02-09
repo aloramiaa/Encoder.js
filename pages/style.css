@@ -30,12 +30,12 @@
   --dl-radius-radius-inputradius: 24px;
   --dl-radius-radius-buttonradius: 24px;
   --dl-space-space-oneandhalfunits: 24px;
-  --dl-color-juststudio.styles-blue: #1437f3ff;
-  --dl-color-juststudio.styles-dark: #000040ff;
-  --dl-color-juststudio.styles-black: #000000ff;
-  --dl-color-juststudio.styles-light: #e3eeffff;
-  --dl-color-juststudio.styles-white: #ffffffff;
-  --dl-color-juststudio.styles-purple: #6e3bf3ff;
+  --dl-color-juststudio_styles-blue: #1437f3ff;
+  --dl-color-juststudio_styles-dark: #000040ff;
+  --dl-color-juststudio_styles-black: #000000ff;
+  --dl-color-juststudio_styles-light: #e3eeffff;
+  --dl-color-juststudio_styles-white: #ffffffff;
+  --dl-color-juststudio_styles-purple: #6e3bf3ff;
 }
  
 .button {

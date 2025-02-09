@@ -117,7 +117,7 @@ const Home = (props) => {
               ></span>
             </span>
             <select id="mode" className="home-select __just_se1ect">
-              <option value="decode">Encode</option>
+              <option value="encode">Encode</option>
               <option value="decode">Decode</option>
             </select>
           </div>

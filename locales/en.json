@@ -1,5 +1,5 @@
 {
-  "text_-XONHh": "<span>Encoder.js\n</span>",
+  "text_-XONHh": "<span><strong>Encoder</strong>.js\n</span>",
   "text_KZFk8S": "<span>Input\n</span>",
   "text_S-x5go": "<span>Docs ↗\n</span>",
   "text_Vcjrr0": "<span>Output\n</span>",
@@ -7,5 +7,9 @@
   "static_8hiseu": "JustStudio.",
   "static_HyaqSc": "JustStudio.",
   "static_dx8wHO": "a System Development Studio.",
-  "static_vZeKeO": "a System Development Studio"
+  "static_vZeKeO": "a System Development Studio",
+
+  "text-1": "Encode",
+  "text-2": "Decode"
+
 }
