@@ -6,3 +6,12 @@ option {
     background-color: black;
     color: white;
 }
+
+div[data-thq="thq-dropdown"] {
+    border-radius: 10px !important;
+    transition: 500ms;
+}
+div[data-thq="thq-dropdown"]:hover {
+    border-bottom-left-radius: 0px !important;
+    border-bottom-right-radius: 0px !important;
+}
