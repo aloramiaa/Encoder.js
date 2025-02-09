@@ -103,8 +103,8 @@ jobs:
             FILE_ID=$((FILE_ID + 1))
           done
           for file in _just/dangerously-insert-files/*; do
-            cp "$file" "deploy/${basename \"$file\"}"
-            echo "$(basename \"$file\")"
+            cp "$file" "deploy/${basename "$file"}"
+            echo "$(basename "$file")"
           done
           echo ""
           echo "End _just Chunks"
