@@ -26,6 +26,7 @@ SOFTWARE.
 
 import React, { Fragment } from 'react'
 import Head from 'next/head'
+import Link from 'next/link'
 
 import { useTranslations } from 'next-intl'
 
@@ -91,21 +92,25 @@ const Home = (props) => {
           >
             <div>
               {locales.map((all_languages, index) => (
-                <Fragment key={index}>
-                  <div className="home-language-switcher-item">
-                    <span className="home-language-link" id="l-en">
-                      {all_languages?.name}
-                    </span>
-                  </div>
-                </Fragment>
+                <Link href={`/${index}`}>
+                  <Fragment key={index}>
+                    <div className="home-language-switcher-item">
+                      <span className="home-language-link">
+                        {all_languages?.name}
+                      </span>
+                    </div>
+                  </Fragment>
+                </Link>
               ))}
-              <Fragment key={'ru'}>
-                  <div className="home-language-switcher-item">
-                    <span className="home-language-link" id="l-ru">
-                      Russian
-                    </span>
-                  </div>
-              </Fragment>
+              <Link href="/ru">
+                <Fragment key={'ru'}>
+                    <div className="home-language-switcher-item">
+                      <span className="home-language-link">
+                        Russian
+                      </span>
+                    </div>
+                </Fragment>
+              </Link>
             </div>
           </ul>
         </div>
