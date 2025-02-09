@@ -42,7 +42,7 @@ display: block;
 z-index: 9;
 `;
 const currentYear = new Date().getFullYear();
-const copyrightText = `
+let copyrightText = `
 <span style="${copyrightTextStyles}">
     <a href="${copyrightTextLink}" target="_blank">
         <span style="opacity: 0.5;text-decoration: underline;text-decoration-color: rgba(255,255,255,0.33);" class="txt12" id="copyrightfootertext">© 2025-${currentYear} JustStudio.</span>

@@ -26,6 +26,7 @@ SOFTWARE.
 
 let Language;
 let upd = true;
+let prepathname = "/Encoder"
 
 if (!localStorage.getItem('Language') && window.location.search === '?en') {
     Language = 'en';
@@ -47,10 +48,10 @@ if (localStorage.getItem('Language')) {
     }
 }
 
-if (!(window.location.pathname.endsWith('/')) && window.location.pathname.endsWith('/en') && Language === 'en') {
-    window.location.pathname = window.location.pathname.replace(/\/en$/, '/');
-} else if (Language === 'ru' && !window.location.pathname.endsWith('/ru')) {
-    window.location.pathname = window.location.pathname.replace(/\/en$/, '/ru') || window.location.pathname + 'ru';
+if (window.location.pathname == `${prepathname}/en` && Language === 'en') {
+    window.location.pathname = window.location.pathname = `${prepathname}/`;
+} else if (Language === 'ru' && !window.location.pathname == `${prepathname}/ru`) {
+    window.location.pathname = `${prepathname}/ru`;
 }
 
 document.getElementById('l-en').addEventListener('click', function() {
