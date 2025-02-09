@@ -110,7 +110,7 @@ jobs:
             for css_file in deploy/_just/*.css; do
               echo "<link href=\"_just/$(basename "$css_file")\" rel=\"stylesheet\">" >> "$html_file"
             done
-            sed -i '/<\/head>/i '"$(cat "$html_file")" "$html_file"
+            sed -i '/<\/head>/i '"$(cat \"$html_file\")" "$html_file"
           done
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
