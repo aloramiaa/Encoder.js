@@ -24,6 +24,8 @@ SOFTWARE.
 
 */
 
+// this is unused thing that next.js need anyway ¯\_(ツ)_/¯
+
 import React from 'react'
 import Head from 'next/head'
 
