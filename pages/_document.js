@@ -97,7 +97,7 @@ class CustomDocument extends Document {
           <div
             dangerouslySetInnerHTML={{
               __html:
-                '<script type="text/javascript">\n    document.ondragstart = noselect;\n    document.onselectstart = noselect;\n    document.oncontextmenu = noselect;\n    function noselect() {return false;}\n</script>\n        <script defer src=\'https://unpkg.com/@teleporthq/react-components/dist/animate-on-reveal.umd.js\'></script><script type="module" src=\'/encoder.js@1.0.0.js\'></script><script type="module" defer>import {encode, decode} from "/Encoder/encoder.js@1.0.0.js"; document.getElementById("input").addEventListener("input", function() { const mode = document.getElementById("mode").value; const output = document.getElementById("output"); output.value = this.value ? (mode === "encode" ? encode(this.value, true) : decode(this.value)) : ""; });</script>',
+                '<script type="text/javascript">\n    document.ondragstart = noselect;\n    document.onselectstart = noselect;\n    document.oncontextmenu = noselect;\n    function noselect() {return false;}\n</script>\n        <script defer src=\'https://unpkg.com/@teleporthq/react-components/dist/animate-on-reveal.umd.js\'></script><script type="module" src=\'/encoder.js@1.0.0.js\'></script><script type="module" defer>import {encode, decode} from "/encoder.js@1.0.0.js"; document.getElementById("input").addEventListener("input", function() { const mode = document.getElementById("mode").value; const output = document.getElementById("output"); output.value = this.value ? (mode === "encode" ? encode(this.value, true) : decode(this.value)) : ""; });</script>',
             }}
           ></div>
         </body>
