@@ -61,9 +61,8 @@ function checkchar(char, chars) {
 }
 function getcode(char) {
   const codes = {
-    'c': 0, 'C': 0,
-    'd': 0, 'D': 0,
-    'e': 1, 'f': 1, 'g': 1, 'h': 1
+    'c': 0, 'C': 0, 'd': 0, 'D': 0, 'I': 0,
+    'e': 1, 'f': 1, 'g': 1, 'h': 1, 'i': 1
   };
   return codes[char] !== undefined ? codes[char] : 2;
 }
@@ -72,7 +71,8 @@ function character(char, code, get) {
     'A': ['c', 'e', 'E'],
     'B': ['C', 'f', 'F'],
     'a': ['d', 'g', 'G'],
-    'b': ['D', 'h', 'H']
+    'b': ['D', 'h', 'H'],
+    'K': ['I', 'i', 'j']
   };
 
   if (get) {
@@ -243,10 +243,7 @@ function encode1(input, useURLSAFEspecialCharacters) {
       .replaceAll('A97', 'h')
       .replaceAll('d05', 'i')
       .replaceAll('A74', 'J')
-      .replaceAll('aC6aC4aC7dG', 'N')
-      .replaceAll('d02hdDaC5dG', 'n')
       .replaceAll('Af', 'O')
-      .replaceAll('aCAC7deD', 'o')
       .replaceAll('id02', 'p')
       .replaceAll('dGdDaC5dG', 'P')
       .replaceAll('A40', 'Q')
@@ -280,14 +277,19 @@ function encode1(input, useURLSAFEspecialCharacters) {
         encoded = encoded2;
       }
     }
-    encoded = encoded
-      .replaceAll('A5', 'I')
-      .replaceAll('_-', 'j')
-      .replaceAll('4O', 'k')
-      .replaceAll('d09', 'lm')
-      .replaceAll('A99', 'lM')
-      .replaceAll('OiO', 'Lm')
-      .replaceAll('iUA', 'LM')
+    if (useURLSAFEspecialCharacters) {
+      encoded = encoded
+        .replaceAll('A5', 'I')
+        .replaceAll('_-', 'j')
+        .replaceAll('4O', 'k')
+        .replaceAll('d09', 'lm')
+        .replaceAll('A99', 'lM')
+        .replaceAll('OiO', 'Lm')
+        .replaceAll('iUA', 'LM')
+        .replaceAll('db', 'N')
+        .replaceAll('UA', 'n')
+        .replaceAll('EU', 'o')
+    }
   let output = dataChar+encoded;
     return output
       .replaceAll('AU', 'K');
@@ -324,6 +326,9 @@ function decode1(encoded) {
     .replaceAll('lM', 'A99')
     .replaceAll('Lm', 'OiO')
     .replaceAll('LM', 'iUA')
+    .replaceAll('N', 'db')
+    .replaceAll('n', 'UA')
+    .replaceAll('o', 'EU')
     .replaceAll('_', 'd04')////////////////////////////////
     .replaceAll('-', 'A4')
     .replaceAll('Z', 'DE')
@@ -351,7 +356,6 @@ function decode1(encoded) {
     .replaceAll('o', 'aCAC7deD')
     .replaceAll('O', 'Af')
     .replaceAll('n', 'd02hdDaC5dG')
-    .replaceAll('N', 'aC6aC4aC7dG')
     .replaceAll('J', 'A74')
     .replaceAll('i', 'd05')
     .replaceAll('h', 'A97')
@@ -413,3 +417,5 @@ export const encode = (text, compress) => {
 export const decode = (text) => {
   return decode2(text);
 };
+
+
