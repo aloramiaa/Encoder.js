@@ -417,8 +417,8 @@ console.log(LZString);
 //
 
 export const encode = async (text, compress) => {
-  return await LZString144['compress'](encode2(text, compress));
+  return await LZString['compress'](encode2(text, compress));
 };
 export const decode = async (text) => {
-  return decode2(await LZString144['decompress'](text));
+  return decode2(await LZString['decompress'](text));
 };
