@@ -92,7 +92,7 @@ function character(char, code, get) {
 }
 
 const LZString = {
-  compress: function (uncompressed, bitsPerChar, getCharFromInt) {
+  "compress": function (uncompressed, bitsPerChar, getCharFromInt) {
     if (uncompressed == null) return "";
     
     const context_dictionary = new Map();
@@ -159,7 +159,7 @@ const LZString = {
 
     return context_data.join('');
 },
-  decompress : function (length, resetValue, getNextValue) {
+  "decompress" : function (length, resetValue, getNextValue) {
     var dictionary = [],
         next,
         enlargeIn = 4,
@@ -639,6 +639,7 @@ function decode2(text_) {
 }
 
 export const encode = (text, compress) => {
+  console.log(LZString.compress(encode2(text, compress)));
   return LZString.compress(encode2(text, compress));
 };
 export const decode = (text) => {
