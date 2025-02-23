@@ -135,7 +135,7 @@ const LZString = {
 
     // Output the code for w
     if (context_w !== "") {
-        const value = context_dictionary.get(context_w);
+        let value = context_dictionary.get(context_w);
         for (let i = 0; i < context_numBits; i++) {
             context_data_val = (context_data_val << 1) | (value & 1);
             if (++context_data_position === bitsPerChar) {
