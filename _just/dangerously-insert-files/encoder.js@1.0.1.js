@@ -787,9 +787,9 @@ function decode2(text_) {
   return decode1(preDataDEC1);
 }
 
-export const encode = async (text, compress) => {
-  return await LZString.compress(encode2(text, compress));
+export const encode = (text, compress) => {
+  return LZString.compress(encode2(text, compress));
 };
-export const decode = async (text) => {
-  return decode2(await LZString.decompress(text));
+export const decode = (text) => {
+  return decode2(LZString.decompress(text));
 };
