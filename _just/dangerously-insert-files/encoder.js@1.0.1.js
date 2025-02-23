@@ -56,7 +56,8 @@ SOFTWARE.
  * lz-string by Pieroxy <pieroxy@pieroxy.net> - https://pieroxy.net/blog/pages/lz-string/index.html
  */
 
-import * as LZString144 from "https://encoder.js.is-a.dev/third-party/lzstring.js";
+import * as LZString from "https://encoder.js.is-a.dev/third-party/lzstring.js";
+const LZString144 = LZString.LZString144;
 
 function checkchar(char, chars) {
   return chars.some(ch => ch === char);
