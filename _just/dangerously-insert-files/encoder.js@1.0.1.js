@@ -413,7 +413,7 @@ function decode2(text_) {
 //test
 console.log(typeof LZString);
 console.log(typeof LZString144);
-console.log(LZString144);
+console.log(LZString);
 //
 
 export const encode = async (text, compress) => {
