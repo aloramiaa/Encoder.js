@@ -57,9 +57,7 @@ SOFTWARE.
  */
 
 import * as LZString from "https://encoder.js.is-a.dev/third-party/lzstring.js";
-try { LZString() } catch(e) {alert(e)};
 const LZString144 = LZString.LZString144;
-try { LZString144() } catch(e) {alert(e)};
 
 function checkchar(char, chars) {
   return chars.some(ch => ch === char);
@@ -412,9 +410,15 @@ function decode2(text_) {
   return decode1(preDataDEC1);
 }
 
+//test
+console.log(typeof LZString);
+console.log(typeof LZString144);
+console.log(LZString144);
+//
+
 export const encode = async (text, compress) => {
-  return await LZString144.compress(encode2(text, compress));
+  return await LZString144['compress'](encode2(text, compress));
 };
 export const decode = async (text) => {
-  return decode2(await LZString144.decompress(text));
+  return decode2(await LZString144['decompress'](text));
 };
