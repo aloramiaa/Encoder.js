@@ -57,7 +57,9 @@ SOFTWARE.
  */
 
 import * as LZString from "https://encoder.js.is-a.dev/third-party/lzstring.js";
+try { LZString() } catch(e) {alert(e)};
 const LZString144 = LZString.LZString144;
+try { LZString144() } catch(e) {alert(e)};
 
 function checkchar(char, chars) {
   return chars.some(ch => ch === char);
