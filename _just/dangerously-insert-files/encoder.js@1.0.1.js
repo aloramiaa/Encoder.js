@@ -29,6 +29,9 @@ SOFTWARE.
 
 /*
 
+ https://encoder.js.is-a.dev/
+
+
  ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 ░░███████╗███╗░░██╗░█████╗░░█████╗░██████╗░███████╗██████╗░░░░░░░░░██╗░██████╗░░
 ░░██╔════╝████╗░██║██╔══██╗██╔══██╗██╔══██╗██╔════╝██╔══██╗░░░░░░░░██║██╔════╝░░
@@ -37,16 +40,58 @@ SOFTWARE.
 ░░███████╗██║░╚███║╚█████╔╝╚█████╔╝██████╔╝███████╗██║░░██║██╗╚█████╔╝██████╔╝░░
 ░░╚══════╝╚═╝░░╚══╝░╚════╝░░╚════╝░╚═════╝░╚══════╝╚═╝░░╚═╝╚═╝░╚════╝░╚═════╝░░░
  ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-*/
 
-// Made by JustStudio.
+ Made by JustStudio.                               https://juststudio.is-a.dev/
+
+ ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄
+ ██▄─█─█─█─▄▄█▄─▄█─▄▄█▄─▄█─█─█─▄▀█─█─▄─████
+ ███─█─█─█▄▄─██─██▄▄─██─██─█─█─█─█─█─█─████
+ █▄▄██▄▄▄█▄▄▄██▄██▄▄▄██▄██▄▄▄█▄▄██▄█▄▄▄█▄▄█
+
+*/
 
 /*
-████████████████████████████████████████████████████████████████
-███▄─▄█▄─██─▄█─▄▄▄▄█─▄─▄─█─▄▄▄▄█─▄─▄─█▄─██─▄█▄─▄▄▀█▄─▄█─▄▄─█████
-█─▄█─███─██─██▄▄▄▄─███─███▄▄▄▄─███─████─██─███─██─██─██─██─█░░██
-▀▄▄▄▀▀▀▀▄▄▄▄▀▀▄▄▄▄▄▀▀▄▄▄▀▀▄▄▄▄▄▀▀▄▄▄▀▀▀▄▄▄▄▀▀▄▄▄▄▀▀▄▄▄▀▄▄▄▄▀▄▄▀▀
-*/
+ * Using:
+ *
+ * lz-string by Pieroxy <pieroxy@pieroxy.net> - https://pieroxy.net/blog/pages/lz-string/index.html
+ */
+
+import LZString144 from "https://encoder.js.is-a.dev/third-party/lzstring.js";
+
+function checkchar(char, chars) {
+  return chars.some(ch => ch === char);
+}
+function getcode(char) {
+  const codes = {
+    'c': 0, 'C': 0,
+    'd': 0, 'D': 0,
+    'e': 1, 'f': 1, 'g': 1, 'h': 1
+  };
+  return codes[char] !== undefined ? codes[char] : 2;
+}
+function character(char, code, get) {
+  const conversionMap = {
+    'A': ['c', 'e', 'E'],
+    'B': ['C', 'f', 'F'],
+    'a': ['d', 'g', 'G'],
+    'b': ['D', 'h', 'H']
+  };
+
+  if (get) {
+    for (const [ogchar, chars] of Object.entries(conversionMap)) {
+      if (checkchar(char, chars)) {
+        return [ogchar, getcode(char)];
+      }
+    }
+    return ['A', getcode(char)]; // Default case
+  }
+
+  for (const [ogchar, chars] of Object.entries(conversionMap)) {
+    if (char === ogchar) {
+      return chars[code] || chars[0]; // Return the corresponding character based on code
+    }
+  }
+}
 
 function checkNum0(num) {
     let data001 = `${num}`;
@@ -364,9 +409,9 @@ function decode2(text_) {
   return decode1(preDataDEC1);
 }
 
-export const encode = (text, compress) => {
-  return encode2(text, compress);
+export const encode = async (text, compress) => {
+  return await LZString144.compress(encode2(text, compress));
 };
-export const decode = (text) => {
-  return decode2(text);
+export const decode = async (text) => {
+  return decode2(await LZString144.decompress(text));
 };
