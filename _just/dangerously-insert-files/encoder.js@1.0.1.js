@@ -50,43 +50,39 @@ SOFTWARE.
 
 */
 
-/*
- * Using:
- *
- * lz-string by Pieroxy <pieroxy@pieroxy.net> - https://pieroxy.net/blog/pages/lz-string/index.html
- */
-
 function checkchar(char, chars) {
   return chars.some(ch => ch === char);
 }
 function getcode(char) {
   const codes = {
     'c': 0, 'C': 0, 'd': 0, 'D': 0, 'I': 0,
-    'e': 1, 'f': 1, 'g': 1, 'h': 1, 'i': 1
+    'e': 1, 'f': 1, 'g': 1, 'h': 1, 'i': 1,
+    'n': 0, 'o': 0, 'Q': 0, 'r': 0, 'T': 0,
+    'N': 1, 'p': 1, 'q': 1, 's': 1, 't': 1
   };
   return codes[char] !== undefined ? codes[char] : 2;
 }
-function character(char, code, get) {
+function character(char, code) {
   const conversionMap = {
-    'A': ['c', 'e', 'E'],
-    'B': ['C', 'f', 'F'],
-    'a': ['d', 'g', 'G'],
-    'b': ['D', 'h', 'H'],
-    'K': ['I', 'i', 'j']
+    'A': ['c', 'e', 'E'], 'k': ['n', 'N', 'O'],
+    'B': ['C', 'f', 'F'], 'l': ['o', 'p', 'P'],
+    'a': ['d', 'g', 'G'], 'L': ['Q', 'q', 'R'],
+    'b': ['D', 'h', 'H'], 'm': ['r', 's', 'S'],
+    'K': ['I', 'i', 'j'], 'M': ['T', 't', 'u']
   };
 
-  if (get) {
+  if (code == null) {
     for (const [ogchar, chars] of Object.entries(conversionMap)) {
       if (checkchar(char, chars)) {
         return [ogchar, getcode(char)];
       }
     }
-    return ['A', getcode(char)]; // Default case
+    return ['A', getcode(char)];
   }
 
   for (const [ogchar, chars] of Object.entries(conversionMap)) {
     if (char === ogchar) {
-      return chars[code] || chars[0]; // Return the corresponding character based on code
+      return chars[code] || chars[0];
     }
   }
 }
@@ -411,11 +407,18 @@ function decode2(text_) {
   return decode1(preDataDEC1);
 }
 
+function compress(text) {
+  if (!/\d/.test(text)) {
+
+  }
+}
+function decompress(text) {
+
+}
+
 export const encode = (text, compress) => {
   return encode2(text, compress);
 };
 export const decode = (text) => {
   return decode2(text);
 };
-
-
