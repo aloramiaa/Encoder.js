@@ -460,6 +460,7 @@ function _compress(text) {
       txt = txt.replaceAll(key, value);
     }
   }
+  console.log(`Compressed Text: ${txt}, Compression ID: ${cID}`); // Debugging line
   return [txt, cID];
 }
 function decompress(text, lang) {
@@ -506,7 +507,7 @@ export const decode = (text) => {
   datachar = ogdatachar;
   inpt = `${datachar}${inpt}`;
   let decdd = decode2(inpt);
-  alert(decdd);
+  console.log(`Decoded String: ${decdd}`); // Debugging line
   if (dataid > -1 && dataid < 2) {
     cID = dataid;
     let cLang = 'EN';
