@@ -329,6 +329,7 @@ function encode1(input, useURLSAFEspecialCharacters) {
 }
 
 function decode1(encoded) {
+  console.log(`Debug info: ${encoded}`);
   encoded = `${encoded
     .replaceAll('K', 'AU')}`;
   let decoded = '';
