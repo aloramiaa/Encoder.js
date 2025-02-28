@@ -100,7 +100,21 @@ class CustomDocument extends Document {
           <div
             dangerouslySetInnerHTML={{
               __html:
-                `<script type="text/javascript">\n    document.ondragstart = noselect;\n    document.onselectstart = noselect;\n    document.oncontextmenu = noselect;\n    function noselect() {return false;}\n</script>\n        <script defer src=\'https://unpkg.com/@teleporthq/react-components/dist/animate-on-reveal.umd.js\'></script><script type="module" src=\'/encoder.js@${useEncoderVersion}.js\'></script><script type="module" defer>import {encode, decode} from "/encoder.js@${useEncoderVersion}.js"; document.getElementById("input").addEventListener("input", function() { const mode = document.getElementById("mode").value; const output = document.getElementById("output"); output.value = this.value ? (mode === "encode" ? encode(this.value, true) : decode(this.value)) : ""; });</script>`,
+                `<script type="text/javascript">\n    document.ondragstart = noselect;\n    document.onselectstart = noselect;\n    document.oncontextmenu = noselect;\n    function noselect() {return false;}\n</script>\n        <script defer src=\'https://unpkg.com/@teleporthq/react-components/dist/animate-on-reveal.umd.js\'></script><script type="module" src=\'/encoder.js@${useEncoderVersion}.js\'></script><script type="module" defer>
+                  import {encode, decode} from "/encoder.js@${useEncoderVersion}.js"; 
+                  const customDecode = (text) => {
+                    try {
+                      return decode(text);
+                    } catch (err) {
+                      return err; 
+                    }
+                  }
+                  document.getElementById("input").addEventListener("input", function() { 
+                    const mode = document.getElementById("mode").value; 
+                    const output = document.getElementById("output"); 
+                    output.value = this.value ? (mode === "encode" ? encode(this.value, true) : customDecode(this.value)) : ""; 
+                  });
+                </script>`,
             }}
           ></div>
         </body>
