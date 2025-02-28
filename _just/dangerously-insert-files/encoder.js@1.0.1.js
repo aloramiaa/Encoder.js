@@ -71,13 +71,13 @@ function character(char, code) {
     'K': ['I', 'i', 'j'], 'M': ['T', 't', 'u']
   };
 
-  if (code == null) {
+  if (code == null || code == undefined) {
     for (const [ogchar, chars] of Object.entries(conversionMap)) {
       if (checkchar(char, chars)) {
         return [ogchar, getcode(char)];
       }
     }
-    return ['A', getcode(char)];
+    return ['?', getcode(char)];
   }
 
   for (const [ogchar, chars] of Object.entries(conversionMap)) {
@@ -86,213 +86,246 @@ function character(char, code) {
     }
   }
 }
+const used = /^[a-tA-Tu\s]+$/;
+
+const compressionMap = {
+  'EN': {
+    ' all': '00', ' All': '01', ' ALL': '02', 'all': '03', 'All': '04', 'ALL': '05',
+    ' and': '06', ' And': '07', ' AND': '08', 'and': '09', 'And': '10', 'AND': '11',
+    ' that': '12', ' That': '13', ' THAT': '14', 'that': '15', 'That': '16', 'THAT': '17',
+    ' have': '18', ' Have': '19', ' HAVE': '20', 'have': '21', 'Have': '22', 'HAVE': '23',
+    ' for': '24', ' For': '25', ' FOR': '26', 'for': '27', 'For': '28', 'FOR': '29',
+    ' not': '30', ' Not': '31', ' NOT': '32', 'not': '33', 'Not': '34', 'NOT': '35',
+    ' with': '36', ' With': '37', ' WITH': '38', 'with': '39', 'With': '40', 'WITH': '41',
+    ' be': '42', ' Be': '43', ' BE': '44', ' to': '45', ' To': '46', ' TO': '47',
+    ' of': '48', ' Of': '49', ' OF': '50', ' in': '51', ' In': '52', ' IN': '53',
+    ' it': '54', ' It': '55', ' IT': '56', ' on': '57', ' On': '58', ' ON': '59',
+    ' the': '60', ' The': '61', ' THE': '62', 'the': '63', 'The': '64', 'THE': '65',
+    ' this': '66', ' This': '67', ' THIS': '68', 'this': '69', 'This': '70', 'THIS': '71',
+    ' from': '72', ' From': '73', ' FROM': '74', 'from': '75', 'From': '76', 'FROM': '77',
+    'his': '78', 'His': '79', 'HIS': '80', 'her': '81', 'Her': '82', 'HER': '83',
+    'what': '84', 'What': '85', 'WHAT': '86', 'about': '87', 'About': '88', 'ABOUT': '89',
+    'which': '90', 'Which': '91', 'WHICH': '92', 'when': '93', 'When': '94', 'WHEN': '95',
+    'as': '96', 'AS': '97', 'do': '98', 'DO': '99'
+  },
+  'RU': {
+    ' не': '00', ' Не': '01', ' НЕ': '02', ' она': '03', ' Она': '04', ' ОНА': '05',
+    ' он': '06', ' Он': '07', ' ОН': '08', 'она': '09', 'Она': '10', 'ОНА': '11',
+    ' на': '12', ' На': '13', ' НА': '14', ' они': '15', ' Они': '16', ' ОНИ': '17',
+    ' что': '18', ' Что': '19', ' ЧТО': '20', 'что': '21', 'Что': '22', 'ЧТО': '23',
+    ' тот': '24', ' Тот': '25', ' ТОТ': '26', 'тот': '27', 'Тот': '28', 'ТОТ': '29',
+    ' быть': '30', ' Быть': '31', ' БЫТЬ': '32', 'быть': '33', 'Быть': '34', 'БЫТЬ': '35',
+    ' весь': '36', ' Весь': '37', ' ВЕСЬ': '38', 'весь': '39', 'Весь': '40', 'ВЕСЬ': '41',
+    ' это': '42', ' Это': '43', ' ЭТО': '44', ' это': '45', ' Это': '46', ' ЭТО': '47',
+    ' как': '48', ' Как': '49', ' КАК': '50', 'как': '51', 'Как': '52', 'КАК': '53',
+    ' по': '54', ' По': '55', ' ПО': '56', ' но': '57', ' Но': '58', ' НО': '59',
+    ' ты': '60', ' Ты': '61', ' ТЫ': '62', ' из': '63', ' Из': '64', ' ИЗ': '65',
+    ' мы': '66', ' Мы': '67', ' МЫ': '68', ' за': '69', ' За': '70', ' ЗА': '71',
+    ' вы': '72', ' Вы': '73', ' ВЫ': '74', ' же': '75', ' Же': '76', ' ЖЕ': '77',
+    ' от': '78', ' От': '79', ' ОТ': '80', ' бы': '81', ' Бы': '82', ' БЫ': '83',
+    'так': '84', 'Так': '85', 'ТАК': '86', 'который': '87', 'Который': '88', 'КОТОРЫЙ': '89',
+    'этот': '90', 'Этот': '91', 'ЭТОТ': '92', 'когда': '93', 'Когда': '94', 'КОГДА': '95',
+    'только': '96', 'Только': '97', 'ТОЛЬКО': '98', 'же ': '99'
+  }
+}
+
+const errorprefix = 'Encoder.js Error: ';
+const errors = [
+  `${errorprefix}The string to be decoded is not correctly encoded.`
+]
 
 function checkNum0(num) {
-    let data001 = `${num}`;
-    let data002 = 'found';
-    let data003 = data001.replaceAll('.', data002).replaceAll(',', data002);
-    let data004 = false;
-    if (data001 == data003) {
-        data004 = true;
-    }
-    return data004;
+  let data001 = `${num}`;
+  let data002 = 'found';
+  let data003 = data001.replaceAll('.', data002).replaceAll(',', data002);
+  let data004 = false;
+  if (data001 == data003) {
+    data004 = true;
+  }
+  return data004;
 }
 
 function checkNum1(num) {
-    let data005 = checkNum0(num / 2);
-    let data006 = checkNum0(num / 3);
-    let data007 = checkNum0(num / 4);
-    let data008 = checkNum0(num / 5);
-    let data009 = checkNum0(num / 6);
-    let data010 = checkNum0(num / 7);
-    let data011 = checkNum0(num / 8);
-    let data012 = checkNum0(num / 9);
-    return [
-        data005,
-        data006,
-        data007,
-        data008,
-        data009,
-        data010,
-        data011,
-        data012
-    ];
+  let data005 = checkNum0(num / 2);
+  let data006 = checkNum0(num / 3);
+  let data007 = checkNum0(num / 4);
+  let data008 = checkNum0(num / 5);
+  let data009 = checkNum0(num / 6);
+  let data010 = checkNum0(num / 7);
+  let data011 = checkNum0(num / 8);
+  let data012 = checkNum0(num / 9);
+  return [
+    data005,
+    data006,
+    data007,
+    data008,
+    data009,
+    data010,
+    data011,
+    data012
+  ];
 }
 
 function encode0(str) {
-    let data013 = checkNum1(str.length);
-    let result = [];
-
-    for (let i = 2; i <= 9; i++) {
-        if (data013[i - 2]) {
-            let partLength = Math.floor(str.length / i);
-            let parts = [];
-
-            for (let j = 0; j < i; j++) {
-                parts.push(str.slice(j * partLength, (j + 1) * partLength));
-            }
-
-            result.push(parts);
-        }
+  let data013 = checkNum1(str.length);
+  let result = [];
+  for (let i = 2; i <= 9; i++) {
+    if (data013[i - 2]) {
+      let partLength = Math.floor(str.length / i);
+      let parts = [];
+      for (let j = 0; j < i; j++) {
+        parts.push(str.slice(j * partLength, (j + 1) * partLength));
+      }
+      result.push(parts);
     }
-
-    const flatResult = result.flat();
-    const duplicates = flatResult.filter((item, index) => flatResult.indexOf(item) !== index);
-    const uniqueDuplicates = [...new Set(duplicates)];
-    const duplicateIds = {};
-
-    uniqueDuplicates.forEach((duplicate, index) => {
-        duplicateIds[duplicate] = index + 1;
-    });
-
-    let encodedStr = str;
-    uniqueDuplicates.forEach(duplicate => {
-        encodedStr = encodedStr.replaceAll(duplicate, `'${duplicateIds[duplicate]}'`);
-    });
-
-    let duplicateTable = Object.entries(duplicateIds).map(([key, value]) => `!${value},${key}`).join(' ');
-
-    return { encodedStr, duplicateTable };
+  }
+  const flatResult = result.flat();
+  const duplicates = flatResult.filter((item, index) => flatResult.indexOf(item) !== index);
+  const uniqueDuplicates = [...new Set(duplicates)];
+  const duplicateIds = {};
+  uniqueDuplicates.forEach((duplicate, index) => {
+    duplicateIds[duplicate] = index + 1;
+  });
+  let encodedStr = str;
+  uniqueDuplicates.forEach(duplicate => {
+    encodedStr = encodedStr.replaceAll(duplicate, `'${duplicateIds[duplicate]}'`);
+  });
+  let duplicateTable = Object.entries(duplicateIds).map(([key, value]) => `!${value},${key}`).join(' ');
+  return { encodedStr, duplicateTable };
 }
 
 function decode0(encodedStr, duplicateTable) {
-    const duplicateEntries = duplicateTable.split(' ').map(entry => {
-        const [id, value] = entry.split(',');
-        return { id: id.replace('!', ''), value };
-    });
-
-    let decodedStr = encodedStr;
-
-    duplicateEntries.forEach(({ id, value }) => {
-        decodedStr = decodedStr.replaceAll(`'${id}'`, value);
-    });
-
-    return decodedStr;
+  const duplicateEntries = duplicateTable.split(' ').map(entry => {
+    const [id, value] = entry.split(',');
+    return { id: id.replace('!', ''), value };
+  });
+  let decodedStr = encodedStr;
+  duplicateEntries.forEach(({ id, value }) => {
+    decodedStr = decodedStr.replaceAll(`'${id}'`, value);
+  });
+  return decodedStr;
 }
 
 function encode1(input, useURLSAFEspecialCharacters) {
-  
-  
-    input = input || 'Made by JustStudio.'
-    let encoded = '';
-    let data = 0;
-    let dataChar = "A";
-    function containsNoNumbers(input) {
-        for (let i = 0; i < input.length; i++) {
-            if (input.charCodeAt(i) >= 48 && input.charCodeAt(i) <= 57) {
-                return false;
-            }
-        }
-        return true;
-    }
-    try {
-      if (btoa(input).length < input.length) {
-        data = 1;
-        input = btoa(input);
-      }
-    } catch {}
-    try {
-      function compressStringRegex(str) {
-          return str.replace(
-              /(.)\1*/g,
-              (match, char) =>
-                  char + match.length);
-      }
-      if (compressStringRegex(input).length < input.length && containsNoNumbers(input)) {
-        input = compressStringRegex(input);
-        if (data == 0) {
-          data = 2;
-        } else if (data == 1) {
-          data = 3;
-        }
-      }
-    } catch {}
+  input = input || 'Made by JustStudio.'
+  let encoded = '';
+  let data = 0;
+  let dataChar = "A";
+  function containsNoNumbers(input) {
     for (let i = 0; i < input.length; i++) {
-        let charCode = input.charCodeAt(i).toString();
-        while (charCode.length < 5) {
-            charCode = '0' + charCode;
-        }
-        encoded += charCode;
-    }
-    if (data == 1) {
-      dataChar = "a";
-    } else if (data == 2) {
-      dataChar = "B";
-    } else if (data == 3) {
-      dataChar = "b";
-    }
-    encoded = encoded
-      .replaceAll('0000', 'b')
-      .replaceAll('000', 'A')
-      .replaceAll('00', 'a')
-      .replaceAll('1111', 'B')
-      .replaceAll('111', 'c')
-      .replaceAll('11', 'C')
-      .replaceAll('a1', 'd')
-      .replaceAll('08', 'D')
-      .replaceAll('ac', 'E')
-      .replaceAll('Dd', 'e')
-      .replaceAll('32', 'f')
-      .replaceAll('A6', 'F')
-      .replaceAll('F9', 'g')
-      .replaceAll('01', 'G')
-      .replaceAll('A97', 'h')
-      .replaceAll('d05', 'i')
-      .replaceAll('A74', 'J')
-      .replaceAll('Af', 'O')
-      .replaceAll('id02', 'p')
-      .replaceAll('dGdDaC5dG', 'P')
-      .replaceAll('A40', 'Q')
-      .replaceAll('A41', 'q')
-      .replaceAll('A39', 'R')
-      .replaceAll('dDEA99hdD', 'r')
-      .replaceAll('d03dDEA98hdD', 'S')
-      .replaceAll('aC6d04dGaC0', 's')
-      .replaceAll('dGaCA1a', 't')
-      .replaceAll('A59', 'T')
-      .replaceAll('aC', 'U')
-      .replaceAll('Gd', 'u')
-      .replaceAll('du', 'v')
-      .replaceAll('4d', 'V')
-      .replaceAll('VG', 'w')
-      .replaceAll('U5', 'W')
-      .replaceAll('U6', 'X')
-      .replaceAll('OX', 'x')
-      .replaceAll('9EU', 'Y')
-      .replaceAll('eb', 'y')
-      .replaceAll('ve', 'z')
-      .replaceAll('DE', 'Z');
-    if (useURLSAFEspecialCharacters) {
-      encoded = encoded
-        .replaceAll('A4', '-')
-        .replaceAll('d04', '_');
-      let encoded2 = encoded
-        .replace(/(.+?)\1+/g, (match, char) => `(${char}.${match.length / char.length})`)
-        .replaceAll(')(', '~');
-      if (encoded2.length < encoded.length) {
-        encoded = encoded2;
+      if (input.charCodeAt(i) >= 48 && input.charCodeAt(i) <= 57) {
+        return false;
       }
     }
-    if (useURLSAFEspecialCharacters) {
-      encoded = encoded
-        .replaceAll('A5', 'I')
-        .replaceAll('_-', 'j')
-        .replaceAll('4O', 'k')
-        .replaceAll('d09', 'lm')
-        .replaceAll('A99', 'lM')
-        .replaceAll('OiO', 'Lm')
-        .replaceAll('iUA', 'LM')
-        .replaceAll('db', 'N')
-        .replaceAll('UA', 'n')
-        .replaceAll('EU', 'o')
+    return true;
+  }
+  try {
+    if (btoa(input).length < input.length) {
+      data = 1;
+      input = btoa(input);
     }
+  } catch {}
+  try {
+    function compressStringRegex(str) {
+      return str.replace(
+        /(.)\1*/g,
+        (match, char) =>
+          char + match.length);
+    }
+    if (compressStringRegex(input).length < input.length && containsNoNumbers(input)) {
+      input = compressStringRegex(input);
+      if (data == 0) {
+        data = 2;
+      } else if (data == 1) {
+        data = 3;
+      }
+    }
+  } catch {}
+  for (let i = 0; i < input.length; i++) {
+    let charCode = input.charCodeAt(i).toString();
+    while (charCode.length < 5) {
+      charCode = '0' + charCode;
+    }
+    encoded += charCode;
+  }
+  if (data == 1) {
+    dataChar = "a";
+  } else if (data == 2) {
+    dataChar = "B";
+  } else if (data == 3) {
+    dataChar = "b";
+  }
+  encoded = encoded
+    .replaceAll('0000', 'b')
+    .replaceAll('000', 'A')
+    .replaceAll('00', 'a')
+    .replaceAll('1111', 'B')
+    .replaceAll('111', 'c')
+    .replaceAll('11', 'C')
+    .replaceAll('a1', 'd')
+    .replaceAll('08', 'D')
+    .replaceAll('ac', 'E')
+    .replaceAll('Dd', 'e')
+    .replaceAll('32', 'f')
+    .replaceAll('A6', 'F')
+    .replaceAll('F9', 'g')
+    .replaceAll('01', 'G')
+    .replaceAll('A97', 'h')
+    .replaceAll('d05', 'i')
+    .replaceAll('A74', 'J')
+    .replaceAll('Af', 'O')
+    .replaceAll('id02', 'p')
+    .replaceAll('dGdDaC5dG', 'P')
+    .replaceAll('A40', 'Q')
+    .replaceAll('A41', 'q')
+    .replaceAll('A39', 'R')
+    .replaceAll('dDEA99hdD', 'r')
+    .replaceAll('d03dDEA98hdD', 'S')
+    .replaceAll('aC6d04dGaC0', 's')
+    .replaceAll('dGaCA1a', 't')
+    .replaceAll('A59', 'T')
+    .replaceAll('aC', 'U')
+    .replaceAll('Gd', 'u')
+    .replaceAll('du', 'v')
+    .replaceAll('4d', 'V')
+    .replaceAll('VG', 'w')
+    .replaceAll('U5', 'W')
+    .replaceAll('U6', 'X')
+    .replaceAll('OX', 'x')
+    .replaceAll('9EU', 'Y')
+    .replaceAll('eb', 'y')
+    .replaceAll('ve', 'z')
+    .replaceAll('DE', 'Z');
+  if (useURLSAFEspecialCharacters) {
+    encoded = encoded
+      .replaceAll('A4', '-')
+      .replaceAll('d04', '_');
+    let encoded2 = encoded
+      .replace(/(.+?)\1+/g, (match, char) => `(${char}.${match.length / char.length})`)
+      .replaceAll(')(', '~');
+    if (encoded2.length < encoded.length) {
+      encoded = encoded2;
+    }
+  }
+  if (useURLSAFEspecialCharacters) {
+    encoded = encoded
+      .replaceAll('A5', 'I')
+      .replaceAll('_-', 'j')
+      .replaceAll('4O', 'k')
+      .replaceAll('d09', 'lm')
+      .replaceAll('A99', 'lM')
+      .replaceAll('OiO', 'Lm')
+      .replaceAll('iUA', 'LM')
+      .replaceAll('db', 'N')
+      .replaceAll('UA', 'n')
+      .replaceAll('EU', 'o')
+  }
   let output = dataChar+encoded;
-    return output
-      .replaceAll('AU', 'K');
+  return output
+    .replaceAll('AU', 'K');
 }
 
 function decode1(encoded) {
-
   encoded = `${encoded
     .replaceAll('K', 'AU')}`;
   let decoded = '';
@@ -407,18 +440,79 @@ function decode2(text_) {
   return decode1(preDataDEC1);
 }
 
-function compress(text) {
-  if (!/\d/.test(text)) {
-
+function regextest(text, lang) {
+  if (lang == 'RU') {
+    return /^[а-яА-ЯёЁ\s]+$/.test(text);
   }
+  return !/\d/.test(text);
 }
-function decompress(text) {
-
+function _compress(text) {
+  let txt = text;
+  let cID = 0;
+  if (regextest(text, 'RU')) {
+    cID = 2;
+    for (const [key, value] of Object.entries(compressionMap['RU'])) {
+      txt = txt.replaceAll(key, value);
+    }
+  } else if (regextest(text)) {
+    cID = 1;
+    for (const [key, value] of Object.entries(compressionMap['EN'])) {
+      txt = txt.replaceAll(key, value);
+    }
+  }
+  return [txt, cID];
+}
+function decompress(text, lang) {
+  let txt = text;
+  if (lang == 'RU') {
+    for (const [key, value] of Object.entries(compressionMap['RU'])) {
+      txt = txt.replaceAll(value, key);
+    }
+  } else {
+    for (const [key, value] of Object.entries(compressionMap['EN'])) {
+      txt = txt.replaceAll(value, key);
+    }
+  }
+  return txt;
 }
 
 export const encode = (text, compress) => {
-  return encode2(text, compress);
+  let datachar;
+  let inpt = text;
+  let inpt2, cID = _compress(inpt);
+  let encdd = encode2(inpt, compress);
+  datachar = encdd.slice(0,1);
+  let encd2 = encode2(inpt2,compress);
+  if (compress && encd2.length < encdd.length && cID != 0) {
+    encdd = encd2;
+    datachar = encd2.slice(0,1);
+    datachar = character(datachar, cID - 1);
+    encdd = `${datachar}${encdd.slice(1)}`;
+  }
+  return encdd;
 };
 export const decode = (text) => {
-  return decode2(text);
+  let datachar = text.slice(0,1);
+  if (!used.test(datachar)) {
+    throw new Error(errors[0]);
+  }
+  let inpt = text.slice(1);
+  let cID;
+  let ogdatachar, dataid = character(datachar, null);
+  if (ogdatachar == '?') {
+    ogdatachar = datachar;
+    dataid = -1;
+  }
+  datachar = ogdatachar;
+  inpt = `${datachar}${inpt}`;
+  let decdd = decode2(inpt);
+  if (dataid > -1 && dataid < 2) {
+    cID = dataid;
+    let cLang = 'EN';
+    if (cID == 1) {
+      cLang = 'RU';
+    } 
+    decdd = decompress(decdd, cLang);
+  }
+  return decdd;
 };
