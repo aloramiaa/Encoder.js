@@ -131,8 +131,11 @@ const compressionMap = {
 
 const errorprefix = 'Encoder.js Error: ';
 const errors = [
-  `${errorprefix}The string to be decoded is not correctly encoded.`
+  `${errorprefix}The string to be decoded is not correctly encoded.`,
+  `${errorprefix}Something went wrong.`
 ]
+const errorAtoB1 = "InvalidCharacterError: Failed to execute 'atob' on 'Window': The string to be decoded is not correctly encoded.";
+const errorAtoB2 = "InvalidCharacterError: Failed to execute 'atob' on 'Window': The string to be decoded contains characters outside of the Latin1 range.";
 
 function checkNum0(num) {
   let data001 = `${num}`;
@@ -489,31 +492,7 @@ export const encode = (text, compress) => {
   }
   return encd;
 };
-export const decode = (text) => {/*
-  let datachar = text.slice(0,1);
-  if (!used.test(datachar)) {
-    throw new Error(errors[0]);
-  }
-  let inpt = text.slice(1);
-  let cID;
-  let ogdatachar, dataid = character(datachar, null);
-  if (ogdatachar == '?') {
-    ogdatachar = datachar;
-    dataid = -1;
-  }
-  datachar = ogdatachar;
-  inpt = `${datachar}${inpt}`;
-  let decdd = decode2(inpt);
-  console.log(`Decoded String: ${decdd}`); // Debugging line
-  if (dataid > -1 && dataid < 2) {
-    cID = dataid;
-    let cLang = 'EN';
-    if (cID == 1) {
-      cLang = 'RU';
-    } 
-    decdd = decompress(decdd, cLang);
-  }
-  return decdd;*/
+export const decode = (text) => {
   let datachar = text.slice(0,1);
   if (!used.test(datachar)) {
     throw new Error(errors[0]);
@@ -526,7 +505,16 @@ export const decode = (text) => {/*
   } else {
     encd = `${realdatachar}${encd}`
   }
-  let decd = decode2(encd);
+  let decd
+  try {
+    decd = decode2(encd);
+  } catch (decodeError) {
+    if (decodeError == errorAtoB1 || decodeError == errorAtoB2) {
+      throw new Error(errors[0]);
+    } else {
+      throw new Error(`${errors[1]} (${encode(decodeError, true)})`);
+    }
+  }
   if (dataID == 0 || dataID == 1) {
     let cLang = dataID == 0 ? 'EN' : 'RU';
     decd = decompress(decd, cLang);
