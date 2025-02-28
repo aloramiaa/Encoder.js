@@ -491,7 +491,17 @@ export const encode = (text, compress) => {/*
     encdd = `${datachar}${encdd.slice(1)}`;
   }
   return encdd;*/
-  return encode2(text, compress);
+  let datachar;
+  let [cpsd, cID] = _compress(text);
+  let encd = encode2(text, compress);
+  datachar = encd.slice(0,1);
+  let enc2 = encode2(cpsd, compress);
+  if (compress && enc2.length < encd.length && cID != 0) {
+    datachar = enc2.slice(0,1);
+    datachar = character(datachar, cID - 1);
+    encd = `${datachar}${enc2.slice(1)}`;
+  }
+  return encd;
 };
 export const decode = (text) => {/*
   let datachar = text.slice(0,1);
