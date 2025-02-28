@@ -478,10 +478,10 @@ function decompress(text, lang) {
 
 export const encode = (text, compress) => {
   let datachar;
-  let [cpsd, cID] = _compress(text);
+  const [cpsd, cID] = _compress(text);
   let encd = encode2(text, compress);
   datachar = encd.slice(0,1);
-  let enc2 = encode2(cpsd, compress);
+  const enc2 = encode2(cpsd, compress);
   if (compress && enc2.length < encd.length && cID != 0) {
     datachar = enc2.slice(0,1);
     datachar = character(datachar, cID - 1);
@@ -514,5 +514,21 @@ export const decode = (text) => {/*
     decdd = decompress(decdd, cLang);
   }
   return decdd;*/
-  return decode2(text);
+  let datachar = text.slice(0,1);
+  if (!used.test(datachar)) {
+    throw new Error(errors[0]);
+  }
+  let encd = text.slice(1);
+  let [realdatachar, dataID] = character(datachar, null);
+  if (realdatachar == '?') {
+    dataID = -1;
+  } else {
+    encd = `${realdatachar}${encd}`
+  }
+  let decd = decode2(encd);
+  if (dataID == 0 || dataID == 1) {
+    let cLang = dataID == 0 ? 'EN' : 'RU';
+    decd = decompress(decd, cLang);
+  }
+  return decd;
 };
