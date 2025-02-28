@@ -510,7 +510,7 @@ export const encode = (text, compress) => {
       encd = `${datachar}${enc2.slice(1)}`;
     }
   }
-  if (compress && /^\d+$/.test(text)) {
+  if (compress && /^\d+$/.test(text) && text.length < 11) {
     try {
       const base62num = intToBase62(parseInt(text));
       if (base62num === base62ToInt(base62num)) {
