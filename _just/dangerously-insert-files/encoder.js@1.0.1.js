@@ -522,6 +522,7 @@ export const decode = (text) => {/*
   let [realdatachar, dataID] = character(datachar, null);
   if (realdatachar == '?') {
     dataID = -1;
+    encd = text;
   } else {
     encd = `${realdatachar}${encd}`
   }
