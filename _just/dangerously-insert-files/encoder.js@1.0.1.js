@@ -306,7 +306,7 @@ function encode1(input, useURLSAFEspecialCharacters) {
     if (encoded2.length < encoded.length) {
       encoded = encoded2;
     }
-  }
+  }/*
   if (useURLSAFEspecialCharacters) {
     encoded = encoded
       .replaceAll('A5', 'I')
@@ -319,7 +319,7 @@ function encode1(input, useURLSAFEspecialCharacters) {
       .replaceAll('db', 'N')
       .replaceAll('UA', 'n')
       .replaceAll('EU', 'o')
-  }
+  }*/
   let output = dataChar+encoded;
   return output
     .replaceAll('AU', 'K');
