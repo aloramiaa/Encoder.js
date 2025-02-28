@@ -460,7 +460,6 @@ function _compress(text) {
       txt = txt.replaceAll(key, value);
     }
   }
-  console.log(`Compressed Text: ${txt}, Compression ID: ${cID}`); // Debugging line
   return [txt, cID];
 }
 function decompress(text, lang) {
@@ -477,20 +476,7 @@ function decompress(text, lang) {
   return txt;
 }
 
-export const encode = (text, compress) => {/*
-  let datachar;
-  let inpt = text;
-  let inpt2, cID = _compress(inpt);
-  let encdd = encode2(inpt, compress);
-  datachar = encdd.slice(0,1);
-  let encd2 = encode2(inpt2,compress);
-  if (compress && encd2.length < encdd.length && cID != 0) {
-    encdd = encd2;
-    datachar = encd2.slice(0,1);
-    datachar = character(datachar, cID - 1);
-    encdd = `${datachar}${encdd.slice(1)}`;
-  }
-  return encdd;*/
+export const encode = (text, compress) => {
   let datachar;
   let [cpsd, cID] = _compress(text);
   let encd = encode2(text, compress);
