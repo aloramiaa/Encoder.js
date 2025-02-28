@@ -306,7 +306,7 @@ function encode1(input, useURLSAFEspecialCharacters) {
     if (encoded2.length < encoded.length) {
       encoded = encoded2;
     }
-  }/*
+  }
   if (useURLSAFEspecialCharacters) {
     encoded = encoded
       .replaceAll('A5', 'I')
@@ -319,7 +319,7 @@ function encode1(input, useURLSAFEspecialCharacters) {
       .replaceAll('db', 'N')
       .replaceAll('UA', 'n')
       .replaceAll('EU', 'o')
-  }*/
+  }
   let output = dataChar+encoded;
   return output
     .replaceAll('AU', 'K');
@@ -477,7 +477,7 @@ function decompress(text, lang) {
   return txt;
 }
 
-export const encode = (text, compress) => {
+export const encode = (text, compress) => {/*
   let datachar;
   let inpt = text;
   let inpt2, cID = _compress(inpt);
@@ -490,9 +490,10 @@ export const encode = (text, compress) => {
     datachar = character(datachar, cID - 1);
     encdd = `${datachar}${encdd.slice(1)}`;
   }
-  return encdd;
+  return encdd;*/
+  return encode2(text, compress);
 };
-export const decode = (text) => {
+export const decode = (text) => {/*
   let datachar = text.slice(0,1);
   if (!used.test(datachar)) {
     throw new Error(errors[0]);
@@ -516,5 +517,6 @@ export const decode = (text) => {
     } 
     decdd = decompress(decdd, cLang);
   }
-  return decdd;
+  return decdd;*/
+  return decode2(text);
 };
