@@ -329,7 +329,6 @@ function encode1(input, useURLSAFEspecialCharacters) {
 }
 
 function decode1(encoded) {
-  console.log(`Debug info: ${encoded}`);
   encoded = `${encoded
     .replaceAll('K', 'AU')}`;
   let decoded = '';
@@ -354,7 +353,7 @@ function decode1(encoded) {
     .replace(/\((.+?)\.(\d+)\)/g, (_, char, count) => char.repeat(count))
     .replaceAll('I', 'A5')
     .replaceAll('j', '_-')
-    .replaceAll('4O', 'k')
+    .replaceAll('k', '4O')
     .replaceAll('lm', 'd09')
     .replaceAll('lM', 'A99')
     .replaceAll('Lm', 'OiO')
@@ -362,7 +361,7 @@ function decode1(encoded) {
     .replaceAll('N', 'db')
     .replaceAll('n', 'UA')
     .replaceAll('o', 'EU')
-    .replaceAll('_', 'd04')////////////////////////////////
+    .replaceAll('_', 'd04')
     .replaceAll('-', 'A4')
     .replaceAll('Z', 'DE')
     .replaceAll('z', 've')
