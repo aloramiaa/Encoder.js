@@ -106,7 +106,7 @@ class CustomDocument extends Document {
                     try {
                       return decode(text);
                     } catch (err) {
-                      return err.replace('Error: Encoder.js ', ''); 
+                      return \`\${err}\`.replace('Error: Encoder.js ', ''); 
                     }
                   }
                   document.getElementById("input").addEventListener("input", function() { 
