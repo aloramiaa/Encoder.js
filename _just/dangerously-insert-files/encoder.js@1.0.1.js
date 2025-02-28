@@ -86,7 +86,7 @@ function character(char, code) {
     }
   }
 }
-const used = /^[a-tA-Tu\s]+$/;
+const used = /^[a-uA-U\s]+$/;
 
 const compressionMap = {
   'EN': {
@@ -479,45 +479,77 @@ function decompress(text, lang) {
   return txt;
 }
 
+const base62Chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+function intToBase62(num) {
+    let result = '';
+    while (num > 0) {
+        result = base62Chars[num % 62] + result;
+        num = Math.floor(num / 62);
+    }
+    return result || '0';
+}
+function base62ToInt(base62) {
+    let result = 0;
+    for (let i = 0; i < base62.length; i++) {
+        result = result * 62 + base62Chars.indexOf(base62[i]);
+    }
+    return result;
+}
+
 export const encode = (text, compress) => {
-  let datachar;
-  const [cpsd, cID] = _compress(text);
-  let encd = encode2(text, compress);
-  datachar = encd.slice(0,1);
-  const enc2 = encode2(cpsd, compress);
-  if (compress && enc2.length < encd.length && cID != 0) {
-    datachar = enc2.slice(0,1);
-    datachar = character(datachar, cID - 1);
-    encd = `${datachar}${enc2.slice(1)}`;
+  let encd;
+  const encde = () => {
+    let datachar;
+    const [cpsd, cID] = _compress(text);
+    encd = encode2(text, compress);
+    datachar = encd.slice(0,1);
+    const enc2 = encode2(cpsd, compress);
+    if (compress && enc2.length < encd.length && cID != 0) {
+      datachar = enc2.slice(0,1);
+      datachar = character(datachar, cID - 1);
+      encd = `${datachar}${enc2.slice(1)}`;
+    }
   }
+  if (compress && /^\d+$/.test(text)) {
+    try {
+      const base62num = intToBase62(parseInt(text));
+      if (base62num === base62ToInt(base62num)) {
+        encd = `U${base62num}`;
+      } else encde();
+    } catch {encde()}
+  } else encde();
   return encd;
 };
 export const decode = (text) => {
   let datachar = text.slice(0,1);
-  if (!used.test(datachar)) {
-    throw new Error(errors[0]);
-  }
+  let decd;
   let encd = text.slice(1);
-  let [realdatachar, dataID] = character(datachar, null);
-  if (realdatachar == '?') {
-    dataID = -1;
-    encd = text;
+  if (datachar == 'U') {
+    decd = base62ToInt(encd);
   } else {
-    encd = `${realdatachar}${encd}`
-  }
-  let decd
-  try {
-    decd = decode2(encd);
-  } catch (decodeError) {
-    if (decodeError == errorAtoB1 || decodeError == errorAtoB2) {
+    if (!used.test(datachar)) {
       throw new Error(errors[0]);
-    } else {
-      throw new Error(`${errors[1]} (${encode(decodeError, true)})`);
     }
-  }
-  if (dataID == 0 || dataID == 1) {
-    let cLang = dataID == 0 ? 'EN' : 'RU';
-    decd = decompress(decd, cLang);
+    let [realdatachar, dataID] = character(datachar, null);
+    if (realdatachar == '?') {
+      dataID = -1;
+      encd = text;
+    } else {
+      encd = `${realdatachar}${encd}`
+    }
+    try {
+      decd = decode2(encd);
+    } catch (decodeError) {
+      if (decodeError == errorAtoB1 || decodeError == errorAtoB2) {
+        throw new Error(errors[0]);
+      } else {
+        throw new Error(`${errors[1]} (${encode(decodeError, true)})`);
+      }
+    }
+    if (dataID == 0 || dataID == 1) {
+      let cLang = dataID == 0 ? 'EN' : 'RU';
+      decd = decompress(decd, cLang);
+    }
   }
   return decd;
 };
