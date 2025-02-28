@@ -506,6 +506,7 @@ export const decode = (text) => {
   datachar = ogdatachar;
   inpt = `${datachar}${inpt}`;
   let decdd = decode2(inpt);
+  alert(decdd);
   if (dataid > -1 && dataid < 2) {
     cID = dataid;
     let cLang = 'EN';
