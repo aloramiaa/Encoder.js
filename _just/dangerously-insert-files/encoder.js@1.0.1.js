@@ -25,7 +25,6 @@ SOFTWARE.
 */
 
 // Encoder.js v1.0.1
-// THIS VERSION IS CURRENTLY W.I.P. 
 
 /*
 
