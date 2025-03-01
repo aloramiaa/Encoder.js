@@ -184,7 +184,7 @@ const Home = (props) => {
               easing="ease-in-out"
               iteration="1"
             >
-              <Link href="https://github.com/JustStudio7/Encoder" target="_blank">
+              <a href="https://github.com/JustStudio7/Encoder" target="_blank">
                 <button
                   type="button"
                   data-thq-animate-on-reveal="true"
@@ -205,7 +205,7 @@ const Home = (props) => {
                     }}
                   ></span>
                 </button>
-              </Link>
+              </a>
               <button
                 type="button"
                 data-thq-animate-on-reveal="true"
