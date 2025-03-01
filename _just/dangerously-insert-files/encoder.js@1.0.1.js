@@ -128,6 +128,11 @@ const compressionMap = {
     'только': '96', 'Только': '97', 'ТОЛЬКО': '98', 'же ': '99'
   }
 }
+const characterMap = [
+  'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z',
+  'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z',
+  '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '-', '_', '(', ')', '.', '~'
+];
 
 const errorprefix = 'Encoder.js Error: ';
 const errors = [
@@ -481,19 +486,32 @@ function decompress(text, lang) {
 
 const base62Chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
 function intToBase62(num) {
-    let result = '';
-    while (num > 0) {
-        result = base62Chars[num % 62] + result;
-        num = Math.floor(num / 62);
-    }
-    return result || '0';
+  let result = '';
+  while (num > 0) {
+    result = base62Chars[num % 62] + result;
+    num = Math.floor(num / 62);
+  }
+  return result || '0';
 }
 function base62ToInt(base62) {
-    let result = 0;
-    for (let i = 0; i < base62.length; i++) {
-        result = result * 62 + base62Chars.indexOf(base62[i]);
-    }
-    return result;
+  let result = 0;
+  for (let i = 0; i < base62.length; i++) {
+    result = result * 62 + base62Chars.indexOf(base62[i]);
+  }
+  return result;
+}
+
+function encode3(text) {
+  return text.split('').map(char => {
+    const index = characterMap.indexOf(char);
+    return index !== -1 ? characterMap[(index + text.length) % characterMap.length] : char;
+  }).join('');
+}
+function decode3(encodedText) {
+  return encodedText.split('').map(char => {
+    const index = characterMap.indexOf(char);
+    return index !== -1 ? characterMap[(index - encodedText.length + characterMap.length) % characterMap.length] : char;
+  }).join('');
 }
 
 export const encode = (text, compress) => {
@@ -518,12 +536,13 @@ export const encode = (text, compress) => {
       } else encde();
     } catch {encde()}
   } else encde();
-  return encd;
+  return encode3(encd);
 };
 export const decode = (text) => {
-  let datachar = text.slice(0,1);
+  let inputText = decode3(text);
+  let datachar = inputText.slice(0,1);
   let decd;
-  let encd = text.slice(1);
+  let encd = inputText.slice(1);
   if (datachar == 'U') {
     decd = base62ToInt(encd);
   } else {
@@ -533,7 +552,7 @@ export const decode = (text) => {
     let [realdatachar, dataID] = character(datachar, null);
     if (realdatachar == '?') {
       dataID = -1;
-      encd = text;
+      encd = inputText;
     } else {
       encd = `${realdatachar}${encd}`
     }
