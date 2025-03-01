@@ -37,6 +37,7 @@ const Home = (props) => {
   const translate = useTranslations()
   return (
     <>
+    
         <Head>
             <title>{translate.raw('static_HyaqSc')}</title>
             <meta name="description" content={translate.raw('static_vZeKeO')} />
@@ -51,6 +52,7 @@ const Home = (props) => {
             />
         </Head>
         <h1>docs, w.i.p.</h1>
+
     </>
   )
 }
