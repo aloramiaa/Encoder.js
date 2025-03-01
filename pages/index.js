@@ -204,6 +204,28 @@ const Home = (props) => {
                   }}
                 ></span>
               </button>
+              <Link href="https://github.com/JustStudio7/Encoder">
+                <button
+                  type="button"
+                  data-thq-animate-on-reveal="true"
+                  className="home-button button"
+                >
+                  <span className="home-text4">
+                    <span className="home-text5"
+                      dangerouslySetInnerHTML={{
+                        __html: translate.raw('text-9'),
+                      }}
+                    ></span>
+                    <span></span>
+                    <span className="home-text7">↗</span>
+                  </span>
+                  <span
+                    dangerouslySetInnerHTML={{
+                      __html: translate.raw('text-0'),
+                    }}
+                  ></span>
+                </button>
+              </Link>
             </animate-on-reveal>
           </div>
         </div>
