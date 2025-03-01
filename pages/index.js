@@ -184,27 +184,7 @@ const Home = (props) => {
               easing="ease-in-out"
               iteration="1"
             >
-              <button
-                type="button"
-                data-thq-animate-on-reveal="true"
-                className="home-button button"
-              >
-                <span className="home-text4">
-                  <span className="home-text5"
-                    dangerouslySetInnerHTML={{
-                      __html: translate.raw('text-4'),
-                    }}
-                  ></span>
-                  <span></span>
-                  <span className="home-text7">↗</span>
-                </span>
-                <span
-                  dangerouslySetInnerHTML={{
-                    __html: translate.raw('text_S-x5go'),
-                  }}
-                ></span>
-              </button>
-              <Link href="https://github.com/JustStudio7/Encoder">
+              <Link href="https://github.com/JustStudio7/Encoder" target="_blank">
                 <button
                   type="button"
                   data-thq-animate-on-reveal="true"
@@ -226,6 +206,26 @@ const Home = (props) => {
                   ></span>
                 </button>
               </Link>
+              <button
+                type="button"
+                data-thq-animate-on-reveal="true"
+                className="home-button button"
+              >
+                <span className="home-text4">
+                  <span className="home-text5"
+                    dangerouslySetInnerHTML={{
+                      __html: translate.raw('text-4'),
+                    }}
+                  ></span>
+                  <span></span>
+                  <span className="home-text7">↗</span>
+                </span>
+                <span
+                  dangerouslySetInnerHTML={{
+                    __html: translate.raw('text_S-x5go'),
+                  }}
+                ></span>
+              </button>
             </animate-on-reveal>
           </div>
         </div>
