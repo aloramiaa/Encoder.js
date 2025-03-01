@@ -523,12 +523,24 @@ function decode3(encodedText) {
   }
 }
 
-export const encode = (text, compress) => {
+function crypt(input, key) {
+  let output = '';
+  for (let i = 0; i < input.length; i++) {
+      output += String.fromCharCode(input.charCodeAt(i) ^ key.charCodeAt(i % key.length));
+  }
+  return output;
+}
+
+export const encode = (text, key, compress) => {
   let encd;
+  let inputText = text;
+  if (key && typeof key == 'string' && key != '') {
+    inputText = crypt(text, key);
+  }
   const encde = () => {
     let datachar;
-    const [cpsd, cID] = _compress(text);
-    encd = encode2(text, compress);
+    const [cpsd, cID] = _compress(inputText);
+    encd = encode2(inputText, compress);
     datachar = encd.slice(0,1);
     const enc2 = encode2(cpsd, compress);
     if (compress && enc2.length < encd.length && cID != 0) {
@@ -537,9 +549,9 @@ export const encode = (text, compress) => {
       encd = `${datachar}${enc2.slice(1)}`;
     }
   }
-  if (compress && /^\d+$/.test(text) && text.length < 11) {
+  if (compress && /^\d+$/.test(inputText) && inputText.length < 11) {
     try {
-      const base62num = intToBase62(parseInt(text));
+      const base62num = intToBase62(parseInt(inputText));
       if (base62num === base62ToInt(base62num)) {
         encd = `U${base62num}`;
       } else encde();
@@ -547,7 +559,7 @@ export const encode = (text, compress) => {
   } else encde();
   return encode3(encd);
 };
-export const decode = (text) => {
+export const decode = (text, key) => {
   let inputText = decode3(text);
   let datachar = inputText.slice(0,1);
   let decd;
@@ -581,6 +593,9 @@ export const decode = (text) => {
   }
   if (decd.length == 0) {
     throw new Error(errors[0]);
+  }
+  if (key && typeof key == 'string' && key != '') {
+    decd = crypt(decd, key);
   }
   return decd;
 };
