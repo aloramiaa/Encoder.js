@@ -707,3 +707,6 @@ SOFTWARE.
 .home-buttons {
   gap: 10px;
 }
+.home-button, .home-select {
+  cursor: pointer;
+}
