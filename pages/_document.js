@@ -57,12 +57,10 @@ class CustomDocument extends Document {
             rel="stylesheet"
             href="https://unpkg.com/animate.css@4.1.1/animate.css"
           ></link>
-          <link
-            rel="shortcut icon"
-            href="/1714165239.602498-1f96a837-e638-476a-81d3-75b9f25ed066.png"
-            type="icon/png"
-            sizes="32x32"
-          ></link>
+          <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png"/>
+          <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32x32.png"/>
+          <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon-16x16.png"/>
+          <link rel="manifest" href="/img/site.webmanifest"/>
           <link
             rel="stylesheet"
             href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&amp;display=swap"
