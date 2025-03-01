@@ -12,6 +12,10 @@
   "text-1": "Encode",
   "text-2": "Decode",
   "text-3": "Mode",
-  "text-4": "Docs"
+  "text-4": "Docs",
+  "text-5": "Key",
+  "text-6": "Hello, World!",
+  "text-7": "(optional)",
+  "text-8": "Type something in input..."
 
 }

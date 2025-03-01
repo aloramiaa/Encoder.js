@@ -75,7 +75,7 @@ const Home = (props) => {
             data-thq="thq-dropdown-toggle"
             className="home-language-switcher-toggle"
           >
-            <span className="home-language-name">{locale?.['name'] || 'Russian'}</span>
+            <span className="home-language-name">{locale?.['name'] || 'Русский'}</span>
             <div data-thq="thq-dropdown-arrow" className="home-dropdown-arrow">
               <svg
                 fill="#6e3bf3"
@@ -120,7 +120,22 @@ const Home = (props) => {
               id="input"
               name="input"
               autoFocus
-              placeholder="Hello, World!"
+              placeholder={translate.raw('text-6')}
+              className="home-textarea1 textarea"
+            ></textarea>
+          </div>
+          <div className="home-input">
+            <span className="home-text1">
+              <span
+                dangerouslySetInnerHTML={{
+                  __html: translate.raw('text-5'),
+                }}
+              ></span>
+            </span>
+            <textarea
+              id="key"
+              name="key"
+              placeholder={translate.raw('text-7')}
               className="home-textarea1 textarea"
             ></textarea>
           </div>
@@ -135,7 +150,7 @@ const Home = (props) => {
             <textarea
               id="output"
               name="output"
-              placeholder="Type something in input..."
+              placeholder={translate.raw('text-8')}
               className="home-textarea2 textarea"
             ></textarea>
           </div>

@@ -102,18 +102,28 @@ class CustomDocument extends Document {
               __html:
                 `<script type="text/javascript">\n    document.ondragstart = noselect;\n    document.onselectstart = noselect;\n    document.oncontextmenu = noselect;\n    function noselect() {return false;}\n</script>\n        <script defer src=\'https://unpkg.com/@teleporthq/react-components/dist/animate-on-reveal.umd.js\'></script><script type="module" src=\'/encoder.js@${useEncoderVersion}.js\'></script><script type="module" defer>
                   import {encode, decode} from "/encoder.js@${useEncoderVersion}.js"; 
-                  const customDecode = (text) => {
+                  const customDecode = (text, key) => {
                     try {
-                      return decode(text);
+                      return decode(text, key);
                     } catch (err) {
                       return \`\${err}\`.replace('Error: Encoder.js ', ''); 
                     }
                   }
-                  document.getElementById("input").addEventListener("input", function() { 
-                    const mode = document.getElementById("mode").value; 
-                    const output = document.getElementById("output"); 
-                    output.value = this.value ? (mode === "encode" ? encode(this.value, true) : customDecode(this.value)) : ""; 
-                  });
+                  const elem1 = document.getElementById("input");
+                  const elem2 = document.getElementById("output");
+                  const elem3 = document.getElementById("key");
+                  const elem4 = document.getElementById("mode");
+                  const update = () => { 
+                    const mode = elem4.value; 
+                    const output = elem2; 
+                    const key = elem3.value;
+                    const input = elem1.value;
+                    output.value = input ? (mode === "encode" ? encode(input, key, true) : customDecode(input, key)) : ""; 
+                  }
+                  elem1.addEventListener("input", update);
+                  elem2.addEventListener("input", update);
+                  elem3.addEventListener("input", update);
+                  elem4.addEventListener("input", update);
                 </script>`,
             }}
           ></div>
