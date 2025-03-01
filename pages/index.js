@@ -136,7 +136,7 @@ const Home = (props) => {
               id="key"
               name="key"
               placeholder={translate.raw('text-7')}
-              className="home-textarea1 textarea"
+              className="home-textarea1 textarea keyinputthing"
             ></textarea>
           </div>
           <div className="home-output">
@@ -504,6 +504,9 @@ const Home = (props) => {
             font-size: 14px;
             font-family: 'Rubik';
             line-height: 1;
+          }
+          .keyinputthing {
+            height: 17px;
           }
         `}
       </style>
