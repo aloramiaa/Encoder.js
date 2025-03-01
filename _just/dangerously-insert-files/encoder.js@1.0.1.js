@@ -579,5 +579,8 @@ export const decode = (text) => {
       decd = decompress(decd, cLang);
     }
   }
+  if (decd.length == 0) {
+    throw new Error(errors[0]);
+  }
   return decd;
 };
