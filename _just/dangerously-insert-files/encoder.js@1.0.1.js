@@ -501,17 +501,26 @@ function base62ToInt(base62) {
   return result;
 }
 
+const max = 36;
 function encode3(text) {
-  return text.split('').map(char => {
-    const index = characterMap.indexOf(char);
-    return index !== -1 ? characterMap[(index + text.length) % characterMap.length] : char;
-  }).join('');
+  if (text.length < max) {
+    return text.split('').map(char => {
+      const index = characterMap.indexOf(char);
+      return index !== -1 ? characterMap[(index + text.length) % characterMap.length] : char;
+    }).join('');
+  } else {
+    return text;
+  }
 }
 function decode3(encodedText) {
-  return encodedText.split('').map(char => {
-    const index = characterMap.indexOf(char);
-    return index !== -1 ? characterMap[(index - encodedText.length + characterMap.length) % characterMap.length] : char;
-  }).join('');
+  if (encodedText.length < max) {
+    return encodedText.split('').map(char => {
+      const index = characterMap.indexOf(char);
+      return index !== -1 ? characterMap[(index - encodedText.length + characterMap.length) % characterMap.length] : char;
+    }).join('');
+  } else {
+    return encodedText;
+  }
 }
 
 export const encode = (text, compress) => {
