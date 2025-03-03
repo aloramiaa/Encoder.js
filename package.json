@@ -1,7 +1,7 @@
 {
-  "name": "encoderjs-website",
-  "version": "1.0.0",
-  "description": "Encode and decode strings",
+  "name": "encoderjs",
+  "version": "1.0.1",
+  "description": "Text encoder & decoder 🔐",
   "main": "index.js",
   "scripts": {
     "dev": "next",
