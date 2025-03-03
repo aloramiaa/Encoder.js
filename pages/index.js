@@ -184,7 +184,7 @@ const Home = (props) => {
               easing="ease-in-out"
               iteration="1"
             >
-              <a href="https://github.com/JustStudio7/Encoder" target="_blank">
+              <a href="https://github.com/JustStudio7/Encoder" target="_blank" className='hideOn322'>
                 <button
                   type="button"
                   data-thq-animate-on-reveal="true"

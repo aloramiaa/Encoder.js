@@ -710,3 +710,8 @@ SOFTWARE.
 .home-button, .home-select {
   cursor: pointer;
 }
+@media(max-width: 322px) {
+  .hideOn322 {
+    display: none;
+  }
+}
