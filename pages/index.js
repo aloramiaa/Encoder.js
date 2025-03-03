@@ -155,13 +155,13 @@ const Home = (props) => {
             ></textarea>
           </div>
           <div className="home-mode __just_select">
-            <span className="home-text3">
+            <label for="mode" className="home-text3">
               <span
                 dangerouslySetInnerHTML={{
                   __html: translate.raw('text_v-MT8j'),
                 }}
               ></span>
-            </span>
+            </label>
             <select id="mode" className="home-select __just_se1ect">
               <option value="encode"
                 dangerouslySetInnerHTML={{
