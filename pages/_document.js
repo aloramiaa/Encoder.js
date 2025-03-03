@@ -26,7 +26,7 @@ SOFTWARE.
 
 import Document, { Html, Head, Main, NextScript } from 'next/document';
 
-const useEncoderVersion = '1.0.1';
+const EncoderURL = 'https://js.is-a.dev/encoder/latest';
 
 class CustomDocument extends Document {
   render() {
@@ -98,8 +98,8 @@ class CustomDocument extends Document {
           <div
             dangerouslySetInnerHTML={{
               __html:
-                `<script type="text/javascript">\n    document.ondragstart = noselect;\n    document.onselectstart = noselect;\n    document.oncontextmenu = noselect;\n    function noselect() {return false;}\n</script>\n        <script defer src=\'https://unpkg.com/@teleporthq/react-components/dist/animate-on-reveal.umd.js\'></script><script type="module" src=\'/encoder.js@${useEncoderVersion}.js\'></script><script type="module" defer>
-                  import {encode, decode} from "/encoder.js@${useEncoderVersion}.js"; 
+                `<script type="text/javascript">\n    document.ondragstart = noselect;\n    document.onselectstart = noselect;\n    document.oncontextmenu = noselect;\n    function noselect() {return false;}\n</script>\n        <script defer src=\'https://unpkg.com/@teleporthq/react-components/dist/animate-on-reveal.umd.js\'></script><script type="module" src=\'${EncoderURL}\'></script><script type="module" defer>
+                  import {encode, decode} from "${EncoderURL}"; 
                   const customDecode = (text, key) => {
                     try {
                       return decode(text, key);
