@@ -100,10 +100,14 @@ class CustomDocument extends Document {
               __html:
                 `<script type="text/javascript">\n    document.ondragstart = noselect;\n    document.onselectstart = noselect;\n    document.oncontextmenu = noselect;\n    function noselect() {return false;}\n</script>\n        <script defer src=\'https://unpkg.com/@teleporthq/react-components/dist/animate-on-reveal.umd.js\'></script><script type="module" src=\'${EncoderURL}\'></script><script type="module" defer>
                   import {encode, decode} from "${EncoderURL}"; 
+                  let decodeError = false;
                   const customDecode = (text, key) => {
+                    decodeError = false;
                     try {
                       return decode(text, key);
+                      
                     } catch (err) {
+                      decodeError = true;
                       return \`\${err}\`.replace('Error: Encoder.js ', ''); 
                     }
                   }
@@ -117,6 +121,11 @@ class CustomDocument extends Document {
                     const key = elem3.value;
                     const input = elem1.value;
                     output.value = input ? (mode === "encode" ? encode(input, key, true) : customDecode(input, key)) : ""; 
+                    if (decodeError) {
+                      output.classList.add('outputerror');
+                    } else {try{
+                      output.classList.remove('outputerror');
+                    }catch{}}
                   }
                   elem1.addEventListener("input", update);
                   elem2.addEventListener("input", update);
