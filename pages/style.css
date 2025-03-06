@@ -715,3 +715,9 @@ SOFTWARE.
     display: none;
   }
 }
+.outputerror {
+  color: #ff5d5d !important;
+  filter: drop-shadow(-2px -2px 5px #ff5d5d);
+  font-weight: 900;
+  border-color: #ff5d5d !important;
+}
