@@ -123,6 +123,7 @@ class CustomDocument extends Document {
                     output.value = input ? (mode === "encode" ? encode(input, key, true) : customDecode(input, key)) : ""; 
                     if (decodeError) {
                       output.classList.add('outputerror');
+                      decodeError = false;
                     } else {try{
                       output.classList.remove('outputerror');
                     }catch(e){console.warn(e);}}
