@@ -26,7 +26,7 @@ SOFTWARE.
 
 import Document, { Html, Head, Main, NextScript } from 'next/document';
 
-const EncoderURL = 'https://js.is-a.dev/encoder/latest';
+const EncoderURL = 'https://encoder.js.is-a.dev/encoder.js@1.0.1.js'/*'https://js.is-a.dev/encoder/latest'*/;
 
 class CustomDocument extends Document {
   render() {
