@@ -469,6 +469,8 @@ function decode2(text_) {
 function regextest(text, lang) {
   if (lang == 'RU') {
     return /^[а-яА-ЯёЁ\s]+$/.test(text);
+  } else if (lang == 'FR') {
+    return /^[a-zA-ZÀ-ÿ\s'-]+$/.test(text);
   }
   return !/\d/.test(text);
 }
@@ -478,6 +480,11 @@ function _compress(text) {
   if (regextest(text, 'RU')) {
     cID = 2;
     for (const [key, value] of Object.entries(compressionMap['RU'])) {
+      txt = txt.replaceAll(key, value);
+    }
+  } else if (regextest(text, 'FR')) {
+    cID = 3;
+    for (const [key, value] of Object.entries(compressionMap['FR'])) {
       txt = txt.replaceAll(key, value);
     }
   } else if (regextest(text)) {
@@ -492,6 +499,10 @@ function decompress(text, lang) {
   let txt = text;
   if (lang == 'RU') {
     for (const [key, value] of Object.entries(compressionMap['RU'])) {
+      txt = txt.replaceAll(value, key);
+    }
+  } else if (lang == 'FR') {
+    for (const [key, value] of Object.entries(compressionMap['FR'])) {
       txt = txt.replaceAll(value, key);
     }
   } else {
@@ -604,8 +615,8 @@ export const decode = (text, key) => {
         throw new Error(`${errors[1]} (${encode(decodeError, true)})`);
       }
     }
-    if (dataID == 0 || dataID == 1) {
-      let cLang = dataID == 0 ? 'EN' : 'RU';
+    if (dataID == 0 || dataID == 1 || dataID == 2) {
+      let cLang = dataID == 0 ? 'EN' : dataID == 2 ? 'FR' : 'RU';
       decd = decompress(decd, cLang);
     }
   }
