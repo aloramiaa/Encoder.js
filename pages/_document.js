@@ -105,10 +105,15 @@ class CustomDocument extends Document {
                     decodeError = false;
                     try {
                       return decode(text, key);
-                      
                     } catch (err) {
                       decodeError = true;
-                      return \`\${err}\`.replace('Error: Encoder.js ', ''); 
+                      let errstr = \`\${err}\`.replace('Error: Encoder.js ', '');
+                      if (window.location.pathname == "/ru") {
+                        errstr = "Ошибка: Текст, подлежащий декодированию, закодирован неправильно."
+                      } else if (window.location.pathname == "/fr") {
+                        errstr = "Erreur: Le texte que vous souhaitez décoder n'est pas encodé correctement.";
+                      }
+                      return errstr;
                     }
                   }
                   const elem1 = document.getElementById("input");
