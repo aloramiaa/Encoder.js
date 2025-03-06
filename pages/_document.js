@@ -125,7 +125,7 @@ class CustomDocument extends Document {
                       output.classList.add('outputerror');
                     } else {try{
                       output.classList.remove('outputerror');
-                    }catch{}}
+                    }catch(e){console.warn(e);}}
                   }
                   elem1.addEventListener("input", update);
                   elem2.addEventListener("input", update);
