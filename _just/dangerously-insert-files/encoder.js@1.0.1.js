@@ -467,12 +467,15 @@ function decode2(text_) {
 }
 
 function regextest(text, lang) {
+  const en = [/\d/,/[À-ÿ]/];
+  const ru = /^[а-яА-ЯёЁ\s]+$/;
+  const fr = /^[a-zA-ZÀ-ÿ\s'-]+$/;
   if (lang == 'RU') {
-    return /^[а-яА-ЯёЁ\s]+$/.test(text);
+    return ru.test(text);
   } else if (lang == 'FR') {
-    return /^[a-zA-ZÀ-ÿ\s'-]+$/.test(text);
+    return fr.test(text);
   }
-  return !/\d/.test(text);
+  return !en[0].test(text)&&!en[1].test(text);
 }
 function _compress(text) {
   let txt = text;
@@ -482,14 +485,14 @@ function _compress(text) {
     for (const [key, value] of Object.entries(compressionMap['RU'])) {
       txt = txt.replaceAll(key, value);
     }
-  } else if (regextest(text, 'FR')) {
-    cID = 3;
-    for (const [key, value] of Object.entries(compressionMap['FR'])) {
-      txt = txt.replaceAll(key, value);
-    }
   } else if (regextest(text)) {
     cID = 1;
     for (const [key, value] of Object.entries(compressionMap['EN'])) {
+      txt = txt.replaceAll(key, value);
+    }
+  } else if (regextest(text, 'FR')) {
+    cID = 3;
+    for (const [key, value] of Object.entries(compressionMap['FR'])) {
       txt = txt.replaceAll(key, value);
     }
   }
