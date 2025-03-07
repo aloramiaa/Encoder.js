@@ -88,7 +88,7 @@ function character(char, code) {
 const used = /^[a-uA-U\s]+$/;
 
 const compressionMap = {
-  'EN': {
+  'EN': { // Default language
     ' all': '00', ' All': '01', ' ALL': '02', 'all': '03', 'All': '04', 'ALL': '05',
     ' and': '06', ' And': '07', ' AND': '08', 'and': '09', 'And': '10', 'AND': '11',
     ' that': '12', ' That': '13', ' THAT': '14', 'that': '15', 'That': '16', 'THAT': '17',
@@ -107,7 +107,7 @@ const compressionMap = {
     'which': '90', 'Which': '91', 'WHICH': '92', 'when': '93', 'When': '94', 'WHEN': '95',
     'as': '96', 'AS': '97', 'do': '98', 'DO': '99'
   },
-  'RU': {
+  'RU': { // Translated by @JustDeveloper1 - https://github.com/JustDeveloper1
     ' не': '00', ' Не': '01', ' НЕ': '02', ' она': '03', ' Она': '04', ' ОНА': '05',
     ' он': '06', ' Он': '07', ' ОН': '08', 'она': '09', 'Она': '10', 'ОНА': '11',
     ' на': '12', ' На': '13', ' НА': '14', ' они': '15', ' Они': '16', ' ОНИ': '17',
@@ -126,7 +126,7 @@ const compressionMap = {
     'этот': '90', 'Этот': '91', 'ЭТОТ': '92', 'когда': '93', 'Когда': '94', 'КОГДА': '95',
     'только': '96', 'Только': '97', 'ТОЛЬКО': '98', 'же ': '99'
   },
- 'FR': {
+ 'FR': { // Translated by @SkyExploreWasTaken - https://github.com/SkyExploreWasTaken
     ' tout': '00', ' Tout': '01', ' TOUT': '02', 'tout': '03', 'Tout': '04', 'TOUT': '05',
     ' et': '06', ' Et': '07', ' ET': '08', 'et': '09', 'Et': '10', 'ET': '11',
     ' que': '12', ' Que': '13', ' QUE': '14', 'que': '15', 'Que': '16', 'QUE': '17',
