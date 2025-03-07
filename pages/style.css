@@ -721,3 +721,4 @@ SOFTWARE.
   font-weight: 900;
   border-color: #ff5d5d !important;
 }
+@media(max-width:670px){.hideOn322{display:none!important;}}
