@@ -233,7 +233,7 @@ function decode0(encodedStr, duplicateTable) {
 }
 
 function encode1(input, useURLSAFEspecialCharacters) {
-  input = input || 'Made by JustStudio.'
+  input = input || 'Made by JustStudio.';
   let encoded = '';
   let data = 0;
   let dataChar = "A";
