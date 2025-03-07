@@ -87,7 +87,7 @@ function character(char, code) {
 }
 const used = /^[a-uA-U\s]+$/;
 
-const compressionMap = {
+const compressionMap = { // Map of most used words
   'EN': { // Default language
     ' all': '00', ' All': '01', ' ALL': '02', 'all': '03', 'All': '04', 'ALL': '05',
     ' and': '06', ' And': '07', ' AND': '08', 'and': '09', 'And': '10', 'AND': '11',
