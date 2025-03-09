@@ -92,7 +92,7 @@ class CustomDocument extends Document {
             }}
           ></noscript>
           <div dangerouslySetInnerHTML={{
-            _html:
+            __html:
               `<!-- Google tag (gtag.js) -->
           <script async src="https://www.googletagmanager.com/gtag/js?id=G-PLXYYLEN9F"></script>
           <script>
