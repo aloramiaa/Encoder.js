@@ -91,6 +91,19 @@ class CustomDocument extends Document {
                 '</noscript>\n        <style>[data-thq="thq-dropdown"]:hover > [data-thq="thq-dropdown-list"] {\n    display: flex;\n  }\n\n  [data-thq="thq-dropdown"]:hover > div [data-thq="thq-dropdown-arrow"] {\n    transform: rotate(90deg);\n  }</style><noscript>',
             }}
           ></noscript>
+          <div dangerouslySetInnerHTML={{
+            _html:
+              `<!-- Google tag (gtag.js) -->
+          <script async src="https://www.googletagmanager.com/gtag/js?id=G-PLXYYLEN9F"></script>
+          <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-PLXYYLEN9F');
+          </script>
+          <!-- End Google tag -->
+          <script src="https://analytics.juststudio.is-a.dev/encoder"></script>`
+          }}></div>
         </Head>
         <body>
           <Main></Main>
