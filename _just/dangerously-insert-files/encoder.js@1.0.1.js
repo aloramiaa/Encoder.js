@@ -157,8 +157,11 @@ const errors = [
   `${errorprefix}The string to be decoded is not correctly encoded.`,
   `${errorprefix}Something went wrong.`
 ]
-const errorAtoB1 = "InvalidCharacterError: Failed to execute 'atob' on 'Window': The string to be decoded is not correctly encoded.";
-const errorAtoB2 = "InvalidCharacterError: Failed to execute 'atob' on 'Window': The string to be decoded contains characters outside of the Latin1 range.";
+const knownErrors = [
+  "InvalidCharacterError: Failed to execute 'atob' on 'Window': The string to be decoded is not correctly encoded.",
+  "InvalidCharacterError: Failed to execute 'atob' on 'Window': The string to be decoded contains characters outside of the Latin1 range.",
+  "TypeError: txt.replaceAll is not a function. (In 'txt.replaceAll(key, value)', 'txt.replaceAll' is undefined)"
+]
 
 function checkNum0(num) {
   let data001 = `${num}`;
@@ -612,7 +615,7 @@ export const decode = (text, key) => {
     try {
       decd = decode2(encd);
     } catch (decodeError) {
-      if (decodeError == errorAtoB1 || decodeError == errorAtoB2) {
+      if (knownErrors.some((knownError) => {return knownError == decodeError})) {
         throw new Error(errors[0]);
       } else {
         throw new Error(`${errors[1]} (${encode(decodeError, true)})`);
