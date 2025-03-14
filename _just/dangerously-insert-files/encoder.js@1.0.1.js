@@ -137,13 +137,13 @@ const compressionMap = { // Map of most used words
     ' être': '42', ' Être': '43', ' ÊTRE': '44', ' pour': '45', ' Pour': '46', ' POUR': '47',
     ' pour': '48', ' Pour': '49', ' POUR': '50', ' dans': '51', ' Dans': '52', ' DANS': '53',
     ' il': '54', ' Il': '55', ' IL': '56', ' sur': '57', ' Sur': '58', ' SUR': '59',
-    ' le': '60', ' Le': '61', ' LE': '62', 'le': '63', 'Le': '64', 'LE': '65',
+    'lequel': '60', 'Lequel': '61', 'LEQUEL': '62', 'le': '63', 'Le': '64', 'LE': '65',
     ' ceci': '66', ' ceci': '67', ' CECI': '68', 'ceci': '69', 'Ceci': '70', 'CECI': '71',
-    ' de': '72', ' De': '73', ' DE': '74', 'de': '75', 'De': '76', 'DE': '77',
+    'à la place de': '72', 'A LA PLACE DE': '73', ' DE': '74', 'de': '75', 'De': '76', 'DE': '77',
     'son': '78', 'Son': '79', 'SON': '80', 'sa': '81', 'Sa': '82', 'SA': '83',
     'que': '84', 'Que': '85', 'QUE': '86', 'à propos': '87', 'A propos': '88', 'A PROPOS': '89',
-    'lequel': '90', 'Lequel': '91', 'LEQUEL': '92', 'quand': '93', 'Quand': '94', 'QUAND': '95',
-    'à la place de': '96', 'A LA PLACE DE': '97', 'faire': '98', 'FAIRE': '99'
+    ' le': '90', ' Le': '91', ' LE': '92', 'quand': '93', 'Quand': '94', 'QUAND': '95',
+    ' de': '96', ' De': '97', 'faire': '98', 'FAIRE': '99'
   }
 }
 const characterMap = [
