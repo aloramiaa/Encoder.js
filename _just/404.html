@@ -86,13 +86,15 @@ SOFTWARE.
 	    }
     </script>
     <script>
-        if (window.location.pathname == "/1" || window.location.pathname == "/fr/1") {
-	    window.location.href = "/ru"
-	} else if (window.location.pathname == "/2" || window.location.pathname == "/ru/2") {
-	    window.location.href = "/fr"
-	} else {
-	    window.location.href = "/"
-	}
+      if (window.location.pathname == "/1" || window.location.pathname == "/fr/1" || window.location.pathname == "/ua/1") {
+          window.location.href = "/ru"
+      } else if (window.location.pathname == "/2" || window.location.pathname == "/ru/2" || window.location.pathname == "/ua/2") {
+          window.location.href = "/fr"
+      } else if (window.location.pathname == "/3" || window.location.pathname == "/ru/3" || window.location.pathname == "/fr/3") {
+          window.location.href = "/ua"
+      } else {
+          window.location.href = "/"
+      }
     </script>
 </head>
 <body>
