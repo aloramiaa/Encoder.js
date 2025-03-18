@@ -537,6 +537,10 @@ function decompress(text, lang) {
     for (const [key, value] of Object.entries(compressionMap['FR'])) {
       txt = txt.replaceAll(value, key);
     }
+  } else if (lang == 'UA') {
+    for (const [key, value] of Object.entries(compressionMap['UA'])) {
+      txt = txt.replaceAll(value, key);
+    }
   } else {
     for (const [key, value] of Object.entries(compressionMap['EN'])) {
       txt = txt.replaceAll(value, key);
