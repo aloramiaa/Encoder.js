@@ -26,7 +26,7 @@ SOFTWARE.
 
 module.exports = {
   images: {unoptimized: true},output: "export",i18n: {
-    locales: ['en', 'ru', 'fr'],
+    locales: ['en', 'ru', 'fr', 'ua'],
     defaultLocale: "en",
   }
 }
