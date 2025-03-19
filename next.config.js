@@ -24,9 +24,18 @@ SOFTWARE.
 
 */
 
-module.exports = {
+import createMDX from '@next/mdx'
+
+const withMDX = createMDX({
+  // Add markdown plugins here, as desired
+})
+
+module.exports = withMDX({
   images: {unoptimized: true},output: "export",i18n: {
     locales: ['en', 'ru', 'fr', 'ua'],
     defaultLocale: "en",
-  }
-}
+  },
+  experimental: {
+    mdxRs: true,
+  },
+})
