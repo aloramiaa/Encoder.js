@@ -24,9 +24,9 @@ SOFTWARE.
 
 */
 
-import './style.css'
+import '../style.css'
 
-import { GlobalProvider } from '../global-context'
+import { GlobalProvider } from '../../global-context'
 import { NextIntlProvider } from 'next-intl'
 export default function MyApp({ Component, pageProps }) {
   return (
