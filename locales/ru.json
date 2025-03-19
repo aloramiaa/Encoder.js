@@ -2,7 +2,7 @@
 
   "text_-XONHh": "<span><strong>Encoder</strong>.js\n</span>",
   "text_KZFk8S": "<span>Ввод\n</span>",
-  "text_S-x5go": "<span>Документация ↗\n</span>",
+  "text_S-x5go": "<span>Документация\n</span>",
   "text_Vcjrr0": "<span>Вывод\n</span>",
   "text_v-MT8j": "<span>Режим:\n</span>",
   "static_8hiseu": "Encoder.js",
@@ -19,6 +19,9 @@
   "text-7": "(необязательно)",
   "text-8": "Напишите что-нибудь в строку ввода...",
   "text-9": "Репозиторий в GitHub",
-  "text-0": "<span>Репозиторий в GitHub ↗\n</span>"
+  "text-0": "<span>Репозиторий в GitHub ↗\n</span>",
+
+  "docs-1": "Назад",
+  "docs-2": "<span>Назад\n</span>"
 
 }
