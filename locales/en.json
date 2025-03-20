@@ -21,8 +21,11 @@
   "text-9": "GitHub repository",
   "text-0": "<span>GitHub repository ↗\n</span>",
 
-  "docs-1": "Back",
-  "docs-2": "How to use",
-  "docs-3": "Import encode and decode functions"
+  "docs-00": " Documentation",
+  "docs-01": "Back",
+  "docs-02": "How to use",
+  "docs-03": "Import encode and decode functions",
+  "docs-04": "Example usage",
+  "docs-05": ""
 
 }
