@@ -33,10 +33,12 @@ import { useGlobalContext } from '@/global-context';
 
 const tutorial = {
   'JS': [
-    `import { encode, decode } from "${process.env.scriptURL}";`
+    `import { encode, decode } from "${process.env.scriptURL}";`,
+    'const text = "Hello, Encoder.js!";\nconst key = "TOP SECRET KEY";\nconst encoded = encode(text, key, true);\nconst decoded = decode(encoded, key);\n\nconsole.log(` text:   "${text}"\n  key:   "${key}"\nencoded: "${encoded}"\ndecoded: "${decoded}"`);'
   ],
   'TS': [
-    `import { encode as encd, decode as decd } from "${process.env.scriptURL}";\nconst encode: (text: string, key?: string, compress?: boolean) => string = encd;\nconst decode: (text: string, key?: string) => string = decd;`
+    `import { encode as encd, decode as decd } from "${process.env.scriptURL}";\nconst encode: (text: string, key?: string, compress?: boolean) => string = encd;\nconst decode: (text: string, key?: string) => string = decd;`,
+    'const text = "Hello, Encoder.js!";\nconst key = "TOP SECRET KEY";\nconst encoded = encode(text, key, true);\nconst decoded = decode(encoded, key);\n\nconsole.log(` text:   "${text}"\n  key:   "${key}"\nencoded: "${encoded}"\ndecoded: "${decoded}"`);'
   ]
 }
 
@@ -70,7 +72,7 @@ const Home = (props) => {
         >
           <span data-thq-animate-on-reveal="true" className="home-name">
             <span dangerouslySetInnerHTML={{__html:translate.raw('text_-XONHh')}} />
-            <span dangerouslySetInnerHTML={{__html:` ${translate.raw('text-4')}`}}/>
+            <span dangerouslySetInnerHTML={{__html:` ${translate.raw('docs-00')}`}}/>
           </span>
         </animate-on-reveal>
         <div
@@ -115,8 +117,8 @@ const Home = (props) => {
         </div>
         <div className="home-main">
           <div className="idk">
-            <h1 dangerouslySetInnerHTML={{__html: translate.raw('docs-2')}} className="home-name" />
-            <span dangerouslySetInnerHTML={{__html: translate.raw('docs-3')}} className="tutor" />
+            <h1 dangerouslySetInnerHTML={{__html: translate.raw('docs-02')}} className="home-name" />
+            <span dangerouslySetInnerHTML={{__html: translate.raw('docs-03')}} className="tutor" />
             <div className='zxc'>{ts?<CopyBlock
               text={tutorial.TS[0]}
               language='typescript'
@@ -125,6 +127,20 @@ const Home = (props) => {
               theme={dracula}
             />:<CopyBlock
               text={tutorial.JS[0]}
+              language='javascript'
+              showLineNumbers='true'
+              wrapLines
+              theme={dracula}
+            />}</div>
+            <span dangerouslySetInnerHTML={{__html: translate.raw('docs-04')}} className="tutor" />
+            <div className='zxc'>{ts?<CopyBlock
+              text={tutorial.TS[1]}
+              language='typescript'
+              showLineNumbers='true'
+              wrapLines
+              theme={dracula}
+            />:<CopyBlock
+              text={tutorial.JS[1]}
               language='javascript'
               showLineNumbers='true'
               wrapLines
@@ -149,7 +165,7 @@ const Home = (props) => {
                   <span className="home-text4">
                     <span className="home-text5"
                       dangerouslySetInnerHTML={{
-                        __html: translate.raw('docs-1'),
+                        __html: translate.raw('docs-01'),
                       }}
                     ></span>
                     <span></span>
