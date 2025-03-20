@@ -126,14 +126,14 @@ const Home = (props) => {
               showLineNumbers='true'
               wrapLines
               theme={dracula}
-              style="overflow-x:scroll;overflow-y:hidden;"
+              className='zxc'
             />:<CopyBlock
               text={tutorial.JS[0]}
               language='javascript'
               showLineNumbers='true'
               wrapLines
               theme={dracula}
-              style="overflow-x:scroll;overflow-y:hidden;"
+              className='zxc'
             />}
           </div>
           <div className="home-buttons">
@@ -468,6 +468,9 @@ const Home = (props) => {
           }
           .idk {
             width: 100%;
+          }
+          .zxc {
+            overflow-x:scroll;overflow-y:hidden;
           }
         `}
       </style>
