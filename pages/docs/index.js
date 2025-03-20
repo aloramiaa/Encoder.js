@@ -38,7 +38,7 @@ const tutorial = {
   ],
   'TS': [
     `import { encode as encd, decode as decd } from "${process.env.scriptURL}";\nconst encode: (text: string, key?: string, compress?: boolean) => string = encd;\nconst decode: (text: string, key?: string) => string = decd;`,
-    'const text = "Hello, Encoder.js!";\nconst key = "TOP SECRET KEY";\nconst encoded = encode(text, key, true);\nconst decoded = decode(encoded, key);\n\nconsole.log(` text:   "${text}"\n  key:   "${key}"\nencoded: "${encoded}"\ndecoded: "${decoded}"`);'
+    'const text = "Hello, Encoder.js!";\nconst key = "TOP SECRET KEY";\nconst encoded = encode(text, key, true);\nconst decoded = decode(encoded, key);\n\nconsole.log(` text:   "${text}"\\n  key:   "${key}"\\nencoded: "${encoded}"\\ndecoded: "${decoded}"`);'
   ]
 }
 
