@@ -464,10 +464,6 @@ const Home = (props) => {
           .idk {
             width: 100%;
           }
-          .zxc div {
-            overflow-x: scroll;
-            overflow-y: hidden;
-          }
         `}
       </style>
     </>
