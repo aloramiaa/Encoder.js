@@ -464,6 +464,16 @@ const Home = (props) => {
           .idk {
             width: 100%;
           }
+          .idk .home-name {
+            text-align: center;
+          }
+          .tutor {
+            font-family: 'Rubik';
+            color: #ffffff;
+          }
+          .zxc {
+            padding-top: 5px;
+          }
         `}
       </style>
     </>
