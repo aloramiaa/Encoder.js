@@ -126,12 +126,14 @@ const Home = (props) => {
               showLineNumbers='true'
               wrapLines
               theme={dracula}
+              style="overflow-x:scroll;overflow-y:hidden;"
             />:<CopyBlock
               text={tutorial.JS[0]}
               language='javascript'
               showLineNumbers='true'
               wrapLines
               theme={dracula}
+              style="overflow-x:scroll;overflow-y:hidden;"
             />}
           </div>
           <div className="home-buttons">
