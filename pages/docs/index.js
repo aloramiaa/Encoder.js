@@ -121,21 +121,19 @@ const Home = (props) => {
           <div className="idk">
             <h1 dangerouslySetInnerHTML={{__html: translate.raw('docs-2')}} className="home-name" />
             <span dangerouslySetInnerHTML={{__html: translate.raw('docs-3')}} />
-            {ts?<CopyBlock
+            <div className='zxc'>{ts?<CopyBlock
               text={tutorial.TS[0]}
               language='typescript'
               showLineNumbers='true'
               wrapLines
               theme={dracula}
-              className='zxc'
             />:<CopyBlock
               text={tutorial.JS[0]}
               language='javascript'
               showLineNumbers='true'
               wrapLines
               theme={dracula}
-              className='zxc'
-            />}
+            />}</div>
           </div>
           <div className="home-buttons">
             <animate-on-reveal
