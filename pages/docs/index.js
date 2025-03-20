@@ -116,36 +116,38 @@ const Home = (props) => {
           </ul>
         </div>
         <div className="home-main">
-          <div className="idk">
-            <h1 dangerouslySetInnerHTML={{__html: translate.raw('docs-02')}} className="home-name" />
-            <span dangerouslySetInnerHTML={{__html: translate.raw('docs-03')}} className="tutor" />
-            <div className='zxc'>{ts?<CopyBlock
-              text={tutorial.TS[0]}
-              language='typescript'
-              showLineNumbers='true'
-              wrapLines
-              theme={dracula}
-            />:<CopyBlock
-              text={tutorial.JS[0]}
-              language='javascript'
-              showLineNumbers='true'
-              wrapLines
-              theme={dracula}
-            />}</div>
-            <span dangerouslySetInnerHTML={{__html: translate.raw('docs-04')}} className="tutor" />
-            <div className='zxc'>{ts?<CopyBlock
-              text={tutorial.TS[1]}
-              language='typescript'
-              showLineNumbers='true'
-              wrapLines
-              theme={dracula}
-            />:<CopyBlock
-              text={tutorial.JS[1]}
-              language='javascript'
-              showLineNumbers='true'
-              wrapLines
-              theme={dracula}
-            />}</div>
+          <div className="clip">
+            <div className="idk">
+              <h1 dangerouslySetInnerHTML={{__html: translate.raw('docs-02')}} className="home-name" />
+              <span dangerouslySetInnerHTML={{__html: translate.raw('docs-03')}} className="tutor" />
+              <div className='zxc'>{ts?<CopyBlock
+                text={tutorial.TS[0]}
+                language='typescript'
+                showLineNumbers='true'
+                wrapLines
+                theme={dracula}
+              />:<CopyBlock
+                text={tutorial.JS[0]}
+                language='javascript'
+                showLineNumbers='true'
+                wrapLines
+                theme={dracula}
+              />}</div>
+              <span dangerouslySetInnerHTML={{__html: translate.raw('docs-04')}} className="tutor" />
+              <div className='zxc'>{ts?<CopyBlock
+                text={tutorial.TS[1]}
+                language='typescript'
+                showLineNumbers='true'
+                wrapLines
+                theme={dracula}
+              />:<CopyBlock
+                text={tutorial.JS[1]}
+                language='javascript'
+                showLineNumbers='true'
+                wrapLines
+                theme={dracula}
+              />}</div>
+            </div>
           </div>
           <div className="home-buttons">
             <animate-on-reveal
