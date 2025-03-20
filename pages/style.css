@@ -722,3 +722,8 @@ SOFTWARE.
   border-color: #ff5d5d !important;
 }
 @media(max-width:670px){.hideOn322{display:none!important;}}
+
+.zxc div {
+  overflow-x: scroll;
+  overflow-y: hidden;
+}
