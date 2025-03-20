@@ -727,3 +727,6 @@ SOFTWARE.
   overflow-x: scroll;
   overflow-y: hidden;
 }
+.zxc:not(:last-of-type) {
+  padding-bottom: 5px;
+}
