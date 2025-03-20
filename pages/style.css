@@ -686,6 +686,7 @@ SOFTWARE.
 
 ::-webkit-scrollbar {
 	width: 10px;
+  height: 10px;
 }
 ::-webkit-scrollbar-button {
 	width: 0;
@@ -729,4 +730,21 @@ SOFTWARE.
 }
 .zxc:not(:last-of-type) {
   padding-bottom: 5px;
+}
+
+.home-main {
+  max-height: 50vh;
+  padding-right: 0px !important;
+}
+.clip {
+  padding-right: 5px;
+  border-radius: 10px;
+}
+.clip, .idk {
+  width: 100%;
+  max-height: calc(50vh - 30px);
+  overflow: clip;
+}
+.idk {
+  overflow-y: scroll;
 }
