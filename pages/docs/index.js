@@ -24,17 +24,26 @@ SOFTWARE.
 
 */
 
-import React, { Fragment } from 'react'
-import Head from 'next/head'
-import Link from 'next/link'
+import React, { Fragment, useState } from 'react';
+import Head from 'next/head';
+import Link from 'next/link';
+import { CopyBlock, dracula } from 'react-code-blocks';
+import { useTranslations } from 'next-intl';
+import { useGlobalContext } from '@/global-context';
 
-import { useTranslations } from 'next-intl'
-
-import { useGlobalContext } from '@/global-context'
+const tutorial = {
+  'JS': [
+    `import { encode, decode } from "${process.env.scriptURL}";`
+  ],
+  'TS': [
+    `import { encode as encd, decode as decd } from "${process.env.scriptURL}";\nconst encode: (text: string, key?: string, compress?: boolean) => string = encd;\nconst decode: (text: string, key?: string) => string = decd;`
+  ]
+}
 
 const Home = (props) => {
-  const { locale, locales } = useGlobalContext()
-  const translate = useTranslations()
+  const { locale, locales } = useGlobalContext();
+  const translate = useTranslations();
+  const [ ts, setTS ] = useState(false);
   return (
     <>
       <div className="home-container1">
@@ -107,74 +116,24 @@ const Home = (props) => {
             </div>
           </ul>
         </div>
+        <div>
+          <h1 dangerouslySetInnerHTML={{__html: translate.raw('docs-2')}} />
+          <span dangerouslySetInnerHTML={{__html: translate.raw('docs-3')}} />
+          {ts?<CopyBlock
+            text={tutorial.TS[0]}
+            language='typescript'
+            showLineNumbers='true'
+            wrapLines
+            theme={dracula}
+          />:<CopyBlock
+            text={tutorial.JS[0]}
+            language='javascript'
+            showLineNumbers='true'
+            wrapLines
+            theme={dracula}
+          />}
+        </div>
         <div className="home-main">
-          <div className="home-input">
-            <span className="home-text1">
-              <span
-                dangerouslySetInnerHTML={{
-                  __html: translate.raw('text_KZFk8S'),
-                }}
-              ></span>
-            </span>
-            <textarea
-              id="input"
-              name="input"
-              autoFocus
-              placeholder={translate.raw('text-6')}
-              className="home-textarea1 textarea"
-            ></textarea>
-          </div>
-          <div className="home-input">
-            <span className="home-text1">
-              <span
-                dangerouslySetInnerHTML={{
-                  __html: translate.raw('text-5'),
-                }}
-              ></span>
-            </span>
-            <textarea
-              id="key"
-              name="key"
-              placeholder={translate.raw('text-7')}
-              className="home-textarea1 textarea keyinputthing"
-            ></textarea>
-          </div>
-          <div className="home-output">
-            <span className="home-text2">
-              <span
-                dangerouslySetInnerHTML={{
-                  __html: translate.raw('text_Vcjrr0'),
-                }}
-              ></span>
-            </span>
-            <textarea
-              id="output"
-              name="output"
-              placeholder={translate.raw('text-8')}
-              className="home-textarea2 textarea"
-            ></textarea>
-          </div>
-          <div className="home-mode __just_select">
-            <label for="mode" className="home-text3">
-              <span
-                dangerouslySetInnerHTML={{
-                  __html: translate.raw('text_v-MT8j'),
-                }}
-              ></span>
-            </label>
-            <select id="mode" className="home-select __just_se1ect">
-              <option value="encode"
-                dangerouslySetInnerHTML={{
-                  __html: translate.raw('text-1'),
-                }}
-              ></option>
-              <option value="decode"
-                dangerouslySetInnerHTML={{
-                  __html: translate.raw('text-2'),
-                }}
-              ></option>
-            </select>
-          </div>
           <div className="home-buttons">
             <animate-on-reveal
               animation="fadeInDown"
@@ -199,11 +158,6 @@ const Home = (props) => {
                     <span></span>
                     <span className="home-text7">↗</span>
                   </span>
-                  <span
-                    dangerouslySetInnerHTML={{
-                      __html: translate.raw('docs-2'),
-                    }}
-                  ></span>
                 </button>
               </a>
             </animate-on-reveal>

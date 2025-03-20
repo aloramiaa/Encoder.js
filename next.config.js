@@ -32,4 +32,7 @@ module.exports = {
   experimental: {
     mdxRs: true,
   },
+  env: {
+    scriptURL: 'https://encoder.js.is-a.dev/encoder.js@1.0.1.js',
+  },
 }

@@ -27,9 +27,9 @@ jobs:
       - name: npm
         id: install-npm
         run: npm i
-      - name: MDX
-        id: install-mdx
-        run: npm install @next/mdx @mdx-js/loader @mdx-js/react @types/mdx
+      - name: Install some packages
+        id: install-pks
+        run: npm i react-code-blocks
       - name: Detect package manager
         id: detect-package-manager
         run: |
