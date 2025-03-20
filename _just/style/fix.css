@@ -47,3 +47,6 @@ button[aria-label="Copy Code"] {
     top: 100%;
     right: 0px;
 }
+.zxc div span:first-of-type:not(code span) {
+    padding: 0px 0px !important;
+}
