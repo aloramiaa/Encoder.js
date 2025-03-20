@@ -41,3 +41,9 @@ div[data-thq="thq-dropdown"]:hover {
     border-bottom-left-radius: 0px !important;
     border-bottom-right-radius: 0px !important;
 }
+
+button[aria-label="Copy Code"] {
+    position: absolute;
+    top: 100%;
+    right: 0px;
+}
