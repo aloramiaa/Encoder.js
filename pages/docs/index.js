@@ -69,13 +69,9 @@ const Home = (props) => {
           iteration="1"
         >
           <span data-thq-animate-on-reveal="true" className="home-name">
-            <span
-              dangerouslySetInnerHTML={{
-                __html: `${translate.raw('text_-XONHh')}`,
-              }}
-            ></span>
+            <span dangerouslySetInnerHTML={{__html:translate.raw('text_-XONHh')}} />
+            <span dangerouslySetInnerHTML={{__html:` ${translate.raw('text-4')}`}}/>
           </span>
-          <span dangerouslySetInnerHTML={{__html:` ${translate.raw('text-4')}`}} />
         </animate-on-reveal>
         <div
           data-thq="thq-dropdown"
@@ -468,8 +464,9 @@ const Home = (props) => {
           .idk {
             width: 100%;
           }
-          .zxc {
-            overflow-x:scroll;overflow-y:hidden;
+          .zxc div {
+            overflow-x: scroll;
+            overflow-y: hidden;
           }
         `}
       </style>
