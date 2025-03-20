@@ -33,10 +33,10 @@ import { useGlobalContext } from '@/global-context';
 
 const tutorial = {
   'JS': [
-    `import { encode, decode } from "${process.env.scriptURL}";\n`
+    `import { encode, decode } from "${process.env.scriptURL}";`
   ],
   'TS': [
-    `import { encode as encd, decode as decd } from "${process.env.scriptURL}";\nconst encode: (text: string, key?: string, compress?: boolean) => string = encd;\nconst decode: (text: string, key?: string) => string = decd;\n`
+    `import { encode as encd, decode as decd } from "${process.env.scriptURL}";\nconst encode: (text: string, key?: string, compress?: boolean) => string = encd;\nconst decode: (text: string, key?: string) => string = decd;`
   ]
 }
 
@@ -117,7 +117,7 @@ const Home = (props) => {
           </ul>
         </div>
         <div className="home-main">
-          <div>
+          <div className="idk">
             <h1 dangerouslySetInnerHTML={{__html: translate.raw('docs-2')}} className="home-name" />
             <span dangerouslySetInnerHTML={{__html: translate.raw('docs-3')}} />
             {ts?<CopyBlock
@@ -463,6 +463,9 @@ const Home = (props) => {
           }
           .keyinputthing {
             height: 17px;
+          }
+          .idk {
+            width: 100%;
           }
         `}
       </style>
