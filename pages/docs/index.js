@@ -71,10 +71,11 @@ const Home = (props) => {
           <span data-thq-animate-on-reveal="true" className="home-name">
             <span
               dangerouslySetInnerHTML={{
-                __html: `${translate.raw('text_-XONHh')}<span> ${translate.raw('text-4')}</span>`,
+                __html: `${translate.raw('text_-XONHh')}`,
               }}
             ></span>
           </span>
+          <span dangerouslySetInnerHTML={{__html:` ${translate.raw('text-4')}`}} />
         </animate-on-reveal>
         <div
           data-thq="thq-dropdown"
