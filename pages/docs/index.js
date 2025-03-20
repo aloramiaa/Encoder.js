@@ -33,10 +33,10 @@ import { useGlobalContext } from '@/global-context';
 
 const tutorial = {
   'JS': [
-    `import { encode, decode } from "${process.env.scriptURL}";`
+    `import { encode, decode } from "${process.env.scriptURL}";\n`
   ],
   'TS': [
-    `import { encode as encd, decode as decd } from "${process.env.scriptURL}";\nconst encode: (text: string, key?: string, compress?: boolean) => string = encd;\nconst decode: (text: string, key?: string) => string = decd;`
+    `import { encode as encd, decode as decd } from "${process.env.scriptURL}";\nconst encode: (text: string, key?: string, compress?: boolean) => string = encd;\nconst decode: (text: string, key?: string) => string = decd;\n`
   ]
 }
 
@@ -116,24 +116,24 @@ const Home = (props) => {
             </div>
           </ul>
         </div>
-        <div>
-          <h1 dangerouslySetInnerHTML={{__html: translate.raw('docs-2')}} />
-          <span dangerouslySetInnerHTML={{__html: translate.raw('docs-3')}} />
-          {ts?<CopyBlock
-            text={tutorial.TS[0]}
-            language='typescript'
-            showLineNumbers='true'
-            wrapLines
-            theme={dracula}
-          />:<CopyBlock
-            text={tutorial.JS[0]}
-            language='javascript'
-            showLineNumbers='true'
-            wrapLines
-            theme={dracula}
-          />}
-        </div>
         <div className="home-main">
+          <div>
+            <h1 dangerouslySetInnerHTML={{__html: translate.raw('docs-2')}} className="home-name" />
+            <span dangerouslySetInnerHTML={{__html: translate.raw('docs-3')}} />
+            {ts?<CopyBlock
+              text={tutorial.TS[0]}
+              language='typescript'
+              showLineNumbers='true'
+              wrapLines
+              theme={dracula}
+            />:<CopyBlock
+              text={tutorial.JS[0]}
+              language='javascript'
+              showLineNumbers='true'
+              wrapLines
+              theme={dracula}
+            />}
+          </div>
           <div className="home-buttons">
             <animate-on-reveal
               animation="fadeInDown"
