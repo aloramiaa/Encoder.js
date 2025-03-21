@@ -159,7 +159,11 @@ const Home = (props) => {
                 }}
               ></span>
             </label>
-            <select id="lang" className="home-select __just_se1ect">
+            <select 
+              id="lang" 
+              className="home-select __just_se1ect"
+              onChange={(e) => setTS(e.target.value == 'ts' ? true : false)}
+            >
               <option value="js"
                 dangerouslySetInnerHTML={{
                   __html: 'JavaScript',
