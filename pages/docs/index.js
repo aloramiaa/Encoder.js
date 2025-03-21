@@ -118,6 +118,8 @@ const Home = (props) => {
         <div className="home-main">
           <div className="clip">
             <div className="idk">
+              <h1 dangerouslySetInnerHTML={{__html: translate.raw('docs-06')}} className="home-name" />
+              <span dangerouslySetInnerHTML={{__html: translate.raw('docs-07')}} className="tutor" />
               <h1 dangerouslySetInnerHTML={{__html: translate.raw('docs-02')}} className="home-name" />
               <span dangerouslySetInnerHTML={{__html: translate.raw('docs-03')}} className="tutor" />
               <div className='zxc'>{ts?<CopyBlock
