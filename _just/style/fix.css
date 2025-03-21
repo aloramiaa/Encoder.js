@@ -50,3 +50,40 @@ button[aria-label="Copy Code"] {
 .zxc div span:first-of-type:not(code span) {
     padding: 0px 0px !important;
 }
+
+code .linenumber {
+    position: fixed;
+    background-color: rgba(40,42,54,0.75);
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
+    translate: -100% 0%;
+    opacity: 0.3;
+    filter: blur(1px);
+    -webkit-filter: blur(1px);
+    border: 1px solid rgba(40,42,54,0.75);
+    transition: 150ms;
+}
+code .linenumber:hover {
+    color: white !important;
+}
+.zxc:hover .linenumber {
+    opacity: 1;
+    filter: blur(0px);
+    -webkit-filter: blur(0px);
+}
+code .linenumber:first-child {
+    border-top-left-radius: 15px;
+}
+code:not(:has(.linenumber:nth-child(50))) .linenumber:nth-child(1),
+code .linenumber:nth-child(50)
+{
+    border-bottom-left-radius: 15px;
+}
+code span:not(.linenumber) {
+    transition: 600ms;
+}
+code span:not(.linenumber):hover {
+    filter: drop-shadow(0px 0px 5px);
+    -webkit-filter: drop-shadow(0px 0px 5px);
+    transition: 150ms;
+}
