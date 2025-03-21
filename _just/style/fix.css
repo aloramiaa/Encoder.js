@@ -74,8 +74,9 @@ code .linenumber:hover {
 code .linenumber:first-child {
     border-top-left-radius: 15px;
 }
-code:not(:has(.linenumber:nth-child(50))) .linenumber:nth-child(1),
-code .linenumber:nth-child(50)
+code:not(:has(.linenumber:nth-child(50))):not(:has(.linenumber:nth-child(53))) .linenumber:nth-child(1),
+code .linenumber:nth-child(50),
+code .linenumber:nth-child(53)
 {
     border-bottom-left-radius: 15px;
 }
