@@ -31,19 +31,9 @@ import { CopyBlock, dracula } from 'react-code-blocks';
 import { useTranslations } from 'next-intl';
 import { useGlobalContext } from '@/global-context';
 
-let encode, decode;
-import(`data:${process.env.scriptURL}`)
-  .then((encoder) => {
-    encode = encoder.encode;
-    decode = encoder.decode;
-  })
-
-const _input_ = "hello world";
-const encoded = encode(_input_);
-
 const tutorial = {
   'JS': [
-    `import { encode, decode } from "${process.env.scriptURL}";//test${encoded}`,
+    `import { encode, decode } from "${process.env.scriptURL}";`,
     'const text = "Hello, Encoder.js!";\nconst key = "TOP SECRET KEY";\nconst encoded = encode(text, key, true);\nconst decoded = decode(encoded, key);\n\nconsole.log(` text:   "${text}"\\n  key:   "${key}"\\nencoded: "${encoded}"\\ndecoded: "${decoded}"`);'
   ],
   'TS': [
