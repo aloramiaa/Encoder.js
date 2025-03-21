@@ -31,10 +31,20 @@ import { CopyBlock, dracula } from 'react-code-blocks';
 import { useTranslations } from 'next-intl';
 import { useGlobalContext } from '@/global-context';
 
+let encode, decode;
+import(`${process.env.scriptURL}`)
+  .then((encoder) => {
+    encode = encoder.encode;
+    decode = encoder.decode;
+  })
+
+const _input_ = "hello world";
+const encoded = encode(_input_);
+
 const tutorial = {
   'JS': [
-    `import { encode, decode } from "${process.env.scriptURL}";`,
-    'const text = "Hello, Encoder.js!";\nconst key = "TOP SECRET KEY";\nconst encoded = encode(text, key, true);\nconst decoded = decode(encoded, key);\n\nconsole.log(` text:   "${text}"\n  key:   "${key}"\nencoded: "${encoded}"\ndecoded: "${decoded}"`);'
+    `import { encode, decode } from "${process.env.scriptURL}";//test${encoded}`,
+    'const text = "Hello, Encoder.js!";\nconst key = "TOP SECRET KEY";\nconst encoded = encode(text, key, true);\nconst decoded = decode(encoded, key);\n\nconsole.log(` text:   "${text}"\\n  key:   "${key}"\\nencoded: "${encoded}"\\ndecoded: "${decoded}"`);'
   ],
   'TS': [
     `import { encode as encd, decode as decd } from "${process.env.scriptURL}";\nconst encode: (text: string, key?: string, compress?: boolean) => string = encd;\nconst decode: (text: string, key?: string) => string = decd;`,
