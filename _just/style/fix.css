@@ -52,7 +52,7 @@ button[aria-label="Copy Code"] {
 }
 
 code .linenumber {
-    position: fixed;
+    position: absolute;
     background-color: rgba(40,42,54,0.75);
     backdrop-filter: blur(3px);
     -webkit-backdrop-filter: blur(3px);
