@@ -151,7 +151,7 @@ const Home = (props) => {
               />}</div>
             </div>
           </div>
-          <div className="home-mode __just_select">
+          <div className="home-mode __just_select selectthing">
             <label for="lang" className="home-text3">
               <span
                 dangerouslySetInnerHTML={{
