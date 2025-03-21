@@ -101,9 +101,9 @@ const Home = (props) => {
           >
             <div>
               {locales.map((all_languages, index) => (
-                <Link href={`${debug(`/${langcode(index)}`)}/docs`}>
+                <Link href={`https://encoder.js.is-a.dev/${langcode(index)}/docs`}>
                   <Fragment key={index}>
-                    <Link href={`${debug(`/${langcode(index)}`)}/docs`}>
+                    <Link href={`https://encoder.js.is-a.dev/${langcode(index)}/docs`}>
                       <div className="home-language-switcher-item">
                         <span className="home-language-link">
                           {all_languages?.name}
