@@ -32,7 +32,7 @@ import { useTranslations } from 'next-intl';
 import { useGlobalContext } from '@/global-context';
 
 let encode, decode;
-import(`${process.env.scriptURL}`)
+import(`data:${process.env.scriptURL}`)
   .then((encoder) => {
     encode = encoder.encode;
     decode = encoder.decode;
