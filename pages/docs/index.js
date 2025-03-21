@@ -30,6 +30,7 @@ import Link from 'next/link';
 import { CopyBlock, dracula } from 'react-code-blocks';
 import { useTranslations } from 'next-intl';
 import { useGlobalContext } from '@/global-context';
+import { langcode } from '@/stuff/langcode';
 
 const tutorial = {
   'JS': [
@@ -100,9 +101,9 @@ const Home = (props) => {
           >
             <div>
               {locales.map((all_languages, index) => (
-                <Link href={`/${index}`}>
+                <Link href={`/${langcode(index)}/docs`}>
                   <Fragment key={index}>
-                    <Link href={`/${index}`}>
+                    <Link href={`/${langcode(index)}/docs`}>
                       <div className="home-language-switcher-item">
                         <span className="home-language-link">
                           {all_languages?.name}
