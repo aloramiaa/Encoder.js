@@ -732,7 +732,7 @@ SOFTWARE.
   padding-bottom: 5px;
 }
 
-.home-main {
+.home-main02 {
   max-height: 50vh;
   padding-right: 0px !important;
 }
@@ -752,6 +752,7 @@ SOFTWARE.
 .selectthing {
   max-height: 41px;
   width: calc(100% - 15px) !important;
+  translate: -10px -5px;
 }
 v {
   font-family: monospace;
