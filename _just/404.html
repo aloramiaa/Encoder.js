@@ -92,6 +92,14 @@ SOFTWARE.
           window.location.href = "/fr"
       } else if (window.location.pathname == "/3" || window.location.pathname == "/ru/3" || window.location.pathname == "/fr/3") {
           window.location.href = "/ua"
+      } else if (window.location.pathname == "/ru/en/docs" || window.location.pathname == "/fr/en/docs" || window.location.pathname == "/ua/en/docs") {
+          window.location.href = "/en/docs"
+      } else if (window.location.pathname == "/fr/ru/docs" || window.location.pathname == "/ua/ru/docs") {
+          window.location.href = "/ru/docs"
+      } else if (window.location.pathname == "/ru/fr/docs" || window.location.pathname == "/ua/fr/docs") {
+          window.location.href = "/fr/docs"
+      } else if (window.location.pathname == "/fr/ua/docs" || window.location.pathname == "/ru/ua/docs") {
+          window.location.href = "/ua/docs"
       } else {
           window.location.href = "/"
       }
