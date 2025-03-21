@@ -115,7 +115,7 @@ const Home = (props) => {
             </div>
           </ul>
         </div>
-        <div className="home-main">
+        <div className="home-main home-main02">
           <div className="clip">
             <div className="idk">
               <h1 dangerouslySetInnerHTML={{__html: translate.raw('docs-06')}} className="home-name" />
