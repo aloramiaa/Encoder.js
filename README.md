@@ -1,3 +1,4 @@
+![Preview](.github/image.png)
 # Encoder.js
 **Text encoder & decoder 🔐**<br/>
 Status: [![Deploy](https://github.com/JustStudio7/Encoder/actions/workflows/publish.yml/badge.svg)](https://github.com/JustStudio7/Encoder/actions/workflows/publish.yml)<br/>
