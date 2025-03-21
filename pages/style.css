@@ -761,3 +761,6 @@ v {
   padding-right: 0.3rem;
   border-radius: 7px;
 }
+.home-name:not(:first-of-type) {
+  margin-top: 1rem;
+}
