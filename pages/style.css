@@ -742,9 +742,13 @@ SOFTWARE.
 }
 .clip, .idk {
   width: 100%;
-  max-height: calc(50vh - 30px);
+  max-height: calc(50vh - 45px - 41px - 1em);
   overflow: clip;
 }
 .idk {
   overflow-y: scroll;
+}
+.selectthing {
+  max-height: 41px;
+  width: calc(100% - 15px) !important;
 }
