@@ -149,9 +149,9 @@ const Home = (props) => {
                 wrapLines
                 theme={dracula}
               />}</div>
-              <h1 dangerouslySetInnerHTML={{__html: "encode()"}} className="home-name" />
+              <h1 dangerouslySetInnerHTML={{__html: "<v>encode()</v>"}} className="home-name" />
               <span dangerouslySetInnerHTML={{__html: translate.raw('docs-08')}} className="tutor" />
-              <h1 dangerouslySetInnerHTML={{__html: "decode()"}} className="home-name" />
+              <h1 dangerouslySetInnerHTML={{__html: "<v>decode()</v>"}} className="home-name" />
               <span dangerouslySetInnerHTML={{__html: translate.raw('docs-09')}} className="tutor" />
             </div>
           </div>
