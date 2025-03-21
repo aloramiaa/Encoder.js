@@ -132,7 +132,7 @@ class CustomDocument extends Document {
                       decodeError = true;
                       let errstr = \`\${err}\`.replace('Error: Encoder.js ', '');
                       if (window.location.pathname == "/ru") {
-                        errstr = "Ошибка: Текст, подлежащий декодированию, закодирован неправильно."
+                        errstr = "Произошла ошибка: Текст, подлежащий декодированию, закодирован неправильно."
                       } else if (window.location.pathname == "/fr") {
                         errstr = "Erreur: Le texte que vous souhaitez décoder n'est pas encodé correctement.";
                       }
