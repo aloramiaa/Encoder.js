@@ -149,6 +149,27 @@ const Home = (props) => {
               />}</div>
             </div>
           </div>
+          <div className="home-mode __just_select">
+            <label for="lang" className="home-text3">
+              <span
+                dangerouslySetInnerHTML={{
+                  __html: translate.raw('text_qeZ9a1'),
+                }}
+              ></span>
+            </label>
+            <select id="lang" className="home-select __just_se1ect">
+              <option value="js"
+                dangerouslySetInnerHTML={{
+                  __html: 'JavaScript',
+                }}
+              ></option>
+              <option value="ts"
+                dangerouslySetInnerHTML={{
+                  __html: 'TypeScript',
+                }}
+              ></option>
+            </select>
+          </div>
           <div className="home-buttons">
             <animate-on-reveal
               animation="fadeInDown"
