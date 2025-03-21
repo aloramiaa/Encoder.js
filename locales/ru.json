@@ -21,8 +21,15 @@
   "text-9": "Репозиторий в GitHub",
   "text-0": "<span>Репозиторий в GitHub ↗\n</span>",
 
-  "docs-1": "Назад",
-  "docs-2": "How to use",
-  "docs-3": "Import encode() and decode()"
+  "text_qeZ9a1": "<span>Язык программирования:\n</span>",
+
+  "docs-00": "",
+  "docs-01": "Назад",
+  "docs-02": "Как использовать",
+  "docs-03": "Импортируйте функции encode и decode:",
+  "docs-04": "Пример использования:",
+  "docs-05": "Документация по ",
+  "docs-06": "Что такое Encoder.js?",
+  "docs-07": "Encoder.js это кодировщик текста для шифрования данных. Encoder.js кодирует текст в строчку, которая может содержать только URL-safe символы<small> (A-Za-z0-9 и -_().~)</small>. Encoder.js предназначен для браузеров (client-side, JavaScript) и server-side (JavaScript или TypeScript), но Encoder.js несовместим с Node.js, React.js, Next.js и тому подобными."
 
 }
