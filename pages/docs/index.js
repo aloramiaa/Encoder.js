@@ -58,10 +58,6 @@ const Home = (props) => {
             property="og:description"
             content={translate.raw('static_dx8wHO')}
           />
-          <meta
-            property="og:image"
-            content="https://aheioqhobo.cloudimg.io/v7/_playground-bucket-v2.teleporthq.io_/9819bb2f-010c-481e-936e-0ff85d44f8ab/ce7a1bbd-65e8-43c4-a8b3-8f0776d2b099?org_if_sml=1&amp;force_format=original"
-          />
         </Head>
         <animate-on-reveal
           animation="jello"
