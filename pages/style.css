@@ -747,8 +747,17 @@ SOFTWARE.
 }
 .idk {
   overflow-y: scroll;
+  text-wrap: pretty;
 }
 .selectthing {
   max-height: 41px;
   width: calc(100% - 15px) !important;
+}
+v {
+  font-family: monospace;
+  background-color: rgb(40,42,54);
+  padding: 0.1rem;
+  padding-left: 0.3rem;
+  padding-right: 0.3rem;
+  border-radius: 7px;
 }
