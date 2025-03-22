@@ -765,3 +765,14 @@ v {
 .home-name:not(:first-of-type) {
   margin-top: 1rem;
 }
+.home-main02 {
+  max-width: 400px !important;
+}
+@media(max-width: 470px) {
+  .home-main02 {
+      max-width: 70% !important;
+  }
+}
+.home-name:first-of-type {
+  text-align: center;
+}
