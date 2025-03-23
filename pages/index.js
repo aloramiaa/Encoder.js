@@ -32,7 +32,7 @@ import { useTranslations } from 'next-intl'
 
 import { useGlobalContext } from '@/global-context'
 
-import { langcode } from '@/stuff/langcode';
+import { langcode, debug } from '@/stuff/langcode';
 
 const Home = (props) => {
   const { locale, locales } = useGlobalContext()
@@ -90,9 +90,9 @@ const Home = (props) => {
           >
             <div>
               {locales.map((all_languages, index) => (
-                <Link href={`https://encoder.js.is-a.dev/${langcode(index).replace('en','')}`}>
+                <Link href={debug(`https://encoder.js.is-a.dev/${langcode(index).replace('en','')}`)}>
                   <Fragment key={index}>
-                    <Link href={`https://encoder.js.is-a.dev/${langcode(index).replace('en','')}`}>
+                    <Link href={debug(`https://encoder.js.is-a.dev/${langcode(index).replace('en','')}`)}>
                       <div className="home-language-switcher-item">
                         <span className="home-language-link">
                           {all_languages?.name}
