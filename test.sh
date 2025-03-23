@@ -2,20 +2,24 @@
 
 # Define the script URL
 SCRIPT_URL="https://js.is-a.dev/encoder/latest"
+LOCAL_SCRIPT="encoder.js"
+
+# Download the script locally
+curl -s -o "$LOCAL_SCRIPT" "$SCRIPT_URL"
 
 # Function to encode text
 encode() {
     local text="$1"
     local key="$2"
     local compress="$3"
-    curl -s "$SCRIPT_URL" | node -e "import { encode } from '$SCRIPT_URL'; console.log(encode('$text', '$key', $compress));"
+    node -e "import { encode } from './$LOCAL_SCRIPT'; console.log(encode('$text', '$key', $compress));"
 }
 
 # Function to decode text
 decode() {
     local text="$1"
     local key="$2"
-    curl -s "$SCRIPT_URL" | node -e "import { decode } from '$SCRIPT_URL'; console.log(decode('$text', '$key'));"
+    node -e "import { decode } from './$LOCAL_SCRIPT'; console.log(decode('$text', '$key'));"
 }
 
 # Example usage
