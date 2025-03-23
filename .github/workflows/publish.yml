@@ -18,10 +18,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: test
-        run: bash ${{ github.workspace }}/test.sh
       - name: Checkout
         uses: actions/checkout@v4
+      - name: test
+        run: bash ${{ github.workspace }}/test.sh
       - name: npm
         id: install-npm
         run: npm i
