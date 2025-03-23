@@ -21,17 +21,17 @@
   "text-9": "Référentiel GitHub",
   "text-0": "<span>Référentiel GitHub ↗\n</span>",
 
-  "text_qeZ9a1": "<span>Language:\n</span>",
+  "text_qeZ9a1": "<span>Langage:\n</span>",
 
-  "docs-00": " Documentation",
-  "docs-01": "Back",
-  "docs-02": "How to use",
-  "docs-03": "Import <v>encode</v> and <v>decode</v> functions:",
-  "docs-04": "Example usage:",
-  "docs-05": "",
-  "docs-06": "What is Encoder.js?",
-  "docs-07": "Encoder.js is a text encoder for encrypting data. Encoder.js encodes text in a string that can contain only URL-safe characters<small> (A-Za-z0-9 and -_().~)</small>. Encoder.js is designed for browsers (client-side, JavaScript) and server-side (JavaScript or TypeScript), but Encoder.js is incompatible with Node.js, React.js, Next.js, etc.",
-  "docs-08": "A function for encoding text. Required input data: <v>text</v> - the text to be encoded, type: <v>string</v>. Optional input data: <v>key</v> - encryption key, type: <v>string</v>; <v>compress</v> - whether to compress text (if possible), type: <v>boolean</v>. Output data type: <v>string</v>.\nImportant: Encoding without a key or encoding with a key that looks like text or contains parts of text is not a good idea.",
-  "docs-09": "A function for decoding text. Required input data: <v>text</v> - the text to be decoded, type: <v>string</v>. Optional input data: <v>key</v> - encryption key, type: <v>string</v>. Output data type: <v>string</v>.\nThis function may throw an error if <v>text</v> in the input data is encoded incorrectly, or if it was encoded in a different Encoder.js version that is incompatible with the Encoder.js version you are using."
+  "docs-00": "",
+  "docs-01": "Retour",
+  "docs-02": "Comment l'utiliser",
+  "docs-03": "Importer des fonctions d'<v>encodage</v> et de <v>décodage</v>:",
+  "docs-04": "Utilisation d'exemple:",
+  "docs-05": "Documentation d'",
+  "docs-06": "Qu'est-ce que Encoder.js?",
+  "docs-07": "Encoder.js est un encodeur de texte pour encrypter des données. Encoder.js encode le texte dans une chaîne qui ne peut contenir que des caractères acceptés dans des URL<small> (A-Za-z0-9 and -_().~)</small>. Encoder.js est utilse pour les navigateurs (côté client, JavaScript) et côté serveur (JavaScript ou TypeScript), mais Encoder.js est incompatible avec Node.js, React.js, Next.js, etc.",
+  "docs-08": "Une fonction pour encoder du texte. Données d'entrée requises: <v>text</v> - le texte que vous voulez encoder, type: <v>string</v>. Données d'entrée optionelles: <v>key</v> - la clé d'encryption, type: <v>string</v>; <v>compress</v> - si vous voulez compresser le texte (si possible), type: <v>boolean</v>. Type de données en sortie: <v>string</v>.\nImportant: Encoder sans clé ou avec une clé qui ressemble à un text ou qui contient des parties de texte n'est pas une bonne idée.",
+  "docs-09": "Une fonction pour décoder du texte. Données d'entrée requises : <v>text</v> - le texte à décoder, type : <v>string</v>. Données d'entrée optionnelles : <v>key</v> - clé de chiffrement, type : <v>string</v>. Type de données de sortie : <v>string</v>.\nCette fonction peut générer une erreur si <v>text</v> dans les données d'entrée est mal encodé, ou s'il a été encodé dans une version différente de Encoder.js qui est incompatible avec la version de Encoder.js que vous utilisez."
 
 }
