@@ -204,26 +204,28 @@ const Home = (props) => {
                   ></span>
                 </button>
               </a>
-              <button
-                type="button"
-                data-thq-animate-on-reveal="true"
-                className="home-button button"
-              >
-                <span className="home-text4">
-                  <span className="home-text5"
+              <Link href="/docs">
+                <button
+                  type="button"
+                  data-thq-animate-on-reveal="true"
+                  className="home-button button"
+                >
+                  <span className="home-text4">
+                    <span className="home-text5"
+                      dangerouslySetInnerHTML={{
+                        __html: translate.raw('text-4'),
+                      }}
+                    ></span>
+                    <span></span>
+                    <span className="home-text7">↗</span>
+                  </span>
+                  <span
                     dangerouslySetInnerHTML={{
-                      __html: translate.raw('text-4'),
+                      __html: translate.raw('text_S-x5go'),
                     }}
                   ></span>
-                  <span></span>
-                  <span className="home-text7">↗</span>
-                </span>
-                <span
-                  dangerouslySetInnerHTML={{
-                    __html: translate.raw('text_S-x5go'),
-                  }}
-                ></span>
-              </button>
+                </button>
+              </Link>
             </animate-on-reveal>
           </div>
         </div>
