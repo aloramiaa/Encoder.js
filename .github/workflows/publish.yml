@@ -20,6 +20,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+      - name: test
+        run: bash ${{ github.workspace }}/test.sh
       - name: npm
         id: install-npm
         run: npm i

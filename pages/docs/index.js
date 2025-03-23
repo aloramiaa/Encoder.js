@@ -186,7 +186,7 @@ const Home = (props) => {
               easing="ease-in-out"
               iteration="1"
             >
-              <a href="/" target="_self">
+              <a href={`/${locale?.['short']}`.toLowerCase().replace('en','')} target="_self">
                 <button
                   type="button"
                   data-thq-animate-on-reveal="true"

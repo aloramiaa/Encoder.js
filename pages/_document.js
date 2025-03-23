@@ -135,6 +135,8 @@ class CustomDocument extends Document {
                         errstr = "Произошла ошибка: Текст, подлежащий декодированию, закодирован неправильно."
                       } else if (window.location.pathname == "/fr") {
                         errstr = "Erreur: Le texte que vous souhaitez décoder n'est pas encodé correctement.";
+                      } else if (window.location.pathname == "/ua") {
+                        errstr = "Помилка: Текст, що підлягає декодуванню, неправильно закодований.";
                       }
                       return errstr;
                     }

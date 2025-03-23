@@ -178,7 +178,8 @@ const errors = [
 const knownErrors = [
   "InvalidCharacterError: Failed to execute 'atob' on 'Window': The string to be decoded is not correctly encoded.",
   "InvalidCharacterError: Failed to execute 'atob' on 'Window': The string to be decoded contains characters outside of the Latin1 range.",
-  "TypeError: txt.replaceAll is not a function. (In 'txt.replaceAll(key, value)', 'txt.replaceAll' is undefined)"
+  "TypeError: txt.replaceAll is not a function. (In 'txt.replaceAll(key, value)', 'txt.replaceAll' is undefined)",
+  "TypeError: txt.replaceAll is not a function"
 ]
 
 function checkNum0(num) {
@@ -193,31 +194,23 @@ function checkNum0(num) {
 }
 
 function checkNum1(num) {
-  let data005 = checkNum0(num / 2);
-  let data006 = checkNum0(num / 3);
-  let data007 = checkNum0(num / 4);
-  let data008 = checkNum0(num / 5);
-  let data009 = checkNum0(num / 6);
-  let data010 = checkNum0(num / 7);
-  let data011 = checkNum0(num / 8);
-  let data012 = checkNum0(num / 9);
   return [
-    data005,
-    data006,
-    data007,
-    data008,
-    data009,
-    data010,
-    data011,
-    data012
+    checkNum0(num / 2),
+    checkNum0(num / 3),
+    checkNum0(num / 4),
+    checkNum0(num / 5),
+    checkNum0(num / 6),
+    checkNum0(num / 7),
+    checkNum0(num / 8),
+    checkNum0(num / 9)
   ];
 }
 
 function encode0(str) {
-  let data013 = checkNum1(str.length);
+  let checks = checkNum1(str.length);
   let result = [];
   for (let i = 2; i <= 9; i++) {
-    if (data013[i - 2]) {
+    if (checks[i - 2]) {
       let partLength = Math.floor(str.length / i);
       let parts = [];
       for (let j = 0; j < i; j++) {
@@ -595,6 +588,13 @@ function crypt(input, key) {
   }
   return output;
 }
+function throwNewError(catchedError, id_) {
+  if (knownErrors.some((knownError) => {return knownError == catchedError})) {
+    throw new Error(`${errors[0]} (${encode(id_, null, true)})`);
+  } else {
+    throw new Error(`${errors[1]} (${encode(catchedError, null, true)})`);
+  }
+}
 
 export const encode = (text, key, compress) => {
   let encd;
@@ -645,15 +645,15 @@ export const decode = (text, key) => {
     try {
       decd = decode2(encd);
     } catch (decodeError) {
-      if (knownErrors.some((knownError) => {return knownError == decodeError})) {
-        throw new Error(errors[0]);
-      } else {
-        throw new Error(`${errors[1]} (${encode(decodeError, true)})`);
-      }
+      throwNewError(decodeError, 'decode2(encd)');
     }
     if (dataID == 0 || dataID == 1 || dataID == 2 || dataID == 3) {
-      let cLang = dataID == 0 ? 'EN' : dataID == 2 ? 'FR' : dataID == 3 ? 'UA' : 'RU';
-      decd = decompress(decd, cLang);
+      try {
+        let cLang = dataID == 0 ? 'EN' : dataID == 2 ? 'FR' : dataID == 3 ? 'UA' : 'RU';
+        decd = decompress(decd, cLang);
+      } catch (decompressError) {
+        throwNewError(decompressError, 'decompress(decd, cLang)');
+      }
     }
   }
   if (decd.length == 0) {
