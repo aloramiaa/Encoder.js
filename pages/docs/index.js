@@ -68,6 +68,7 @@ const Home = (props) => {
           iteration="1"
         >
           <span data-thq-animate-on-reveal="true" className="home-name">
+            <span dangerouslySetInnerHTML={{__html:` ${translate.raw('docs-05')}`}}/>
             <span dangerouslySetInnerHTML={{__html:translate.raw('text_-XONHh')}} />
             <span dangerouslySetInnerHTML={{__html:` ${translate.raw('docs-00')}`}}/>
           </span>
