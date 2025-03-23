@@ -36,5 +36,17 @@ SOFTWARE.
 </url><url>
 <loc>https://encoder.js.is-a.dev/ua</loc>
 <priority>0.90</priority>
+</url><url>
+<loc>https://encoder.js.is-a.dev/en/docs</loc>
+<priority>1.00</priority>
+</url><url>
+<loc>https://encoder.js.is-a.dev/ru/docs</loc>
+<priority>0.90</priority>
+</url><url>
+<loc>https://encoder.js.is-a.dev/fr/docs</loc>
+<priority>0.90</priority>
+</url><url>
+<loc>https://encoder.js.is-a.dev/ua/docs</loc>
+<priority>0.90</priority>
 </url>
 </urlset>
