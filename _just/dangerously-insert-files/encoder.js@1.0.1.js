@@ -24,7 +24,7 @@ SOFTWARE.
 
 */
 
-// Encoder.js v1.0.1
+// Encoder.js v1.0.1'
 
 /*
 
@@ -171,9 +171,14 @@ const characterMap = [
 ];
 
 const errorprefix = 'Encoder.js Error: ';
+const encddecdpfx = (insertmode) => {return `The text cannot be ${insertmode} for the following reason: `};
+const docsurllink = 'https://encoder.js.is-a.dev/en/docs';
 const errors = [
   `${errorprefix}The string to be decoded is not correctly encoded.`,
-  `${errorprefix}Something went wrong.`
+  `${errorprefix}Something went wrong.`,
+  (mode_, param, paramtype) => {return `${errorprefix}${encddecdpfx(mode_)}${param} must be a ${paramtype}. ${docsurllink}`},
+  (mode_, param) => {return `${errorprefix}${encddecdpfx(mode_)}${param} is required. ${docsurllink}`},
+  (mode_, param, info) => {return `${errorprefix}${encddecdpfx(mode_)}${param} cannot be ${info}. ${docsurllink}`}
 ]
 const knownErrors = [
   "InvalidCharacterError: Failed to execute 'atob' on 'Window': The string to be decoded is not correctly encoded.",
@@ -596,7 +601,7 @@ function throwNewError(catchedError, id_) {
   }
 }
 
-export const encode = (text, key, compress) => {
+function encode4(text, key, compress) {
   let encd;
   let inputText = text;
   if (key && typeof key == 'string' && key != '') {
@@ -624,7 +629,8 @@ export const encode = (text, key, compress) => {
   } else encde();
   return encode3(encd);
 };
-export const decode = (text, key) => {
+
+function decode4(text, key) {
   let inputText = decode3(text);
   let datachar = inputText.slice(0,1);
   let decd;
@@ -664,3 +670,49 @@ export const decode = (text, key) => {
   }
   return decd;
 };
+
+function check(text, key) {
+  if (!/^[A-Za-z0-9_().~-]+$/.test(text)) throw new Error(errors[0]);
+  if (text.length > 2 && text !== 'V' && (key === undefined || key === null)) throw new Error(errors[0]);
+}
+function even_or_odd(number) {
+  return number % 2 === 0 ? false : true;
+}
+
+export const encode = (text, key, compress) => {
+  if (text === undefined || text === null) throw new Error(errors[3]('encoded', 'Text'));
+  if (typeof text !== 'string') throw new Error(errors[2]('encoded', 'Text', 'string'));
+  if (key !== undefined && key !== null && typeof key !== 'string') throw new Error(errors[2]('encoded', 'Key', 'string'));
+  if (compress !== undefined && compress !== null && typeof compress !== 'boolean') throw new Error(errors[2]('encoded', 'Compress', 'boolean'));
+  if (text === '') throw new Error(errors[4]('encoded', 'Text', text));
+  const encoded_ = encode4(text, key, compress);
+  let output_ = encoded_;
+  if (compress) {
+    const doubleEncoded = encode4(encoded_, key, compress);
+    if (doubleEncoded.length < encoded_.length) {
+      output_ = `J${doubleEncoded}`;
+    }
+  }
+  if (even_or_odd(output_.length)) output_ = output_.split('').reverse().join('');
+  return output_;
+};
+export const decode = (text, key) => {
+  let input_ = text;
+  if (even_or_odd(input_.length)) input_ = input_.split('').reverse().join('');
+  if (input_ === undefined || input_ === null) throw new Error(errors[3]('decoded', 'Text'));
+  if (typeof input_ !== 'string') throw new Error(errors[2]('decoded', 'Text', 'string'));
+  if (key !== undefined && key !== null && typeof key !== 'string') throw new Error(errors[2]('decoded', 'Key', 'string'));
+  check(input_, key);
+  const datachar = input_.slice(0,1);
+  const nodatachar = input_.slice(1);
+  let output_;
+  if (datachar == 'J') {
+    const decoded_ = decode4(decode4(nodatachar, key), key);
+    output_ = decoded_;
+  } else {
+    const decoded_ = decode4(input_, key);
+    output_ = decoded_;
+  }
+  return output_;
+};
+
