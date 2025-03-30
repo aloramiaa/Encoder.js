@@ -24,7 +24,7 @@ SOFTWARE.
 
 */
 
-// Encoder.js v1.0.1'
+// Encoder.js v1.0.1
 
 /*
 
@@ -169,6 +169,7 @@ const characterMap = [
   'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z',
   '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '-', '_', '(', ')', '.', '~'
 ];
+const cc = characterMap.length;
 
 const errorprefix = 'Encoder.js Error: ';
 const encddecdpfx = (insertmode) => {return `The text cannot be ${insertmode} for the following reason: `};
@@ -601,6 +602,7 @@ function throwNewError(catchedError, id_) {
   }
 }
 
+const useShit = false;
 function encode4(text, key, compress) {
   let encd;
   let inputText = text;
@@ -619,7 +621,7 @@ function encode4(text, key, compress) {
       encd = `${datachar}${enc2.slice(1)}`;
     }
   }
-  if (compress && /^\d+$/.test(inputText) && inputText.length < 11) {
+  if (useShit && compress && /^\d+$/.test(inputText) && inputText.length < 11) {
     try {
       const base62num = intToBase62(parseInt(inputText));
       if (base62num === base62ToInt(base62num)) {
@@ -629,13 +631,12 @@ function encode4(text, key, compress) {
   } else encde();
   return encode3(encd);
 };
-
 function decode4(text, key) {
   let inputText = decode3(text);
   let datachar = inputText.slice(0,1);
   let decd;
   let encd = inputText.slice(1);
-  if (datachar == 'U') {
+  if (datachar == 'U' && useShit) {
     decd = base62ToInt(encd);
   } else {
     if (!used.test(datachar)) {
@@ -679,6 +680,71 @@ function even_or_odd(number) {
   return number % 2 === 0 ? false : true;
 }
 
+const numEncode = (text, key) => {
+  let num = '';
+  for (let i = 0; i < text.length; i++) {
+    num += key ? `${(parseInt(text.charAt(i), 10) + key.charCodeAt(i % key.length)) % 10}` : text.charAt(i);
+  }
+  let number = parseInt(num, 10);
+  number = key ? number % parseInt(text, 10) : number;
+  if (`${number}`.replaceAll('e','found') !== `${number}`) return false;
+  let output_ = false;
+  if (number < cc) {
+    output_ = 'U' + characterMap[number];
+  } else if (number < 4624) {
+    number -= cc;
+    output_ = 'u' + characterMap[Math.floor(number / cc)] + characterMap[number % cc];
+  } else if (number < 314432) {
+    number -= 4624;
+    output_ = 'Q' + characterMap[Math.floor(number / (cc * cc))] + characterMap[Math.floor((number % (cc * cc)) / cc)] + characterMap[number % cc];
+  } else if (number < 21381376) {
+    number -= 314432;
+    output_ = 'q' + characterMap[Math.floor(number / (cc * cc * cc))] + characterMap[Math.floor((number % (cc * cc * cc)) / (cc * cc))] + characterMap[Math.floor((number % (cc * cc)) / cc)] + characterMap[number % cc];
+  } else if (useShit) {
+    let result = '';
+    while (number >= 0) {
+      result = characterMap[number % cc] + result;
+      number = Math.floor(number / cc) - 1;
+    }
+    output_ = result;
+  } else {
+    return false;
+  }
+  return encode3(output_);
+}
+const numDecode = (text, key) => {
+  const encoded = decode3(text);
+  const prefix = encoded.charAt(0);
+  let number = 0;
+  let output_;
+  if (prefix === 'U') {
+    output_ = (characterMap.indexOf(encoded.charAt(1))).toString();
+  } else if (prefix === 'u') {
+    number += cc;
+    number += characterMap.indexOf(encoded.charAt(1)) * cc + characterMap.indexOf(encoded.charAt(2));
+    output_ = number.toString();
+  } else if (prefix === 'Q') {
+    number += 4624;
+    number += characterMap.indexOf(encoded.charAt(1)) * (cc * cc) + characterMap.indexOf(encoded.charAt(2)) * cc + characterMap.indexOf(encoded.charAt(3));
+    output_ = number.toString();
+  } else if (prefix === 'q') {
+    number += 314432;
+    number += characterMap.indexOf(encoded.charAt(1)) * (cc * cc * cc) + characterMap.indexOf(encoded.charAt(2)) * (cc * cc) + characterMap.indexOf(encoded.charAt(3)) * cc + characterMap.indexOf(encoded.charAt(4));
+    output_ = number.toString();
+  } else {
+    let base = 0;
+    for (let i = 0; i < encoded.length; i++) {
+      base = base * cc + characterMap.indexOf(encoded.charAt(i));
+    }
+    output_ = base.toString();
+  }
+  let num = '';
+  for (let i = 0; i < output_.length; i++) {
+    num += key ? `${(parseInt(output_.charAt(i), 10) - key.charCodeAt(i % key.length) + 10) % 10}` : output_.charAt(i);
+  }
+  return num;
+}
+
 export const encode = (text, key, compress) => {
   if (text === undefined || text === null) throw new Error(errors[3]('encoded', 'Text'));
   if (typeof text !== 'string') throw new Error(errors[2]('encoded', 'Text', 'string'));
@@ -692,6 +758,7 @@ export const encode = (text, key, compress) => {
     if (doubleEncoded.length < encoded_.length) {
       output_ = `J${doubleEncoded}`;
     }
+    if (/^[0-9]+$/.test(text) && (key === undefined || key === null)) output_ = numEncode(text);
   }
   if (even_or_odd(output_.length)) output_ = output_.split('').reverse().join('');
   return output_;
@@ -707,11 +774,11 @@ export const decode = (text, key) => {
   const nodatachar = input_.slice(1);
   let output_;
   if (datachar == 'J') {
-    const decoded_ = decode4(decode4(nodatachar, key), key);
-    output_ = decoded_;
+    output_ = decode4(decode4(nodatachar, key), key);
+  } else if (datachar == 'U' || datachar == 'u' || datachar == 'Q' || datachar == 'q') {
+    output_ = numDecode(text);
   } else {
-    const decoded_ = decode4(input_, key);
-    output_ = decoded_;
+    output_ = decode4(input_, key);
   }
   return output_;
 };
