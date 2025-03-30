@@ -97,9 +97,9 @@ const Home = (props) => {
           >
             <div>
               {locales.map((all_languages, index) => (
-                <Link href={`${`${process.env.URLprefix}${locales[index].short}`.replace(/\/(.*?)\/(.*?)/, '/$2')}/docs`}>
+                <Link href={`${`${process.env.URLprefix}${locales[index].short}`.replace(/\/(.*?)\/(.*?)/, '/$2')}/docs`.replace(locale?.['short'], '')}>
                   <Fragment key={index}>
-                    <Link href={`${`${process.env.URLprefix}${locales[index].short}`.replace(/\/(.*?)\/(.*?)/, '/$2')}/docs`}>
+                    <Link href={`${`${process.env.URLprefix}${locales[index].short}`.replace(/\/(.*?)\/(.*?)/, '/$2')}/docs`.replace(locale?.['short'], '')}>
                       <div className="home-language-switcher-item">
                         <span className="home-language-link">
                           {all_languages?.name}
