@@ -97,9 +97,9 @@ const Home = (props) => {
           >
             <div>
               {locales.map((all_languages, index) => (
-                <Link href={`${locales[index].short}/docs`}>
+                <Link href={`${process.env.URLprefix}${locales[index].short}/docs`}>
                   <Fragment key={index}>
-                    <Link href={`${locales[index].short}/docs`}>
+                    <Link href={`${process.env.URLprefix}${locales[index].short}/docs`}>
                       <div className="home-language-switcher-item">
                         <span className="home-language-link">
                           {all_languages?.name}
