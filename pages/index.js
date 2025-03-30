@@ -88,9 +88,9 @@ const Home = (props) => {
           >
             <div>
               {locales.map((all_languages, index) => (
-                <Link href={debug(`/${langcode(index).replace('en','')}`)}>
+                <Link href={locales[index].short}>
                   <Fragment key={index}>
-                    <Link href={debug(`/${langcode(index).replace('en','')}`)}>
+                    <Link href={locales[index].short}>
                       <div className="home-language-switcher-item">
                         <span className="home-language-link">
                           {all_languages?.name}
@@ -180,7 +180,7 @@ const Home = (props) => {
               easing="ease-in-out"
               iteration="1"
             >
-              <a href="https://github.com/JustStudio7/Encoder" target="_blank" className='hideOn322'>
+              <Link href="https://github.com/JustStudio7/Encoder" target="_blank" className='hideOn322'>
                 <button
                   type="button"
                   data-thq-animate-on-reveal="true"
@@ -201,7 +201,7 @@ const Home = (props) => {
                     }}
                   ></span>
                 </button>
-              </a>
+              </Link>
               <Link href="/docs">
                 <button
                   type="button"
@@ -215,7 +215,7 @@ const Home = (props) => {
                       }}
                     ></span>
                     <span></span>
-                    <span className="home-text7">↗</span>
+                    <span className="home-text7 removethat">↗</span>
                   </span>
                   <span
                     dangerouslySetInnerHTML={{
