@@ -180,11 +180,11 @@ const Home = (props) => {
               easing="ease-in-out"
               iteration="1"
             >
-              <Link href="https://github.com/JustStudio7/Encoder" target="_blank" className='hideOn322'>
+              <Link href="https://github.com/JustStudio7/Encoder" target="_blank">
                 <button
                   type="button"
                   data-thq-animate-on-reveal="true"
-                  className="home-button button"
+                  className="home-button button hideOn322"
                 >
                   <span className="home-text4">
                     <span className="home-text5"
@@ -202,7 +202,7 @@ const Home = (props) => {
                   ></span>
                 </button>
               </Link>
-              <Link href="/docs">
+              <Link href={`/${locale?.['short']}/docs`}>
                 <button
                   type="button"
                   data-thq-animate-on-reveal="true"
