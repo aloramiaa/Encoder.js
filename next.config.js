@@ -26,7 +26,7 @@ SOFTWARE.
 
 module.exports = {
   images: {unoptimized: true},output: "export",i18n: {
-    locales: ['en', 'ru', 'fr', 'ua'],
+    locales: ['en', 'ru', 'fr', 'ua', 'bn'],
     defaultLocale: "en",
   },
   experimental: {
@@ -34,5 +34,6 @@ module.exports = {
   },
   env: {
     scriptURL: 'https://encoder.js.is-a.dev/encoder.js@1.0.1.js',
+    URLprefix: 'https://encoder.js.is-a.dev/',
   },
 }
