@@ -776,3 +776,6 @@ v {
 .home-name:first-of-type {
   text-align: center;
 }
+.removethat {
+  display: none !important;
+}
