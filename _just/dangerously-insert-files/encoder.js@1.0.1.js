@@ -755,10 +755,11 @@ export const encode = (text, key, compress) => {
   let output_ = encoded_;
   if (compress) {
     const doubleEncoded = encode4(encoded_, key, compress);
+    const numEncoded = numEncode(text);
     if (doubleEncoded.length < encoded_.length) {
       output_ = `J${doubleEncoded}`;
     }
-    if (/^[0-9]+$/.test(text) && (key === undefined || key === null || key === '')) output_ = numEncode(text);
+    if (/^[0-9]+$/.test(text) && (key === undefined || key === null || key === '') && decode(numEncoded, key) === text) output_ = numEncoded;
   }
   if (even_or_odd(output_.length)) output_ = output_.split('').reverse().join('');
   return output_;
