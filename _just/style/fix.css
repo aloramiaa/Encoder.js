@@ -24,7 +24,7 @@ SOFTWARE.
 
 */
 
-button *:last-child:not(.home-text7):not(svg):not(svg *):not(a[href="/"] *):not(a[href="/ru"] *):not(a[href="/fr"] *):not(a[href="/ua"] *) {
+button *:last-child:not(.home-text7):not(svg):not(svg *):not(.doNotHide *) {
     display: none;
 }
 

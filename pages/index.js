@@ -214,7 +214,7 @@ const Home = (props) => {
                         __html: translate.raw('text-4'),
                       }}
                     ></span>
-                    <span></span>
+                    <span className='removethat'></span>
                     <span className="home-text7 removethat">↗</span>
                   </span>
                   <span

@@ -190,7 +190,7 @@ const Home = (props) => {
                 <button
                   type="button"
                   data-thq-animate-on-reveal="true"
-                  className="home-button button"
+                  className="home-button button doNotHide"
                 >
                   <span className="home-text4">
                     <span className="home-text5"
@@ -198,7 +198,7 @@ const Home = (props) => {
                         __html: translate.raw('docs-01'),
                       }}
                     ></span>
-                    <span></span>
+                    <span className='removethat'></span>
                     <span className="home-text7 removethat">↗</span>
                   </span>
                 </button>
