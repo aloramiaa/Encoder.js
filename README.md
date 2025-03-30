@@ -6,6 +6,9 @@ Status: [![Deploy](https://github.com/JustStudio7/Encoder/actions/workflows/publ
 ---------
 ## Translators
 
+### Bengali
+[@SubhrajitSain](https://github.com/SubhrajitSain)
+
 ### French
 [@SkyExploreWasTaken](https://github.com/SkyExploreWasTaken)
 
