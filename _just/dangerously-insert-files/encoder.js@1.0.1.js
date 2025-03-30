@@ -57,16 +57,17 @@ function getcode(char) {
     'c': 0, 'C': 0, 'd': 0, 'D': 0, 'I': 0,
     'e': 1, 'f': 1, 'g': 1, 'h': 1, 'i': 1,
     'E': 2, 'F': 2, 'G': 2, 'H': 2, 'j': 2,
+    'k': 3, 'n': 3, 'N': 3, 'O': 3, 'o': 3,
   };
-  return codes[char] !== undefined ? codes[char] : 3;
+  return codes[char] !== undefined ? codes[char] : 4;
 }
 function character(char, code) {
   const conversionMap = {
-    'A': ['c', 'e', 'E', 'k'],
-    'B': ['C', 'f', 'F', 'n'],
-    'a': ['d', 'g', 'G', 'N'],
-    'b': ['D', 'h', 'H', 'O'],
-    'K': ['I', 'i', 'j', 'o']
+    'A': ['c', 'e', 'E', 'k', 'L'],
+    'B': ['C', 'f', 'F', 'n', 'l'],
+    'a': ['d', 'g', 'G', 'N', 'M'],
+    'b': ['D', 'h', 'H', 'O', 'm'],
+    'K': ['I', 'i', 'j', 'o', 'W']
   };
 
   if (code == null || code == undefined) {
@@ -510,12 +511,15 @@ function regextest(text, lang) {
   const ru = /^[а-яА-ЯёЁ\s]+$/;
   const fr = /^[a-zA-ZÀ-ÿ\s'-]+$/;
   const ua = /^[а-щА-ЩьюяґєіїЬЮЯҐЄІЇ\s'-]+$/;
+  const bn = /[\p{Script=Bengali}]+/gu;
   if (lang == 'RU') {
     return ru.test(text);
   } else if (lang == 'FR') {
     return fr.test(text);
   } else if (lang == 'UA') {
-    return ua.test(text)
+    return ua.test(text);
+  } else if (lang == 'BN') {
+    return bn.test(text);
   }
   return !en[0].test(text)&&!en[1].test(text);
 }
@@ -542,6 +546,11 @@ function _compress(text) {
     for (const [key, value] of Object.entries(compressionMap['FR'])) {
       txt = txt.replaceAll(key, value);
     }
+  } else if (regextest(text, 'BN')) {
+    cID = 5;
+    for (const [key, value] of Object.entries(compressionMap['BN'])) {
+      txt = txt.replaceAll(key, value);
+    }
   }
   return [txt, cID];
 }
@@ -557,6 +566,10 @@ function decompress(text, lang) {
     }
   } else if (lang == 'UA') {
     for (const [key, value] of Object.entries(compressionMap['UA'])) {
+      txt = txt.replaceAll(value, key);
+    }
+  } else if (lang == 'BN') {
+    for (const [key, value] of Object.entries(compressionMap['BN'])) {
       txt = txt.replaceAll(value, key);
     }
   } else {
@@ -673,9 +686,9 @@ function decode4(text, key) {
     } catch (decodeError) {
       throwNewError(decodeError, 'decode2(encd)');
     }
-    if (dataID == 0 || dataID == 1 || dataID == 2 || dataID == 3) {
+    if (dataID == 0 || dataID == 1 || dataID == 2 || dataID == 3 || dataID == 4) {
       try {
-        let cLang = dataID == 0 ? 'EN' : dataID == 2 ? 'FR' : dataID == 3 ? 'UA' : 'RU';
+        let cLang = dataID == 0 ? 'EN' : dataID == 2 ? 'FR' : dataID == 3 ? 'UA' : dataID == 4 ? 'BN' : 'RU';
         decd = decompress(decd, cLang);
       } catch (decompressError) {
         throwNewError(decompressError, 'decompress(decd, cLang)');
