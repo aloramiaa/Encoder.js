@@ -97,9 +97,9 @@ const Home = (props) => {
           >
             <div>
               {locales.map((all_languages, index) => (
-                <Link href={`https://encoder.js.is-a.dev/${langcode(index)}/docs`}>
+                <Link href={`${locales[index].short}/docs`}>
                   <Fragment key={index}>
-                    <Link href={`https://encoder.js.is-a.dev/${langcode(index)}/docs`}>
+                    <Link href={`${locales[index].short}/docs`}>
                       <div className="home-language-switcher-item">
                         <span className="home-language-link">
                           {all_languages?.name}
@@ -186,7 +186,7 @@ const Home = (props) => {
               easing="ease-in-out"
               iteration="1"
             >
-              <a href={`/${locale?.['short']}`.toLowerCase().replace('en','')} target="_self">
+              <Link href={`/${locale?.['short']}`.toLowerCase().replace('en','')} target="_self">
                 <button
                   type="button"
                   data-thq-animate-on-reveal="true"
@@ -199,10 +199,10 @@ const Home = (props) => {
                       }}
                     ></span>
                     <span></span>
-                    <span className="home-text7">↗</span>
+                    <span className="home-text7 removethat">↗</span>
                   </span>
                 </button>
-              </a>
+              </Link>
             </animate-on-reveal>
           </div>
         </div>
