@@ -86,27 +86,20 @@ SOFTWARE.
 	    }
     </script>
     <script>
-      if (window.location.pathname == "/fr/ru" || window.location.pathname == "/ua/ru" || window.location.pathname == "/bn/ru") {
-          window.location.href = "/ru"
-      } else if (window.location.pathname == "/ru/fr" || window.location.pathname == "/ua/fr" || window.location.pathname == "/bn/fr") {
-          window.location.href = "/fr"
-      } else if (window.location.pathname == "/ru/ua" || window.location.pathname == "/fr/ua" || window.location.pathname == "/bn/ua") {
-          window.location.href = "/ua"
-      } else if (window.location.pathname == "/ru/bn" || window.location.pathname == "/fr/bn" || window.location.pathname == "/ua/bn") {
-          window.location.href = "/bn"
-      } else if (window.location.pathname == "/ru/en/docs" || window.location.pathname == "/fr/en/docs" || window.location.pathname == "/ua/en/docs" || window.location.pathname == "/bn/en/docs") {
-          window.location.href = "/en/docs"
-      } else if (window.location.pathname == "/ru/ru/docs" || window.location.pathname == "/fr/ru/docs" || window.location.pathname == "/ua/ru/docs" || window.location.pathname == "/bn/ru/docs") {
-          window.location.href = "/ru/docs"
-      } else if (window.location.pathname == "/fr/fr/docs" || window.location.pathname == "/ru/fr/docs" || window.location.pathname == "/ua/fr/docs" || window.location.pathname == "/bn/fr/docs") {
-          window.location.href = "/fr/docs"
-      } else if (window.location.pathname == "/ua/ua/docs" || window.location.pathname == "/fr/ua/docs" || window.location.pathname == "/ru/ua/docs" || window.location.pathname == "/bn/ua/docs") {
-          window.location.href = "/ua/docs"
-      } else if (window.location.pathname == "/bn/bn/docs" || window.location.pathname == "/fr/bn/docs" || window.location.pathname == "/ru/bn/docs" || window.location.pathname == "/ua/bn/docs") {
-          window.location.href = "/bn/docs"
-      } else {
-          window.location.href = "/"
-      }
+      const redirectMap = {
+        "/fr/ru": "/ru", "/ua/ru": "/ru", "/bn/ru": "/ru",
+        "/ru/fr": "/fr", "/ua/fr": "/fr", "/bn/fr": "/fr",
+        "/ru/ua": "/ua", "/fr/ua": "/ua", "/bn/ua": "/ua",
+        "/ru/bn": "/bn", "/fr/bn": "/bn", "/ua/bn": "/bn",
+        "/ru/en/docs": "/en/docs", "/fr/en/docs": "/en/docs", "/ua/en/docs": "/en/docs", "/bn/en/docs": "/en/docs",
+        "/ru/ru/docs": "/ru/docs", "/fr/ru/docs": "/ru/docs", "/ua/ru/docs": "/ru/docs", "/bn/ru/docs": "/ru/docs",
+        "/fr/fr/docs": "/fr/docs", "/ru/fr/docs": "/fr/docs", "/ua/fr/docs": "/fr/docs", "/bn/fr/docs": "/fr/docs",
+        "/ua/ua/docs": "/ua/docs", "/fr/ua/docs": "/ua/docs", "/ru/ua/docs": "/ua/docs", "/bn/ua/docs": "/ua/docs",
+        "/bn/bn/docs": "/bn/docs", "/fr/bn/docs": "/bn/docs", "/ru/bn/docs": "/bn/docs", "/ua/bn/docs": "/bn/docs"
+      };
+      const currentPath = window.location.pathname;
+      const redirectPath = redirectMap[currentPath] || "/";
+      window.location.href = redirectPath;
     </script>
 </head>
 <body>
