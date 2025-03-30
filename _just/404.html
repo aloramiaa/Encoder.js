@@ -86,20 +86,24 @@ SOFTWARE.
 	    }
     </script>
     <script>
-      if (window.location.pathname == "/1" || window.location.pathname == "/fr/1" || window.location.pathname == "/ua/1") {
+      if (window.location.pathname == "/fr/ru" || window.location.pathname == "/ua/ru" || window.location.pathname == "/bn/ru") {
           window.location.href = "/ru"
-      } else if (window.location.pathname == "/2" || window.location.pathname == "/ru/2" || window.location.pathname == "/ua/2") {
+      } else if (window.location.pathname == "/ru/fr" || window.location.pathname == "/ua/fr" || window.location.pathname == "/bn/fr") {
           window.location.href = "/fr"
-      } else if (window.location.pathname == "/3" || window.location.pathname == "/ru/3" || window.location.pathname == "/fr/3") {
+      } else if (window.location.pathname == "/ru/ua" || window.location.pathname == "/fr/ua" || window.location.pathname == "/bn/ua") {
           window.location.href = "/ua"
-      } else if (window.location.pathname == "/ru/en/docs" || window.location.pathname == "/fr/en/docs" || window.location.pathname == "/ua/en/docs") {
+      } else if (window.location.pathname == "/ru/bn" || window.location.pathname == "/fr/bn" || window.location.pathname == "/ua/bn") {
+          window.location.href = "/bn"
+      } else if (window.location.pathname == "/ru/en/docs" || window.location.pathname == "/fr/en/docs" || window.location.pathname == "/ua/en/docs" || window.location.pathname == "/bn/en/docs") {
           window.location.href = "/en/docs"
-      } else if (window.location.pathname == "/fr/ru/docs" || window.location.pathname == "/ua/ru/docs") {
+      } else if (window.location.pathname == "/ru/ru/docs" || window.location.pathname == "/fr/ru/docs" || window.location.pathname == "/ua/ru/docs" || window.location.pathname == "/bn/ru/docs") {
           window.location.href = "/ru/docs"
-      } else if (window.location.pathname == "/ru/fr/docs" || window.location.pathname == "/ua/fr/docs") {
+      } else if (window.location.pathname == "/fr/fr/docs" || window.location.pathname == "/ru/fr/docs" || window.location.pathname == "/ua/fr/docs" || window.location.pathname == "/bn/fr/docs") {
           window.location.href = "/fr/docs"
-      } else if (window.location.pathname == "/fr/ua/docs" || window.location.pathname == "/ru/ua/docs") {
+      } else if (window.location.pathname == "/ua/ua/docs" || window.location.pathname == "/fr/ua/docs" || window.location.pathname == "/ru/ua/docs" || window.location.pathname == "/bn/ua/docs") {
           window.location.href = "/ua/docs"
+      } else if (window.location.pathname == "/bn/bn/docs" || window.location.pathname == "/fr/bn/docs" || window.location.pathname == "/ru/bn/docs" || window.location.pathname == "/ua/bn/docs") {
+          window.location.href = "/bn/docs"
       } else {
           window.location.href = "/"
       }
