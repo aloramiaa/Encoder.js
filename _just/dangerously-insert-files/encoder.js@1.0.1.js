@@ -758,7 +758,7 @@ export const encode = (text, key, compress) => {
     if (doubleEncoded.length < encoded_.length) {
       output_ = `J${doubleEncoded}`;
     }
-    if (/^[0-9]+$/.test(text) && (key === undefined || key === null)) output_ = numEncode(text);
+    if (/^[0-9]+$/.test(text) && (key === undefined || key === null || key === '')) output_ = numEncode(text);
   }
   if (even_or_odd(output_.length)) output_ = output_.split('').reverse().join('');
   return output_;
