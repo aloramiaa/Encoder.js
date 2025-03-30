@@ -759,7 +759,7 @@ function encode5 (text, key, compress) {
     if (doubleEncoded.length < encoded_.length) {
       output_ = `J${doubleEncoded}`;
     }
-    if (/^[0-9]+$/.test(text) && (key === undefined || key === null || key === '') && decode5(numEncoded, key) === text) output_ = numEncoded;
+    if (/^[0-9]+$/.test(text) && (key === undefined || key === null || key === '') && decode5(numEncoded) === text) {output_ = numEncoded}
   }
   if (even_or_odd(output_.length)) output_ = output_.split('').reverse().join('');
   return output_;
