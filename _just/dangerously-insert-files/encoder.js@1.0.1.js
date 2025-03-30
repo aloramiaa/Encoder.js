@@ -745,7 +745,7 @@ const numDecode = (text, key) => {
   return num;
 }
 
-export const encode = (text, key, compress) => {
+function encode5 (text, key, compress) {
   if (text === undefined || text === null) throw new Error(errors[3]('encoded', 'Text'));
   if (typeof text !== 'string') throw new Error(errors[2]('encoded', 'Text', 'string'));
   if (key !== undefined && key !== null && typeof key !== 'string') throw new Error(errors[2]('encoded', 'Key', 'string'));
@@ -759,12 +759,12 @@ export const encode = (text, key, compress) => {
     if (doubleEncoded.length < encoded_.length) {
       output_ = `J${doubleEncoded}`;
     }
-    if (/^[0-9]+$/.test(text) && (key === undefined || key === null || key === '') && decode(numEncoded, key) === text) output_ = numEncoded;
+    if (/^[0-9]+$/.test(text) && (key === undefined || key === null || key === '') && decode5(numEncoded, key) === text) output_ = numEncoded;
   }
   if (even_or_odd(output_.length)) output_ = output_.split('').reverse().join('');
   return output_;
-};
-export const decode = (text, key) => {
+}
+function decode5 (text, key) {
   let input_ = text;
   if (even_or_odd(input_.length)) input_ = input_.split('').reverse().join('');
   if (input_ === undefined || input_ === null) throw new Error(errors[3]('decoded', 'Text'));
@@ -782,5 +782,12 @@ export const decode = (text, key) => {
     output_ = decode4(input_, key);
   }
   return output_;
+}
+
+export const encode = (text, key, compress) => {
+  return encode5(text, key, compress);
+};
+export const decode = (text, key) => {
+  return decode5(text, key);
 };
 
