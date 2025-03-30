@@ -62,7 +62,7 @@ class CustomDocument extends Document {
           <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon-16x16.png"/>
           <link rel="manifest" href="/img/site.webmanifest"/>
           <meta property="og:type" content="website" />
-          
+          <meta name="yandex-verification" content="22aaaca224baf8f7" />
           <meta
             property="og:image"
             content="https://encoder.js.is-a.dev/img/banner.png"
