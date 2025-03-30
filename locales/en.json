@@ -1,4 +1,6 @@
 { "lang": "Default",
+  "path-home": "/",
+  "path-docs": "/en/docs",
 
   "text_-XONHh": "<span><strong>Encoder</strong>.js\n</span>",
   "text_KZFk8S": "<span>Input\n</span>",
