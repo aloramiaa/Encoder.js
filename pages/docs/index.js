@@ -30,7 +30,6 @@ import Link from 'next/link';
 import { CopyBlock, dracula } from 'react-code-blocks';
 import { useTranslations } from 'next-intl';
 import { useGlobalContext } from '@/global-context';
-import { langcode } from '@/stuff/langcode';
 
 const tutorial = {
   'JS': [

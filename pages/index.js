@@ -32,8 +32,6 @@ import { useTranslations } from 'next-intl'
 
 import { useGlobalContext } from '@/global-context'
 
-import { langcode, debug } from '@/stuff/langcode';
-
 const Home = (props) => {
   const { locale, locales } = useGlobalContext()
   const translate = useTranslations()
