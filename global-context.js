@@ -34,7 +34,7 @@ export const GlobalProvider = ({ initialLocales, children }) => {
   const [locales, setLocales] = useState(
     initialLocales ?? [
       {"name":"English","short":"en"},    // English
-      {"name":"Bengali","short":"bn"},    // Bengali
+      {"name":"বাংলা","short":"bn"},       // Bengali
       {"name":"Français","short":"fr"},   // French
       {"name":"Русский","short":"ru"},    // Russian
       {"name":"Український","short":"ua"},// Ukrainian
