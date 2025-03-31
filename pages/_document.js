@@ -140,6 +140,8 @@ class CustomDocument extends Document {
                         errstr = "Erreur: Le texte que vous souhaitez décoder n'est pas encodé correctement.";
                       } else if (window.location.pathname == "/ua") {
                         errstr = "Помилка: Текст, що підлягає декодуванню, неправильно закодований.";
+                      } else if (window.location.pathname == "/bn") {
+                        errstr = "ত্রুটি: যে স্ট্রিংটি ডিকোড করা হবে তা সঠিকভাবে এনকোড করা হয়নি।";
                       }
                       return errstr;
                     }
