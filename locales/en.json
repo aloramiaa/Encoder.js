@@ -30,7 +30,7 @@
   "docs-04": "Example usage:",
   "docs-05": "",
   "docs-06": "What is Encoder.js?",
-  "docs-07": "Encoder.js is a text encoder for encrypting data. Encoder.js encodes text in a string that can contain only URL-safe characters<small> (A-Za-z0-9 and -_().~)</small>. Encoder.js is designed for browsers (client-side, JavaScript) and server-side (JavaScript or TypeScript), but Encoder.js is incompatible with Node.js, React.js, Next.js, etc.",
+  "docs-07": "Encoder.js is a text encoder for encrypting data. Encoder.js encodes text into a string that can contain only URL-safe characters<small> (A-Za-z0-9 and -_().~)</small>. Encoder.js is designed for browsers (client-side, JavaScript) and server-side (JavaScript or TypeScript), but Encoder.js is incompatible with Node.js, React.js, Next.js, etc.",
   "docs-08": "A function for encoding text. Required input data: <v>text</v> - the text to be encoded, type: <v>string</v>. Optional input data: <v>key</v> - encryption key, type: <v>string</v>; <v>compress</v> - whether to compress text (if possible), type: <v>boolean</v>. Output data type: <v>string</v>.\nImportant: Encoding without a key or encoding with a key that looks like text or contains parts of text is not a good idea.",
   "docs-09": "A function for decoding text. Required input data: <v>text</v> - the text to be decoded, type: <v>string</v>. Optional input data: <v>key</v> - encryption key, type: <v>string</v>. Output data type: <v>string</v>.\nThis function may throw an error if <v>text</v> in the input data is encoded incorrectly, or if it was encoded in a different Encoder.js version that is incompatible with the Encoder.js version you are using."
 
