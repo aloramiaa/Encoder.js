@@ -117,7 +117,7 @@ class CustomDocument extends Document {
         </Head>
         <body>
           <a href="https://juststudio.is-a.dev/" rel="noreferrer noopener" class="h-logo-link">
-            <img src="/img/logo-200h.png" alt="JustStudio." class="h-logo" />
+            <img src="/img/logo.png" alt="JustStudio." class="h-logo" />
           </a>
           <Main></Main>
           <NextScript></NextScript>
