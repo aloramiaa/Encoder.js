@@ -33,10 +33,6 @@ class CustomDocument extends Document {
     return (
       <Html>
         <Head>
-          <meta
-            name="viewport"
-            content="width=device-width, initial-scale=1.0"
-          ></meta>
           <meta charSet="utf-8"></meta>
           <meta property="twitter:card" content="summary_large_image"></meta>
           <style
@@ -67,9 +63,6 @@ class CustomDocument extends Document {
             property="og:image"
             content="https://encoder.js.is-a.dev/img/banner.png"
           />
-          <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-          <meta charset="utf-8" />
-          <meta property="twitter:card" content="summary_large_image" />
           <meta property="vk:image" content="http://encoder.js.is-a.dev/img/banner.png" />
           <link
             rel="stylesheet"
@@ -116,8 +109,8 @@ class CustomDocument extends Document {
           }}></div>
         </Head>
         <body>
-          <a href="https://juststudio.is-a.dev/" rel="noreferrer noopener" class="h-logo-link">
-            <img src="/img/logo.png" alt="JustStudio." class="h-logo" />
+          <a href="https://juststudio.is-a.dev/" rel="noreferrer noopener" className="h-logo-link">
+            <img src="/img/logo.png" alt="JustStudio." className="h-logo" />
           </a>
           <Main></Main>
           <NextScript></NextScript>

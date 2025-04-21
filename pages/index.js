@@ -88,9 +88,9 @@ const Home = (props) => {
           >
             <div>
               {locales.map((all_languages, index) => (
-                <Link href={`${process.env.URLprefix}${locales[index].short}`.replace(/\/(.*?)\/(.*?)/, '/$2').replace(locale?.['short'], '').replace('/coder', '/encoder')}>
-                  <Fragment key={index}>
-                    <Link href={`${process.env.URLprefix}${locales[index].short}`.replace(/\/(.*?)\/(.*?)/, '/$2').replace(locale?.['short'], '').replace('/coder', '/encoder')}>
+                <Link href={`${process.env.URLprefix}${locales[index].short}`.replace(/\/(.*?)\/(.*?)/, '/$2').replace(locale?.['short'], '').replace('/coder', '/encoder')} key={`lang-link-${index}`}>
+                  <Fragment>
+                    <Link href={`${process.env.URLprefix}${locales[index].short}`.replace(/\/(.*?)\/(.*?)/, '/$2').replace(locale?.['short'], '').replace('/coder', '/encoder')} key={`inner-lang-link-${index}`}>
                       <div className="home-language-switcher-item">
                         <span className="home-language-link">
                           {all_languages?.name}
@@ -151,7 +151,7 @@ const Home = (props) => {
             ></textarea>
           </div>
           <div className="home-mode __just_select">
-            <label for="mode" className="home-text3">
+            <label htmlFor="mode" className="home-text3">
               <span
                 dangerouslySetInnerHTML={{
                   __html: translate.raw('text_v-MT8j'),
